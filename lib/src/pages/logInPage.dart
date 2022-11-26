@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:wallet_monitor/src/util/appMessage.dart';
 import 'package:wallet_monitor/src/util/background.dart';
 import 'package:wallet_monitor/src/widgets/boxContainer.dart';
+import 'package:wallet_monitor/src/widgets/buttonGlobal.dart';
+import 'package:wallet_monitor/src/widgets/textButton.dart';
 import 'package:wallet_monitor/src/widgets/textField.dart';
 
 class LogInPage extends StatefulWidget {
@@ -67,33 +69,19 @@ class _LogInPageState extends State<LogInPage> {
                   label: "Password",
                   changeObscureText: true,
                 ),
-                logInButton(),
-                linkToSignUp(),
+                ButtonGlobal(
+                  text: "Log In",
+                  callback: checkInputs,
+                ),
+                TextButtonGlobal(
+                  text: "Sign Up",
+                  callback: () => redirect("/sign_up"),
+                )
               ],
             ),
           ),
         ],
       ),
-    );
-  }
-
-  ElevatedButton logInButton() {
-    return ElevatedButton(
-      onPressed: () => checkInputs(),
-      style: ElevatedButton.styleFrom(
-        fixedSize: Size(MediaQuery.of(context).size.width, 44.0),
-      ),
-      child: const Text(
-        "Log In",
-        style: TextStyle(color: Colors.white),
-      ),
-    );
-  }
-
-  GestureDetector linkToSignUp() {
-    return GestureDetector(
-      onTap: () => redirect("/sign_up"),
-      child: const Text("Sign Up"),
     );
   }
 }

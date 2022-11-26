@@ -4,14 +4,21 @@ class TextFieldGlobal extends StatefulWidget {
   final TextEditingController textEditingController;
   final String label;
   final InputBorder inputBorder;
+  final bool error;
+  final String? errorText;
+  final bool disabledInput;
   final bool changeObscureText;
   final bool enableSuggestions;
   final bool autocorrect;
+
   const TextFieldGlobal({
     Key? key,
     required this.textEditingController,
     required this.label,
+    this.error = false,
+    this.errorText,
     this.inputBorder = const UnderlineInputBorder(),
+    this.disabledInput = false,
     this.changeObscureText = false,
     this.enableSuggestions = false,
     this.autocorrect = false,
@@ -41,15 +48,20 @@ class _TextFieldGlobal extends State<TextFieldGlobal> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       controller: widget.textEditingController,
       decoration: InputDecoration(
         label: Text(widget.label),
         border: widget.inputBorder,
-        suffixIcon: IconButton(
-          icon: iconPassShow(),
-          onPressed: () => pressIcon(),
-        ),
+        errorText: widget.error ? widget.errorText : null,
+        suffixIcon: widget.changeObscureText
+            ? IconButton(
+                icon: iconPassShow(),
+                onPressed: () => pressIcon(),
+              )
+            : const SizedBox(),
       ),
+      enabled: !widget.disabledInput,
       obscureText: obscureText,
       enableSuggestions: widget.enableSuggestions,
       autocorrect: widget.autocorrect,

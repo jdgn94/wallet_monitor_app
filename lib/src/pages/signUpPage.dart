@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_monitor/src/settings/colorSchema.dart';
+import 'package:wallet_monitor/src/util/appDialog.dart';
 import 'package:wallet_monitor/src/util/appMessage.dart';
 import 'package:wallet_monitor/src/util/background.dart';
 import 'package:wallet_monitor/src/widgets/boxContainer.dart';
 import 'package:wallet_monitor/src/widgets/buttonGlobal.dart';
+import 'package:wallet_monitor/src/widgets/textButton.dart';
 import 'package:wallet_monitor/src/widgets/textField.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -22,6 +24,11 @@ class _SignUpPageState extends State<SignUpPage> {
   bool _errorPasswordCharacterNumber = true;
   bool _errorPasswordCharacterSpecial = true;
   bool _errorPasswordCharacterLength = true;
+  bool _verifyInServer = false;
+  late String _nullString;
+  final String _errorUsernameText = "The username is not a valid";
+  final String _errorEmailText = "The email is not a valid";
+  final String _errorPasswordText = "The password is no valid";
   final ColorSchemaApp colorSchema = ColorSchemaApp();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -56,6 +63,18 @@ class _SignUpPageState extends State<SignUpPage> {
 
   void redirect(String route) {
     Navigator.popAndPushNamed(context, route);
+  }
+
+  void openDialog() {
+    AppDialog.buildMessageDialog(
+      context,
+      requirements(),
+      null,
+      null,
+      null,
+      null,
+      null,
+    );
   }
 
   void checkUsername(String text) {
@@ -127,11 +146,7 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   void checkInputs() {
-    final username = _usernameController.value.text;
-    final email = _emailController.value.text;
-    final password = _passwordController.value.text;
-
-    if (username.isEmpty) {
+    if (_errorUsername) {
       AppMessage.buildMessageSnackbar(
         context,
         "Username is no valid",
@@ -140,7 +155,7 @@ class _SignUpPageState extends State<SignUpPage> {
       return;
     }
 
-    if (email.isEmpty) {
+    if (_errorEmail) {
       AppMessage.buildMessageSnackbar(
         context,
         "Email is not valid",
@@ -149,7 +164,7 @@ class _SignUpPageState extends State<SignUpPage> {
       return;
     }
 
-    if (password.isEmpty) {
+    if (_errorPassword) {
       AppMessage.buildMessageSnackbar(
         context,
         "Password is not valid",
@@ -158,7 +173,18 @@ class _SignUpPageState extends State<SignUpPage> {
       return;
     }
 
-    redirect("/home");
+    setState(() {
+      _verifyInServer = true;
+    });
+    Future.delayed(
+      const Duration(milliseconds: 2000),
+      () {
+        setState(() {
+          _verifyInServer = false;
+        });
+      },
+    );
+    // redirect("/home");
   }
 
   @override
@@ -171,29 +197,47 @@ class _SignUpPageState extends State<SignUpPage> {
             Center(
               child: BoxContainer(
                 title: "Sign Up",
-                height: 600.0,
+                height: 420.0,
                 components: [
                   TextFieldGlobal(
                     textEditingController: _usernameController,
                     label: "Username",
+                    errorText: _errorUsernameText,
+                    error: _errorUsername,
+                    disabledInput: _verifyInServer,
                   ),
                   TextFieldGlobal(
                     textEditingController: _emailController,
                     label: "Email",
+                    errorText: _errorEmailText,
+                    error: _errorEmail,
+                    disabledInput: _verifyInServer,
                   ),
                   TextFieldGlobal(
                     textEditingController: _passwordController,
                     label: "Password",
                     changeObscureText: true,
+                    errorText: _errorPasswordText,
+                    error: _errorPassword,
+                    disabledInput: _verifyInServer,
                   ),
                   ButtonGlobal(
                     text: "Sign Up",
                     callback: checkInputs,
+                    disabledButton: _verifyInServer,
+                    loading: _verifyInServer,
                   ),
-                  requirementUsername(),
-                  requirementEmail(),
-                  requirementPassword(),
-                  linkToLogIn(),
+                  TextButtonGlobal(
+                    text: "Requirements",
+                    icon: Icons.info_outline,
+                    callback: openDialog,
+                    disabledButton: _verifyInServer,
+                  ),
+                  TextButtonGlobal(
+                    text: "Log In",
+                    callback: () => redirect("/log_in"),
+                    disabledButton: _verifyInServer,
+                  ),
                 ],
               ),
             ),
@@ -203,15 +247,18 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  ElevatedButton signUpButton() {
-    return ElevatedButton(
-      onPressed: () => checkInputs(),
-      style: ElevatedButton.styleFrom(
-        fixedSize: Size(MediaQuery.of(context).size.width, 44.0),
-      ),
-      child: const Text(
-        "Sign Up",
-        style: TextStyle(color: Colors.white),
+  SizedBox requirements() {
+    return SizedBox(
+      width: 700.0,
+      height: 300.0,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          requirementUsername(),
+          requirementEmail(),
+          requirementPassword(),
+        ],
       ),
     );
   }
@@ -311,15 +358,12 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  GestureDetector linkToLogIn() {
-    return GestureDetector(
-      onTap: () => redirect("/log_in"),
-      child: const Text("Log In"),
-    );
-  }
-
   Row messageErrorGenerator(
-      Color color, String messageSuccess, String messageError, bool error) {
+    Color color,
+    String messageSuccess,
+    String messageError,
+    bool error,
+  ) {
     return Row(
       children: [
         Icon(

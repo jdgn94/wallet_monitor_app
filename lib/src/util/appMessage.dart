@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:wallet_monitor/src/settings/colorSchema.dart';
 
 class AppMessage {
-  ColorSchemaApp colorScheme = ColorSchemaApp();
   AppMessage._();
   static buildMessageSnackbar(
-      BuildContext context, String message, String type) {
+    BuildContext context,
+    String message,
+    String type,
+  ) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: _colorSelector(type),
