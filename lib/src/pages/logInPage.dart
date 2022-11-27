@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_monitor/generated/l10n.dart';
 import 'package:wallet_monitor/src/util/appMessage.dart';
 import 'package:wallet_monitor/src/util/background.dart';
 import 'package:wallet_monitor/src/widgets/boxContainer.dart';
@@ -41,7 +42,7 @@ class _LogInPageState extends State<LogInPage> {
     if (usernameEmail.isEmpty || password.isEmpty) {
       AppMessage.buildMessageSnackbar(
         context,
-        "Username/Email or Password is not correct",
+        S.current.logInError,
         "error",
       );
       return;
@@ -58,23 +59,23 @@ class _LogInPageState extends State<LogInPage> {
           const BackgroundUtil(),
           Center(
             child: BoxContainer(
-              title: "Log In",
+              title: S.current.logIn,
               components: [
                 TextFieldGlobal(
                   textEditingController: _usernameEmailController,
-                  label: "Email or Username",
+                  label: S.current.emailUsername,
                 ),
                 TextFieldGlobal(
                   textEditingController: _passwordController,
-                  label: "Password",
+                  label: S.current.password,
                   changeObscureText: true,
                 ),
                 ButtonGlobal(
-                  text: "Log In",
+                  text: S.current.logIn,
                   callback: checkInputs,
                 ),
                 TextButtonGlobal(
-                  text: "Sign Up",
+                  text: S.current.signUp,
                   callback: () => redirect("/sign_up"),
                 )
               ],

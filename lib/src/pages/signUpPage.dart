@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_monitor/generated/l10n.dart';
 import 'package:wallet_monitor/src/settings/colorSchema.dart';
 import 'package:wallet_monitor/src/util/appDialog.dart';
 import 'package:wallet_monitor/src/util/appMessage.dart';
@@ -25,10 +26,6 @@ class _SignUpPageState extends State<SignUpPage> {
   bool _errorPasswordCharacterSpecial = true;
   bool _errorPasswordCharacterLength = true;
   bool _verifyInServer = false;
-  late String _nullString;
-  final String _errorUsernameText = "The username is not a valid";
-  final String _errorEmailText = "The email is not a valid";
-  final String _errorPasswordText = "The password is no valid";
   final ColorSchemaApp colorSchema = ColorSchemaApp();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -149,7 +146,7 @@ class _SignUpPageState extends State<SignUpPage> {
     if (_errorUsername) {
       AppMessage.buildMessageSnackbar(
         context,
-        "Username is no valid",
+        S.current.usernameErrorInput,
         "error",
       );
       return;
@@ -158,7 +155,7 @@ class _SignUpPageState extends State<SignUpPage> {
     if (_errorEmail) {
       AppMessage.buildMessageSnackbar(
         context,
-        "Email is not valid",
+        S.current.emailErrorInput,
         "error",
       );
       return;
@@ -167,7 +164,7 @@ class _SignUpPageState extends State<SignUpPage> {
     if (_errorPassword) {
       AppMessage.buildMessageSnackbar(
         context,
-        "Password is not valid",
+        S.current.passwordErrorInput,
         "error",
       );
       return;
@@ -201,40 +198,40 @@ class _SignUpPageState extends State<SignUpPage> {
                 components: [
                   TextFieldGlobal(
                     textEditingController: _usernameController,
-                    label: "Username",
-                    errorText: _errorUsernameText,
+                    label: S.current.username,
+                    errorText: S.current.emailErrorInput,
                     error: _errorUsername,
                     disabledInput: _verifyInServer,
                   ),
                   TextFieldGlobal(
                     textEditingController: _emailController,
-                    label: "Email",
-                    errorText: _errorEmailText,
+                    label: S.current.email,
+                    errorText: S.current.emailErrorInput,
                     error: _errorEmail,
                     disabledInput: _verifyInServer,
                   ),
                   TextFieldGlobal(
                     textEditingController: _passwordController,
-                    label: "Password",
+                    label: S.current.password,
                     changeObscureText: true,
-                    errorText: _errorPasswordText,
+                    errorText: S.current.passwordErrorInput,
                     error: _errorPassword,
                     disabledInput: _verifyInServer,
                   ),
                   ButtonGlobal(
-                    text: "Sign Up",
+                    text: S.current.signUp,
                     callback: checkInputs,
                     disabledButton: _verifyInServer,
                     loading: _verifyInServer,
                   ),
                   TextButtonGlobal(
-                    text: "Requirements",
+                    text: S.current.requirements,
                     icon: Icons.info_outline,
                     callback: openDialog,
                     disabledButton: _verifyInServer,
                   ),
                   TextButtonGlobal(
-                    text: "Log In",
+                    text: S.current.logIn,
                     callback: () => redirect("/log_in"),
                     disabledButton: _verifyInServer,
                   ),
@@ -268,8 +265,8 @@ class _SignUpPageState extends State<SignUpPage> {
         _errorUsername ? colorSchema.error : colorSchema.success;
     return messageErrorGenerator(
       colorText,
-      "The username is valid",
-      "The username is not valid, characters accepted (a-z, 0-9, ., _ and -)",
+      S.current.usernameSuccess,
+      S.current.usernameError,
       _errorUsername,
     );
   }
@@ -279,8 +276,8 @@ class _SignUpPageState extends State<SignUpPage> {
         _errorEmail ? colorSchema.error : colorSchema.success;
     return messageErrorGenerator(
       colorText,
-      "The email is valid",
-      "The email is not valid",
+      S.current.emailSuccess,
+      S.current.emailError,
       _errorEmail,
     );
   }
@@ -304,16 +301,16 @@ class _SignUpPageState extends State<SignUpPage> {
         children: [
           messageErrorGenerator(
             colorTextTotal,
-            "The password is valid",
-            "The password is not valid",
+            S.current.passwordSuccess,
+            S.current.passwordError,
             _errorPassword,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 20.0),
             child: messageErrorGenerator(
               colorTextLower,
-              "Lowercase letters are allowed",
-              "Lowercase letters are not allowed",
+              S.current.passwordSuccessRequirementLower,
+              S.current.passwordErrorRequirementLower,
               _errorPasswordCharacterLower,
             ),
           ),
@@ -321,8 +318,8 @@ class _SignUpPageState extends State<SignUpPage> {
             padding: const EdgeInsets.only(left: 20.0),
             child: messageErrorGenerator(
               colorTextUpper,
-              "Uppercase letters are allowed",
-              "Uppercase letters are not allowed",
+              S.current.passwordSuccessRequirementUpper,
+              S.current.passwordErrorRequirementUpper,
               _errorPasswordCharacterUpper,
             ),
           ),
@@ -330,8 +327,8 @@ class _SignUpPageState extends State<SignUpPage> {
             padding: const EdgeInsets.only(left: 20.0),
             child: messageErrorGenerator(
               colorTextNumber,
-              "Number are allowed",
-              "Number are not allowed",
+              S.current.passwordSuccessRequirementNumber,
+              S.current.passwordErrorRequirementNumber,
               _errorPasswordCharacterNumber,
             ),
           ),
@@ -339,8 +336,8 @@ class _SignUpPageState extends State<SignUpPage> {
             padding: const EdgeInsets.only(left: 20.0),
             child: messageErrorGenerator(
               colorTextSpecial,
-              "Special character are allowed",
-              "Special character are not allowed (\$@!%*?&#._-)",
+              S.current.passwordSuccessRequirementSpecial,
+              S.current.passwordErrorRequirementSpecial,
               _errorPasswordCharacterSpecial,
             ),
           ),
@@ -348,8 +345,8 @@ class _SignUpPageState extends State<SignUpPage> {
             padding: const EdgeInsets.only(left: 20.0),
             child: messageErrorGenerator(
               colorTextLength,
-              "Length are allowed",
-              "Length are 8 or 64 characters",
+              S.current.passwordSuccessRequirementLength,
+              S.current.passwordErrorRequirementLength,
               _errorPasswordCharacterLength,
             ),
           ),

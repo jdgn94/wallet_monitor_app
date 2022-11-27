@@ -7,7 +7,7 @@ class TextButtonGlobal extends StatelessWidget {
   final VoidCallback? callback;
   final Size? size;
   final Color? backgroundColor;
-  final Color textColor;
+  final Color? textColor;
   final IconData? icon;
   final bool disabledButton;
 
@@ -18,10 +18,16 @@ class TextButtonGlobal extends StatelessWidget {
     required this.callback,
     this.size,
     this.backgroundColor,
-    this.textColor = Colors.white,
+    this.textColor,
     this.icon,
     this.disabledButton = false,
   }) : super(key: key);
+
+  Color defaultTextColor(BuildContext context) {
+    return Theme.of(context).colorScheme.brightness == Brightness.dark
+        ? Colors.white
+        : Colors.black;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,13 +42,13 @@ class TextButtonGlobal extends StatelessWidget {
           if (icon != null)
             Icon(
               icon,
-              color: textColor,
+              color: textColor ?? defaultTextColor(context),
             ),
           if (icon != null) const SizedBox(width: 10),
           Text(
             text,
             style: TextStyle(
-              color: textColor,
+              color: textColor ?? defaultTextColor(context),
             ),
           ),
         ],
