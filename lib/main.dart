@@ -17,7 +17,7 @@ void main() async {
   final preferencesBloc = PreferencesBloc(
     preferenceRepository: preferenceRepository,
     initialLocale: await preferenceRepository.locale,
-    initialTheme: 'system',
+    initialTheme: await preferenceRepository.theme,
   );
   await LocalStorage.configurePreferences();
   runApp(BlocProvider(
@@ -57,6 +57,7 @@ class MyApp extends StatelessWidget {
   }
 
   ThemeMode getThemeMode(String mode) {
+    print("mode application: $mode");
     if (mode == 'dark') return ThemeMode.dark;
     if (mode == 'light') return ThemeMode.light;
     return ThemeMode.system;

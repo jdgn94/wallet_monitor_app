@@ -10,6 +10,7 @@ class TextButtonGlobal extends StatelessWidget {
   final Color? textColor;
   final IconData? icon;
   final bool disabledButton;
+  final MainAxisAlignment mainAxisAlignment;
 
   @override
   TextButtonGlobal({
@@ -21,6 +22,7 @@ class TextButtonGlobal extends StatelessWidget {
     this.textColor,
     this.icon,
     this.disabledButton = false,
+    this.mainAxisAlignment = MainAxisAlignment.center,
   }) : super(key: key);
 
   Color defaultTextColor(BuildContext context) {
@@ -37,7 +39,7 @@ class TextButtonGlobal extends StatelessWidget {
         fixedSize: size ?? Size(MediaQuery.of(context).size.width, 22.0),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: mainAxisAlignment,
         children: [
           if (icon != null)
             Icon(

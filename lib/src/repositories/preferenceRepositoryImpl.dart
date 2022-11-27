@@ -45,7 +45,6 @@ class PreferenceRepositoryImpl implements PreferenceRepository {
   }
 
   @override
-  // TODO: implement theme
   Future<String> get theme async {
     final preferences = await SharedPreferences.getInstance();
 
