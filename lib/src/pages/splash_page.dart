@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wallet_monitor/src/services/localStorage.dart';
-import 'package:wallet_monitor/src/settings/colorSchema.dart';
+import 'package:wallet_monitor/src/settings/color_schema.dart';
 import 'package:wallet_monitor/src/util/background.dart';
 
 class SplashPage extends StatefulWidget {
@@ -14,7 +13,7 @@ class _SplashPageState extends State<SplashPage> {
   final ColorSchemaApp colorSchema = ColorSchemaApp();
 
   Future<void> getToken() async {
-    final token = LocalStorage.preferences.getString('token');
+    const token = null; // volver un final y buscar el token en el local storage
     if (token == null) {
       Navigator.popAndPushNamed(context, "/log_in");
       return;

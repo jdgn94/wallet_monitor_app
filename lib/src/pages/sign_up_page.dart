@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_monitor/generated/l10n.dart';
-import 'package:wallet_monitor/src/settings/colorSchema.dart';
-import 'package:wallet_monitor/src/util/appDialog.dart';
-import 'package:wallet_monitor/src/util/appMessage.dart';
+import 'package:wallet_monitor/src/settings/color_schema.dart';
+import 'package:wallet_monitor/src/util/app_dialog.dart';
+import 'package:wallet_monitor/src/util/app_message.dart';
 import 'package:wallet_monitor/src/util/background.dart';
-import 'package:wallet_monitor/src/widgets/boxContainer.dart';
-import 'package:wallet_monitor/src/widgets/buttonGlobal.dart';
-import 'package:wallet_monitor/src/widgets/textButton.dart';
-import 'package:wallet_monitor/src/widgets/textField.dart';
+import 'package:wallet_monitor/src/widgets/box_container.dart';
+import 'package:wallet_monitor/src/widgets/button_global.dart';
+import 'package:wallet_monitor/src/widgets/text_button.dart';
+import 'package:wallet_monitor/src/widgets/text_field.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);

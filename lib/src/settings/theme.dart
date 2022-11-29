@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:wallet_monitor/src/settings/colorSchema.dart";
+import 'package:wallet_monitor/src/settings/color_schema.dart';
 
 ThemeData themeLight() {
   ColorSchemaApp colorSchema = ColorSchemaApp();

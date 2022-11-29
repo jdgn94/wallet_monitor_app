@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:wallet_monitor/src/bloc/preferenceBloc.dart';
-import 'package:wallet_monitor/src/repositories/preferenceRepositoryImpl.dart';
-import 'package:wallet_monitor/src/util/appDrawer.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wallet_monitor/src/bloc/settings/settings_bloc.dart';
+import 'package:wallet_monitor/src/localStorage/settings.dart';
+import 'package:wallet_monitor/src/util/app_drawer.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -11,29 +12,18 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  final PreferenceRepositoryImpl preferences = PreferenceRepositoryImpl();
-  late PreferencesBloc preferencesBloc;
   final List<Map<String, String>> _themeConfigs = [
     {"value": "system", "text": "System"},
     {"value": "light", "text": "Light"},
     {"value": "dark", "text": "Dark"},
   ];
+  late SharedPreferences prefs = SettingsLocalStorage.prefs;
   late String _themeValue;
 
   @override
   void initState() {
     super.initState();
-    _themeValue = '';
-  }
-
-  Future<void> getInitialValues() async {
-    preferencesBloc = PreferencesBloc(
-      preferenceRepository: preferences,
-      initialLocale: await preferences.locale,
-      initialTheme: await preferences.theme,
-    );
-    _themeValue = await preferences.theme;
-    setState(() {});
+    _themeValue = prefs.getString('theme') ?? 'system';
   }
 
   Map<String, String> getDropdownValue() {
@@ -42,17 +32,12 @@ class _SettingsPageState extends State<SettingsPage> {
     return _themeConfigs.first;
   }
 
-  Future<void> changeTheme(Map<String, String>? newValue) async {
+  changeTheme(BuildContext context, Map<String, String>? newValue) {
     print(newValue);
     if (newValue == null) return;
-
-    await preferences.saveTheme(newValue["value"]!);
-    // ChangeTheme(newValue["value"]!);
-    preferencesBloc.on<ChangeTheme>(((event, emit) {
-      print(event);
-      print(emit);
-      newValue["value"]!;
-    }));
+    print("en la funcion para cambiar el tema");
+    BlocProvider.of<SettingsBloc>(context)
+        .add(ChangeTheme(newValue['value'] ?? 'system'));
     setState(() {
       _themeValue = newValue["value"]!;
     });
@@ -60,7 +45,6 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    getInitialValues();
     return Scaffold(
       body: Scaffold(
         appBar: AppBar(
@@ -76,7 +60,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 value: getDropdownValue(),
                 icon: const Icon(Icons.arrow_downward),
                 onChanged: (Map<String, String>? valueSelected) =>
-                    changeTheme(valueSelected),
+                    changeTheme(context, valueSelected),
                 items: _themeConfigs.map<DropdownMenuItem<Map<String, String>>>(
                   (Map<String, String> value) {
                     return DropdownMenuItem<Map<String, String>>(

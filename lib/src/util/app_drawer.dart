@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_monitor/generated/l10n.dart';
-import 'package:wallet_monitor/src/settings/colorSchema.dart';
+import 'package:wallet_monitor/src/settings/color_schema.dart';
 import 'package:wallet_monitor/src/util/background.dart';
-import 'package:wallet_monitor/src/widgets/textButton.dart';
+import 'package:wallet_monitor/src/widgets/text_button.dart';
 
 class AppDrawer extends StatelessWidget {
   final String routeSelect;

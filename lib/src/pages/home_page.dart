@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_monitor/generated/l10n.dart';
-import 'package:wallet_monitor/src/util/appDrawer.dart';
+import 'package:wallet_monitor/src/util/app_drawer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
