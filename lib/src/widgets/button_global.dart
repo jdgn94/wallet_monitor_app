@@ -40,9 +40,13 @@ class ButtonGlobal extends StatelessWidget {
   ElevatedButton build(BuildContext context) {
     return ElevatedButton(
       onPressed: disabledButton || loading ? null : callback,
-      style: ElevatedButton.styleFrom(
-        fixedSize: size ?? Size(MediaQuery.of(context).size.width, 44.0),
-        backgroundColor: backgroundColor ?? defaultBackground(context),
+      style: ButtonStyle(
+        fixedSize: MaterialStateProperty.resolveWith(
+            (states) => size ?? Size(MediaQuery.of(context).size.width, 44.0)),
+        overlayColor: MaterialStateColor.resolveWith((states) => colorSchema
+            .darkenColor(backgroundColor ?? defaultBackground(context), 0.5)),
+        backgroundColor: MaterialStateColor.resolveWith(
+            (states) => backgroundColor ?? defaultBackground(context)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -50,7 +54,7 @@ class ButtonGlobal extends StatelessWidget {
           if (icon != null && !loading)
             Icon(
               icon,
-              color: defaultColor(context),
+              color: textColor ?? defaultColor(context),
             ),
           if (icon != null && !loading) const SizedBox(width: 10),
           if (!loading)

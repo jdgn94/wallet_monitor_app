@@ -1,6 +1,12 @@
 {
 	"logIn": "Ingresar",
 	"signUp": "Registrarse",
+	"noAccount": "Usar sin cuenta",
+	"dialogNoAccountTitle": "¿Ingresar sin cuenta?",
+	"dialogNoAccountText": "Al ingresar a la aplicación sin cuenta no podrá ver los data en la aplicación web.",
+	"dialogConfirmTextBottomDefault": "Confirmar",
+	"dialogCancelTextBottomDefault": "Cerrar",
+	"dialogCancelTextBottom": "Cancelar",
 	"logOut": "Cerrar Sesión",
 	"email": "Correo",
 	"username": "Nombre de usuario",

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_monitor/generated/l10n.dart';
 import 'package:wallet_monitor/src/settings/color_schema.dart';
+import 'package:wallet_monitor/src/widgets/text_button.dart';
 
 class AppDialog {
   AppDialog._();
@@ -20,27 +22,26 @@ class AppDialog {
           title: Text(title ?? ""),
           content: widgets,
           actions: [
-            if (callbackConfirm != null)
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  callbackConfirm();
-                },
-                child: Text(
-                  confirmButtonMessage ?? "OK",
-                  style: TextStyle(color: colorSelected("")),
-                ),
-              ),
-            TextButton(
-              onPressed: () {
+            TextButtonGlobal(
+              text:
+                  closeButtonMessage ?? S.current.dialogCancelTextBottomDefault,
+              callback: () {
                 Navigator.of(context).pop();
                 if (callbackClose != null) callbackClose();
               },
-              child: Text(
-                closeButtonMessage ?? "Close",
-                style: TextStyle(color: colorSelected("error")),
-              ),
+              textColor: colorSelected("error"),
+              backgroundColor: colorSelected("error"),
             ),
+            if (callbackConfirm != null)
+              TextButtonGlobal(
+                text: confirmButtonMessage ??
+                    S.current.dialogConfirmTextBottomDefault,
+                callback: () {
+                  Navigator.of(context).pop();
+                  callbackConfirm();
+                },
+                textColor: colorSelected(""),
+              ),
           ],
         );
       },

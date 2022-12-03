@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_monitor/generated/l10n.dart';
+import 'package:wallet_monitor/src/localStorage/settings.dart';
+import 'package:wallet_monitor/src/util/app_dialog.dart';
 import 'package:wallet_monitor/src/util/app_message.dart';
 import 'package:wallet_monitor/src/util/background.dart';
 import 'package:wallet_monitor/src/widgets/box_container.dart';
@@ -18,6 +20,7 @@ class _LogInPageState extends State<LogInPage> {
   final TextEditingController _usernameEmailController =
       TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final prefs = SettingsLocalStorage.prefs;
 
   @override
   void initState() {
@@ -31,11 +34,11 @@ class _LogInPageState extends State<LogInPage> {
     super.dispose();
   }
 
-  redirect(String route) {
+  void redirect(String route) {
     Navigator.popAndPushNamed(context, route);
   }
 
-  checkInputs() {
+  void checkInputs() {
     final usernameEmail = _usernameEmailController.value.text;
     final password = _usernameEmailController.value.text;
 
@@ -48,7 +51,25 @@ class _LogInPageState extends State<LogInPage> {
       return;
     }
 
-    return redirect("/home");
+    redirect("/home");
+    return;
+  }
+
+  Future<void> confirmLogInWithAccount() async {
+    await prefs.setString('token', "noUseInternet");
+    redirect("/home");
+  }
+
+  void logInWithoutAccount() {
+    AppDialog.buildMessageDialog(
+      context,
+      Text(S.current.dialogNoAccountText),
+      S.current.dialogNoAccountTitle,
+      S.current.dialogCancelTextBottom,
+      null,
+      S.current.dialogConfirmTextBottomDefault,
+      confirmLogInWithAccount,
+    );
   }
 
   @override
@@ -77,7 +98,11 @@ class _LogInPageState extends State<LogInPage> {
                 TextButtonGlobal(
                   text: S.current.signUp,
                   callback: () => redirect("/sign_up"),
-                )
+                ),
+                TextButtonGlobal(
+                  text: S.current.noAccount,
+                  callback: () => logInWithoutAccount(),
+                ),
               ],
             ),
           ),

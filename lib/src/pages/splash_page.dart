@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_monitor/src/localStorage/settings.dart';
 import 'package:wallet_monitor/src/settings/color_schema.dart';
 import 'package:wallet_monitor/src/util/background.dart';
 
@@ -11,14 +12,20 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   final ColorSchemaApp colorSchema = ColorSchemaApp();
+  final prefs = SettingsLocalStorage.prefs;
 
   Future<void> getToken() async {
-    const token = null; // volver un final y buscar el token en el local storage
+    final token = prefs.getString('token');
+    print(token);
     if (token == null) {
       Navigator.popAndPushNamed(context, "/log_in");
       return;
     }
 
+    if (token == "noUseInternet") {
+      Navigator.popAndPushNamed(context, "/home");
+      return;
+    }
     // aqui se hace la logica para verificar el token que se tiene guardado
     Navigator.popAndPushNamed(context, "/home");
     return;

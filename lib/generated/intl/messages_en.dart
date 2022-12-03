@@ -22,6 +22,16 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "dialogCancelTextBottom":
+            MessageLookupByLibrary.simpleMessage("Cancel"),
+        "dialogCancelTextBottomDefault":
+            MessageLookupByLibrary.simpleMessage("Close"),
+        "dialogConfirmTextBottomDefault":
+            MessageLookupByLibrary.simpleMessage("Ok"),
+        "dialogNoAccountText": MessageLookupByLibrary.simpleMessage(
+            "To use application without account is not posible view data in web application."),
+        "dialogNoAccountTitle":
+            MessageLookupByLibrary.simpleMessage("Log in without account?"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailError":
             MessageLookupByLibrary.simpleMessage("The email is not valid."),
@@ -36,6 +46,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "logInError": MessageLookupByLibrary.simpleMessage(
             "Email/Username or password is not correct."),
         "logOut": MessageLookupByLibrary.simpleMessage("Log Out"),
+        "noAccount":
+            MessageLookupByLibrary.simpleMessage("Use without account"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordError":
             MessageLookupByLibrary.simpleMessage("The password is not valid."),

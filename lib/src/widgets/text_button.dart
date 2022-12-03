@@ -35,8 +35,11 @@ class TextButtonGlobal extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: disabledButton ? null : callback,
-      style: TextButton.styleFrom(
-        fixedSize: size ?? Size(MediaQuery.of(context).size.width, 22.0),
+      style: ButtonStyle(
+        fixedSize: MaterialStateProperty.resolveWith(
+            (states) => size ?? Size(MediaQuery.of(context).size.width, 22.0)),
+        overlayColor: MaterialStateColor.resolveWith(
+            (states) => (backgroundColor ?? colorSchema.primary).withAlpha(30)),
       ),
       child: Row(
         mainAxisAlignment: mainAxisAlignment,

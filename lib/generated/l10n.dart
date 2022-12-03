@@ -70,6 +70,66 @@ class S {
     );
   }
 
+  /// `Use without account`
+  String get noAccount {
+    return Intl.message(
+      'Use without account',
+      name: 'noAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log in without account?`
+  String get dialogNoAccountTitle {
+    return Intl.message(
+      'Log in without account?',
+      name: 'dialogNoAccountTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To use application without account is not posible view data in web application.`
+  String get dialogNoAccountText {
+    return Intl.message(
+      'To use application without account is not posible view data in web application.',
+      name: 'dialogNoAccountText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ok`
+  String get dialogConfirmTextBottomDefault {
+    return Intl.message(
+      'Ok',
+      name: 'dialogConfirmTextBottomDefault',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close`
+  String get dialogCancelTextBottomDefault {
+    return Intl.message(
+      'Close',
+      name: 'dialogCancelTextBottomDefault',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get dialogCancelTextBottom {
+    return Intl.message(
+      'Cancel',
+      name: 'dialogCancelTextBottom',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Log Out`
   String get logOut {
     return Intl.message(

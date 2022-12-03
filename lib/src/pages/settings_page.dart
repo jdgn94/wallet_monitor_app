@@ -50,7 +50,7 @@ class _SettingsPageState extends State<SettingsPage> {
         appBar: AppBar(
           title: const Text("Settings"),
         ),
-        drawer: const AppDrawer(
+        drawer: AppDrawer(
           routeSelect: 'settings',
         ),
         body: Center(

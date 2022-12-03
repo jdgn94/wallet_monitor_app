@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_monitor/generated/l10n.dart';
+import 'package:wallet_monitor/src/localStorage/settings.dart';
 import 'package:wallet_monitor/src/settings/color_schema.dart';
 import 'package:wallet_monitor/src/util/background.dart';
 import 'package:wallet_monitor/src/widgets/text_button.dart';
 
 class AppDrawer extends StatelessWidget {
   final String routeSelect;
-  const AppDrawer({super.key, required this.routeSelect});
+  final prefs = SettingsLocalStorage.prefs;
+  AppDrawer({super.key, required this.routeSelect});
 
-  void redirect(BuildContext context, String route) {
-    if (route != "log_in") {
+  Future<void> redirect(BuildContext context, String route) async {
+    if (route != "/log_in") {
       Navigator.pop(context);
       Navigator.pushNamed(context, route);
       return;
     }
 
+    await prefs.remove('token');
     Navigator.of(context).pushNamedAndRemoveUntil(route, (_) => false);
+    return;
   }
 
   @override

@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text(S.current.home),
       ),
-      drawer: const AppDrawer(
+      drawer: AppDrawer(
         routeSelect: 'home',
       ),
       body: const Center(

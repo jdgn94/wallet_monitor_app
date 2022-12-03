@@ -1,6 +1,12 @@
 {
 	"logIn": "Log in",
 	"signUp": "Sign Up",
+	"noAccount": "Use without account",
+	"dialogNoAccountTitle": "Log in without account?",
+	"dialogNoAccountText": "To use application without account is not posible view data in web application.",
+	"dialogConfirmTextBottomDefault": "Ok",
+	"dialogCancelTextBottomDefault": "Close",
+	"dialogCancelTextBottom": "Cancel",
 	"logOut": "Log Out",
 	"email": "Email",
 	"username": "Username",
