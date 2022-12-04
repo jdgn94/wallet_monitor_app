@@ -1,3 +1,4 @@
+// ignore_for_file: use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:wallet_monitor/generated/l10n.dart';
 import 'package:wallet_monitor/src/localStorage/settings.dart';
@@ -7,7 +8,7 @@ import 'package:wallet_monitor/src/widgets/text_button.dart';
 
 class AppDrawer extends StatelessWidget {
   final String routeSelect;
-  final prefs = SettingsLocalStorage.prefs;
+  final pref = SettingsLocalStorage.pref;
   AppDrawer({super.key, required this.routeSelect});
 
   Future<void> redirect(BuildContext context, String route) async {
@@ -17,7 +18,7 @@ class AppDrawer extends StatelessWidget {
       return;
     }
 
-    await prefs.remove('token');
+    await pref.remove('token');
     Navigator.of(context).pushNamedAndRemoveUntil(route, (_) => false);
     return;
   }

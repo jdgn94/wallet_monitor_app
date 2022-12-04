@@ -69,7 +69,7 @@ class ButtonGlobal extends StatelessWidget {
               width: 25.0,
               height: 25.0,
               child: CircularProgressIndicator(
-                color: backgroundColor ?? defaultBackground(context),
+                color: defaultColor(context),
               ),
             ),
         ],

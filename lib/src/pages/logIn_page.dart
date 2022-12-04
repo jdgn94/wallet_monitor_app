@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_monitor/generated/l10n.dart';
 import 'package:wallet_monitor/src/localStorage/settings.dart';
+import 'package:wallet_monitor/src/services/http.dart';
 import 'package:wallet_monitor/src/util/app_dialog.dart';
 import 'package:wallet_monitor/src/util/app_message.dart';
 import 'package:wallet_monitor/src/util/background.dart';
@@ -20,7 +21,8 @@ class _LogInPageState extends State<LogInPage> {
   final TextEditingController _usernameEmailController =
       TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final prefs = SettingsLocalStorage.prefs;
+  final pref = SettingsLocalStorage.pref;
+  bool loading = false;
 
   @override
   void initState() {
@@ -38,9 +40,9 @@ class _LogInPageState extends State<LogInPage> {
     Navigator.popAndPushNamed(context, route);
   }
 
-  void checkInputs() {
+  Future<void> checkInputs() async {
     final usernameEmail = _usernameEmailController.value.text;
-    final password = _usernameEmailController.value.text;
+    final password = _passwordController.value.text;
 
     if (usernameEmail.isEmpty || password.isEmpty) {
       AppMessage.buildMessageSnackbar(
@@ -51,12 +53,37 @@ class _LogInPageState extends State<LogInPage> {
       return;
     }
 
-    redirect("/home");
-    return;
+    setState(() {
+      loading = true;
+    });
+
+    try {
+      final response = await HttpServices().logIn(usernameEmail, password);
+      if (response['status'] == 'success') {
+        redirect('/home');
+        return;
+      }
+      print("El fetch dio un error $response");
+      // ignore: use_build_context_synchronously
+      AppMessage.buildMessageSnackbar(
+        context,
+        response['message'] ?? "No message",
+        response['status'] ?? "error",
+      );
+    } catch (e) {
+      print(e);
+    }
+
+    setState(() {
+      loading = false;
+    });
+
+    // redirect("/home");
+    // return;
   }
 
   Future<void> confirmLogInWithAccount() async {
-    await prefs.setString('token', "noUseInternet");
+    await pref.setString('token', "noUseInternet");
     redirect("/home");
   }
 
@@ -85,23 +112,28 @@ class _LogInPageState extends State<LogInPage> {
                 TextFieldGlobal(
                   textEditingController: _usernameEmailController,
                   label: S.current.emailUsername,
+                  disabledInput: loading,
                 ),
                 TextFieldGlobal(
                   textEditingController: _passwordController,
                   label: S.current.password,
                   changeObscureText: true,
+                  disabledInput: loading,
                 ),
                 ButtonGlobal(
                   text: S.current.logIn,
                   callback: checkInputs,
+                  loading: loading,
                 ),
                 TextButtonGlobal(
                   text: S.current.signUp,
                   callback: () => redirect("/sign_up"),
+                  disabledButton: loading,
                 ),
                 TextButtonGlobal(
                   text: S.current.noAccount,
                   callback: () => logInWithoutAccount(),
+                  disabledButton: loading,
                 ),
               ],
             ),

@@ -15,14 +15,14 @@ void main() async {
 }
 
 class AppState extends StatelessWidget {
-  final prefs = SettingsLocalStorage.prefs;
+  final pref = SettingsLocalStorage.pref;
   AppState({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<SettingsBloc>(create: (_) => SettingsBloc(prefs: prefs)),
+        BlocProvider<SettingsBloc>(create: (_) => SettingsBloc(pref: pref)),
       ],
       child: const MyApp(),
     );

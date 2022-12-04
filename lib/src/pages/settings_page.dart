@@ -17,13 +17,13 @@ class _SettingsPageState extends State<SettingsPage> {
     {"value": "light", "text": "Light"},
     {"value": "dark", "text": "Dark"},
   ];
-  late SharedPreferences prefs = SettingsLocalStorage.prefs;
+  late SharedPreferences pref = SettingsLocalStorage.pref;
   late String _themeValue;
 
   @override
   void initState() {
     super.initState();
-    _themeValue = prefs.getString('theme') ?? 'system';
+    _themeValue = pref.getString('theme') ?? 'system';
   }
 
   Map<String, String> getDropdownValue() {
@@ -33,9 +33,7 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   changeTheme(BuildContext context, Map<String, String>? newValue) {
-    print(newValue);
     if (newValue == null) return;
-    print("en la funcion para cambiar el tema");
     BlocProvider.of<SettingsBloc>(context)
         .add(ChangeTheme(newValue['value'] ?? 'system'));
     setState(() {

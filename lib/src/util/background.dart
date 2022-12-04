@@ -19,7 +19,7 @@ class BackgroundUtil extends StatelessWidget {
   CustomPaint containerPainter(CustomPainter painter) {
     return CustomPaint(
       painter: painter,
-      child: Container(
+      child: const SizedBox(
         width: double.infinity,
         height: double.infinity,
       ),

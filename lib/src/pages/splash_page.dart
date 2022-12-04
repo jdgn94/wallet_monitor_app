@@ -12,11 +12,10 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   final ColorSchemaApp colorSchema = ColorSchemaApp();
-  final prefs = SettingsLocalStorage.prefs;
+  final pref = SettingsLocalStorage.pref;
 
   Future<void> getToken() async {
-    final token = prefs.getString('token');
-    print(token);
+    final token = pref.getString('token');
     if (token == null) {
       Navigator.popAndPushNamed(context, "/log_in");
       return;
@@ -26,7 +25,7 @@ class _SplashPageState extends State<SplashPage> {
       Navigator.popAndPushNamed(context, "/home");
       return;
     }
-    // aqui se hace la logica para verificar el token que se tiene guardado
+    // aquí se hace la lógica para verificar el token que se tiene guardado
     Navigator.popAndPushNamed(context, "/home");
     return;
   }
