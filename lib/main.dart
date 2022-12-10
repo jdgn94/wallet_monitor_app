@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+// -----------------------------
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 import 'package:wallet_monitor/generated/l10n.dart';
 import 'package:wallet_monitor/src/bloc/settings/settings_bloc.dart';
+// -----------------------------
+import "package:wallet_monitor/src/db/index.dart";
 import 'package:wallet_monitor/src/localStorage/settings.dart';
 import "package:wallet_monitor/src/routes/index.dart";
 import "package:wallet_monitor/src/settings/theme.dart";
@@ -11,6 +14,7 @@ import "package:wallet_monitor/src/settings/theme.dart";
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SettingsLocalStorage.configureSettings();
+  await DB.initDB();
   runApp(AppState());
 }
 

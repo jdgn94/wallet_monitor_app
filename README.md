@@ -16,3 +16,4 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 to create or modify file intl_*.arb need run coman `flutter pub global run intl_utils:generate`
+to create adapter for new table to hive user `flutter packages pub run build_runner build`
