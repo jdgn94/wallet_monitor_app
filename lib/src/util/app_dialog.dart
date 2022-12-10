@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_monitor/generated/l10n.dart';
 import 'package:wallet_monitor/src/settings/color_schema.dart';
-import 'package:wallet_monitor/src/widgets/text_button.dart';
+import 'package:wallet_monitor/src/widgets/text_button_global.dart';
 
 class AppDialog {
   AppDialog._();
@@ -31,6 +31,7 @@ class AppDialog {
               },
               textColor: colorSelected("error"),
               backgroundColor: colorSelected("error"),
+              size: const Size(100, 44.0),
             ),
             if (callbackConfirm != null)
               TextButtonGlobal(
@@ -41,6 +42,7 @@ class AppDialog {
                   callbackConfirm();
                 },
                 textColor: colorSelected(""),
+                size: const Size(100, 44.0),
               ),
           ],
         );

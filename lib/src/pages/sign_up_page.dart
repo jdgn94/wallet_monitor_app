@@ -6,7 +6,7 @@ import 'package:wallet_monitor/src/util/app_message.dart';
 import 'package:wallet_monitor/src/util/background.dart';
 import 'package:wallet_monitor/src/widgets/box_container.dart';
 import 'package:wallet_monitor/src/widgets/button_global.dart';
-import 'package:wallet_monitor/src/widgets/text_button.dart';
+import 'package:wallet_monitor/src/widgets/text_button_global.dart';
 import 'package:wallet_monitor/src/widgets/text_field.dart';
 
 class SignUpPage extends StatefulWidget {

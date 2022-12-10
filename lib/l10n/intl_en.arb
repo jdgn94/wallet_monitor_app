@@ -34,5 +34,12 @@
 	"passwordSuccessRequirementLength": "Characters length are allowed.",
 	"logInError": "Email/Username or password is not correct.",
 	"home": "Home",
-	"settings": "Settings"
+	"settings": "Settings",
+	"system": "System",
+	"theme": "Theme",
+	"dark": "Dark",
+	"light": "Light",
+	"languages": "Languages",
+	"en": "English",
+	"es": "Spanish"
 }

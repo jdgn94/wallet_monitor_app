@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "dark": MessageLookupByLibrary.simpleMessage("Dark"),
         "dialogCancelTextBottom":
             MessageLookupByLibrary.simpleMessage("Cancel"),
         "dialogCancelTextBottomDefault":
@@ -41,7 +42,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("The email is valid."),
         "emailUsername":
             MessageLookupByLibrary.simpleMessage("Email or Username"),
+        "en": MessageLookupByLibrary.simpleMessage("English"),
+        "es": MessageLookupByLibrary.simpleMessage("Spanish"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
+        "languages": MessageLookupByLibrary.simpleMessage("Languages"),
+        "light": MessageLookupByLibrary.simpleMessage("Light"),
         "logIn": MessageLookupByLibrary.simpleMessage("Log in"),
         "logInError": MessageLookupByLibrary.simpleMessage(
             "Email/Username or password is not correct."),
@@ -80,6 +85,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "requirements": MessageLookupByLibrary.simpleMessage("Requirements"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+        "system": MessageLookupByLibrary.simpleMessage("System"),
+        "theme": MessageLookupByLibrary.simpleMessage("Theme"),
         "username": MessageLookupByLibrary.simpleMessage("Username"),
         "usernameError": MessageLookupByLibrary.simpleMessage(
             "The username is not valid, character accepted (a-z 0-9 . _ -)."),

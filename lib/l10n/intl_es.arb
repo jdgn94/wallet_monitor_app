@@ -33,6 +33,13 @@
 	"passwordErrorRequirementLength": "Cantidad de caracteres entre 8 y 64.",
 	"passwordSuccessRequirementLength": "Cantidad de caracteres aceptados.",
 	"logInError": "Correo/Nombre de usuario o contraseña no son correctos.",
-	"home": "Home",
-	"settings": "Settings"
+	"home": "Inicio",
+	"settings": "Configuraciones",
+	"system": "Sistema",
+	"theme": "Tema",
+	"dark": "Oscuro",
+	"light": "Claro",
+	"languages": "Lenguajes",
+	"en": "Ingles",
+	"es": "Español"
 }

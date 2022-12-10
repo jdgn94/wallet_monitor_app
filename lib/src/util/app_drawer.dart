@@ -4,7 +4,7 @@ import 'package:wallet_monitor/generated/l10n.dart';
 import 'package:wallet_monitor/src/localStorage/settings.dart';
 import 'package:wallet_monitor/src/settings/color_schema.dart';
 import 'package:wallet_monitor/src/util/background.dart';
-import 'package:wallet_monitor/src/widgets/text_button.dart';
+import 'package:wallet_monitor/src/widgets/text_button_global.dart';
 
 class AppDrawer extends StatelessWidget {
   final String routeSelect;
@@ -27,58 +27,65 @@ class AppDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorSchema = ColorSchemaApp();
     return Drawer(
-      child: Stack(
-        children: [
-          const BackgroundUtil(),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const SizedBox(
-                height: 290.0,
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height - 355.0,
-                width: double.infinity,
-                child: ListView(
-                  children: [
-                    listViewItem(
-                      context,
-                      redirect,
-                      '/home',
-                      S.current.home,
-                      Icons.home_rounded,
-                      routeSelect == 'home',
-                    ),
-                  ],
+      width: 350,
+      child: SizedBox(
+        width: double.infinity,
+        child: Stack(
+          children: [
+            const BackgroundUtil(),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height -
+                      MediaQuery.of(context).size.height * .7,
                 ),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    TextButtonGlobal(
-                      text: S.current.logOut,
-                      icon: Icons.logout_outlined,
-                      size: const Size(110.0, 35.0),
-                      callback: () => redirect(context, "/log_in"),
-                    ),
-                    TextButtonGlobal(
-                      text: S.current.settings,
-                      icon: Icons.settings,
-                      size: const Size(110.0, 35.0),
-                      disabledButton: routeSelect == 'settings',
-                      textColor: routeSelect == 'settings'
-                          ? colorSchema.primary
-                          : null,
-                      callback: () => redirect(context, "/settings"),
-                    ),
-                  ],
+                SizedBox(
+                  height: MediaQuery.of(context).size.height -
+                      MediaQuery.of(context).size.height * .30 -
+                      65,
+                  width: double.infinity,
+                  child: ListView(
+                    children: [
+                      listViewItem(
+                        context,
+                        redirect,
+                        '/home',
+                        S.current.home,
+                        Icons.home_rounded,
+                        routeSelect == 'home',
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: 15.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextButtonGlobal(
+                        text: S.current.logOut,
+                        icon: Icons.logout_outlined,
+                        size: const Size(160.0, 35.0),
+                        callback: () => redirect(context, "/log_in"),
+                      ),
+                      TextButtonGlobal(
+                        text: S.current.settings,
+                        icon: Icons.settings,
+                        size: const Size(160.0, 35.0),
+                        disabledButton: routeSelect == 'settings',
+                        textColor: routeSelect == 'settings'
+                            ? colorSchema.primary
+                            : null,
+                        callback: () => redirect(context, "/settings"),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

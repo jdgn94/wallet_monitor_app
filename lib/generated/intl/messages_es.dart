@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "dark": MessageLookupByLibrary.simpleMessage("Oscuro"),
         "dialogCancelTextBottom":
             MessageLookupByLibrary.simpleMessage("Cancelar"),
         "dialogCancelTextBottomDefault":
@@ -40,7 +41,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailSuccess": MessageLookupByLibrary.simpleMessage("Correo valido."),
         "emailUsername":
             MessageLookupByLibrary.simpleMessage("Correo o Nombre de usuario"),
-        "home": MessageLookupByLibrary.simpleMessage("Home"),
+        "en": MessageLookupByLibrary.simpleMessage("Ingles"),
+        "es": MessageLookupByLibrary.simpleMessage("Español"),
+        "home": MessageLookupByLibrary.simpleMessage("Inicio"),
+        "languages": MessageLookupByLibrary.simpleMessage("Lenguajes"),
+        "light": MessageLookupByLibrary.simpleMessage("Claro"),
         "logIn": MessageLookupByLibrary.simpleMessage("Ingresar"),
         "logInError": MessageLookupByLibrary.simpleMessage(
             "Correo/Nombre de usuario o contraseña no son correctos."),
@@ -75,8 +80,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordSuccessRequirementUpper":
             MessageLookupByLibrary.simpleMessage("Letra minúscula agregada."),
         "requirements": MessageLookupByLibrary.simpleMessage("Requerimientos"),
-        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "settings": MessageLookupByLibrary.simpleMessage("Configuraciones"),
         "signUp": MessageLookupByLibrary.simpleMessage("Registrarse"),
+        "system": MessageLookupByLibrary.simpleMessage("Sistema"),
+        "theme": MessageLookupByLibrary.simpleMessage("Tema"),
         "username": MessageLookupByLibrary.simpleMessage("Nombre de usuario"),
         "usernameError": MessageLookupByLibrary.simpleMessage(
             "El nombre de usuario no es valido, caracteres validos (a-z 0-9 . _ -)."),

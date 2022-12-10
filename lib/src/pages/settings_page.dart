@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wallet_monitor/src/bloc/settings/settings_bloc.dart';
-import 'package:wallet_monitor/src/localStorage/settings.dart';
+import 'package:wallet_monitor/generated/l10n.dart';
+import 'package:wallet_monitor/src/pages/settings/settings_language.dart';
+import 'package:wallet_monitor/src/pages/settings/settings_theme.dart';
 import 'package:wallet_monitor/src/util/app_drawer.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -12,63 +12,25 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  final List<Map<String, String>> _themeConfigs = [
-    {"value": "system", "text": "System"},
-    {"value": "light", "text": "Light"},
-    {"value": "dark", "text": "Dark"},
-  ];
-  late SharedPreferences pref = SettingsLocalStorage.pref;
-  late String _themeValue;
-
-  @override
-  void initState() {
-    super.initState();
-    _themeValue = pref.getString('theme') ?? 'system';
-  }
-
-  Map<String, String> getDropdownValue() {
-    if (_themeValue == 'light') return _themeConfigs[1];
-    if (_themeValue == 'dark') return _themeConfigs.last;
-    return _themeConfigs.first;
-  }
-
-  changeTheme(BuildContext context, Map<String, String>? newValue) {
-    if (newValue == null) return;
-    BlocProvider.of<SettingsBloc>(context)
-        .add(ChangeTheme(newValue['value'] ?? 'system'));
-    setState(() {
-      _themeValue = newValue["value"]!;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Scaffold(
         appBar: AppBar(
-          title: const Text("Settings"),
+          title: Text(S.current.settings),
         ),
         drawer: AppDrawer(
           routeSelect: 'settings',
         ),
         body: Center(
-          child: Column(
-            children: [
-              DropdownButton<Map<String, String>>(
-                value: getDropdownValue(),
-                icon: const Icon(Icons.arrow_downward),
-                onChanged: (Map<String, String>? valueSelected) =>
-                    changeTheme(context, valueSelected),
-                items: _themeConfigs.map<DropdownMenuItem<Map<String, String>>>(
-                  (Map<String, String> value) {
-                    return DropdownMenuItem<Map<String, String>>(
-                      value: value,
-                      child: Text(value["text"] ?? ""),
-                    );
-                  },
-                ).toList(),
-              ),
-            ],
+          child: Container(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: const [
+                SettingsThemeWidget(),
+                SettingsLanguageWidget(),
+              ],
+            ),
           ),
         ),
       ),

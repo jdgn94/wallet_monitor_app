@@ -54,6 +54,7 @@ class TextButtonGlobal extends StatelessWidget {
             text,
             style: TextStyle(
               color: textColor ?? defaultTextColor(context),
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ],
