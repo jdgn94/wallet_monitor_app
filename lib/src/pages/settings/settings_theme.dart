@@ -78,48 +78,50 @@ class _SettingsThemeWidgetState extends State<SettingsThemeWidget> {
   ) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10.0),
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-        color: active ? colorSchema.primary : Colors.transparent,
-      ),
-      child: InkWell(
-        borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-        onTap: () => changeTheme(context, value),
-        child: Container(
-          margin: EdgeInsets.all(10.0),
-          child: Column(
-            children: [
-              Container(
-                margin: const EdgeInsets.only(bottom: 5.0),
-                width: 100,
-                height: 90,
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  border: Border.all(
-                    color: Theme.of(context).brightness == Brightness.light
-                        ? Colors.black
-                        : Colors.white,
-                  ),
-                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                  image: DecorationImage(
-                    image: AssetImage(imageRoute),
-                    fit: BoxFit.fill,
-                  ),
-                ),
-              ),
-              Row(
-                children: [
-                  Text(
-                    title,
-                    style: TextStyle(
+      child: Ink(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+          color: active ? colorSchema.primary : Colors.transparent,
+        ),
+        child: InkWell(
+          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+          onTap: () => changeTheme(context, value),
+          child: Container(
+            margin: EdgeInsets.all(10.0),
+            child: Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(bottom: 5.0),
+                  width: 100,
+                  height: 90,
+                  decoration: BoxDecoration(
+                    color: colorSchema.primary,
+                    border: Border.all(
                       color: Theme.of(context).brightness == Brightness.light
                           ? Colors.black
                           : Colors.white,
                     ),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    image: DecorationImage(
+                      image: AssetImage(imageRoute),
+                      fit: BoxFit.fill,
+                    ),
                   ),
-                ],
-              ),
-            ],
+                ),
+                Row(
+                  children: [
+                    Text(
+                      title,
+                      style: TextStyle(
+                        color: Theme.of(context).brightness == Brightness.light
+                            ? Colors.black
+                            : Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

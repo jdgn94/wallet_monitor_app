@@ -22,6 +22,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "apr": MessageLookupByLibrary.simpleMessage("Abril"),
+        "aug": MessageLookupByLibrary.simpleMessage("Agosto"),
+        "bank": MessageLookupByLibrary.simpleMessage("Banco"),
+        "cash": MessageLookupByLibrary.simpleMessage("Efectivo"),
+        "change": MessageLookupByLibrary.simpleMessage("Cambio"),
+        "commission": MessageLookupByLibrary.simpleMessage("Comisión"),
+        "crypto": MessageLookupByLibrary.simpleMessage("Cripto"),
+        "currency": MessageLookupByLibrary.simpleMessage("Moneda"),
         "dark": MessageLookupByLibrary.simpleMessage("Oscuro"),
         "dialogCancelTextBottom":
             MessageLookupByLibrary.simpleMessage("Cancelar"),
@@ -33,6 +41,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Al ingresar a la aplicación sin cuenta no podrá ver los data en la aplicación web."),
         "dialogNoAccountTitle":
             MessageLookupByLibrary.simpleMessage("¿Ingresar sin cuenta?"),
+        "dic": MessageLookupByLibrary.simpleMessage("Diciembre"),
+        "digital": MessageLookupByLibrary.simpleMessage("Digital"),
         "email": MessageLookupByLibrary.simpleMessage("Correo"),
         "emailError":
             MessageLookupByLibrary.simpleMessage("Correo no es valido."),
@@ -43,14 +53,22 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Correo o Nombre de usuario"),
         "en": MessageLookupByLibrary.simpleMessage("Ingles"),
         "es": MessageLookupByLibrary.simpleMessage("Español"),
+        "feb": MessageLookupByLibrary.simpleMessage("Febrero"),
         "home": MessageLookupByLibrary.simpleMessage("Inicio"),
+        "jan": MessageLookupByLibrary.simpleMessage("Enero"),
+        "jul": MessageLookupByLibrary.simpleMessage("Julio"),
+        "jun": MessageLookupByLibrary.simpleMessage("Junio"),
         "languages": MessageLookupByLibrary.simpleMessage("Lenguajes"),
         "light": MessageLookupByLibrary.simpleMessage("Claro"),
         "logIn": MessageLookupByLibrary.simpleMessage("Ingresar"),
         "logInError": MessageLookupByLibrary.simpleMessage(
             "Correo/Nombre de usuario o contraseña no son correctos."),
         "logOut": MessageLookupByLibrary.simpleMessage("Cerrar Sesión"),
+        "mar": MessageLookupByLibrary.simpleMessage("Marzo"),
+        "may": MessageLookupByLibrary.simpleMessage("Mayo"),
         "noAccount": MessageLookupByLibrary.simpleMessage("Usar sin cuenta"),
+        "nov": MessageLookupByLibrary.simpleMessage("Noviembre"),
+        "oct": MessageLookupByLibrary.simpleMessage("Octubre"),
         "password": MessageLookupByLibrary.simpleMessage("Contraseña"),
         "passwordError":
             MessageLookupByLibrary.simpleMessage("Contraseña no valida."),
@@ -79,11 +97,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Carácter especial agregado."),
         "passwordSuccessRequirementUpper":
             MessageLookupByLibrary.simpleMessage("Letra minúscula agregada."),
+        "payment": MessageLookupByLibrary.simpleMessage("Cobro"),
         "requirements": MessageLookupByLibrary.simpleMessage("Requerimientos"),
+        "sale": MessageLookupByLibrary.simpleMessage("Venta"),
+        "sep": MessageLookupByLibrary.simpleMessage("Septiembre"),
+        "service": MessageLookupByLibrary.simpleMessage("Servicio"),
         "settings": MessageLookupByLibrary.simpleMessage("Configuraciones"),
+        "shopping": MessageLookupByLibrary.simpleMessage("Compra"),
         "signUp": MessageLookupByLibrary.simpleMessage("Registrarse"),
         "system": MessageLookupByLibrary.simpleMessage("Sistema"),
         "theme": MessageLookupByLibrary.simpleMessage("Tema"),
+        "totalExpenses": MessageLookupByLibrary.simpleMessage("Gastos Totales"),
+        "totalPayments": MessageLookupByLibrary.simpleMessage("Cobros Totales"),
         "username": MessageLookupByLibrary.simpleMessage("Nombre de usuario"),
         "usernameError": MessageLookupByLibrary.simpleMessage(
             "El nombre de usuario no es valido, caracteres validos (a-z 0-9 . _ -)."),

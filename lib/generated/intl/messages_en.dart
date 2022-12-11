@@ -22,6 +22,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "apr": MessageLookupByLibrary.simpleMessage("April"),
+        "aug": MessageLookupByLibrary.simpleMessage("August"),
+        "bank": MessageLookupByLibrary.simpleMessage("Bank"),
+        "cash": MessageLookupByLibrary.simpleMessage("Cash"),
+        "change": MessageLookupByLibrary.simpleMessage("Change"),
+        "commission": MessageLookupByLibrary.simpleMessage("Commission"),
+        "crypto": MessageLookupByLibrary.simpleMessage("Crypto"),
+        "currency": MessageLookupByLibrary.simpleMessage("Currency"),
         "dark": MessageLookupByLibrary.simpleMessage("Dark"),
         "dialogCancelTextBottom":
             MessageLookupByLibrary.simpleMessage("Cancel"),
@@ -33,6 +41,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "To use application without account is not posible view data in web application."),
         "dialogNoAccountTitle":
             MessageLookupByLibrary.simpleMessage("Log in without account?"),
+        "dic": MessageLookupByLibrary.simpleMessage("December"),
+        "digital": MessageLookupByLibrary.simpleMessage("Digital"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailError":
             MessageLookupByLibrary.simpleMessage("The email is not valid."),
@@ -44,15 +54,23 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Email or Username"),
         "en": MessageLookupByLibrary.simpleMessage("English"),
         "es": MessageLookupByLibrary.simpleMessage("Spanish"),
+        "feb": MessageLookupByLibrary.simpleMessage("February"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
+        "jan": MessageLookupByLibrary.simpleMessage("January"),
+        "jul": MessageLookupByLibrary.simpleMessage("July"),
+        "jun": MessageLookupByLibrary.simpleMessage("June"),
         "languages": MessageLookupByLibrary.simpleMessage("Languages"),
         "light": MessageLookupByLibrary.simpleMessage("Light"),
         "logIn": MessageLookupByLibrary.simpleMessage("Log in"),
         "logInError": MessageLookupByLibrary.simpleMessage(
             "Email/Username or password is not correct."),
         "logOut": MessageLookupByLibrary.simpleMessage("Log Out"),
+        "mar": MessageLookupByLibrary.simpleMessage("March"),
+        "may": MessageLookupByLibrary.simpleMessage("May"),
         "noAccount":
             MessageLookupByLibrary.simpleMessage("Use without account"),
+        "nov": MessageLookupByLibrary.simpleMessage("November"),
+        "oct": MessageLookupByLibrary.simpleMessage("October"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordError":
             MessageLookupByLibrary.simpleMessage("The password is not valid."),
@@ -82,11 +100,18 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Special character are allowed."),
         "passwordSuccessRequirementUpper":
             MessageLookupByLibrary.simpleMessage("Upper letter are allowed."),
+        "payment": MessageLookupByLibrary.simpleMessage("Payment"),
         "requirements": MessageLookupByLibrary.simpleMessage("Requirements"),
+        "sale": MessageLookupByLibrary.simpleMessage("Sale"),
+        "sep": MessageLookupByLibrary.simpleMessage("September"),
+        "service": MessageLookupByLibrary.simpleMessage("Service"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "shopping": MessageLookupByLibrary.simpleMessage("Shopping"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "system": MessageLookupByLibrary.simpleMessage("System"),
         "theme": MessageLookupByLibrary.simpleMessage("Theme"),
+        "totalExpenses": MessageLookupByLibrary.simpleMessage("Total Expenses"),
+        "totalPayments": MessageLookupByLibrary.simpleMessage("Total Payments"),
         "username": MessageLookupByLibrary.simpleMessage("Username"),
         "usernameError": MessageLookupByLibrary.simpleMessage(
             "The username is not valid, character accepted (a-z 0-9 . _ -)."),

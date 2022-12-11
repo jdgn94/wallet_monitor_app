@@ -479,6 +479,256 @@ class S {
       args: [],
     );
   }
+
+  /// `January`
+  String get jan {
+    return Intl.message(
+      'January',
+      name: 'jan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `February`
+  String get feb {
+    return Intl.message(
+      'February',
+      name: 'feb',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `March`
+  String get mar {
+    return Intl.message(
+      'March',
+      name: 'mar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `April`
+  String get apr {
+    return Intl.message(
+      'April',
+      name: 'apr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `May`
+  String get may {
+    return Intl.message(
+      'May',
+      name: 'may',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `June`
+  String get jun {
+    return Intl.message(
+      'June',
+      name: 'jun',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `July`
+  String get jul {
+    return Intl.message(
+      'July',
+      name: 'jul',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `August`
+  String get aug {
+    return Intl.message(
+      'August',
+      name: 'aug',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `September`
+  String get sep {
+    return Intl.message(
+      'September',
+      name: 'sep',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `October`
+  String get oct {
+    return Intl.message(
+      'October',
+      name: 'oct',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `November`
+  String get nov {
+    return Intl.message(
+      'November',
+      name: 'nov',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `December`
+  String get dic {
+    return Intl.message(
+      'December',
+      name: 'dic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shopping`
+  String get shopping {
+    return Intl.message(
+      'Shopping',
+      name: 'shopping',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sale`
+  String get sale {
+    return Intl.message(
+      'Sale',
+      name: 'sale',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change`
+  String get change {
+    return Intl.message(
+      'Change',
+      name: 'change',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Service`
+  String get service {
+    return Intl.message(
+      'Service',
+      name: 'service',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment`
+  String get payment {
+    return Intl.message(
+      'Payment',
+      name: 'payment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Commission`
+  String get commission {
+    return Intl.message(
+      'Commission',
+      name: 'commission',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bank`
+  String get bank {
+    return Intl.message(
+      'Bank',
+      name: 'bank',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cash`
+  String get cash {
+    return Intl.message(
+      'Cash',
+      name: 'cash',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Digital`
+  String get digital {
+    return Intl.message(
+      'Digital',
+      name: 'digital',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Crypto`
+  String get crypto {
+    return Intl.message(
+      'Crypto',
+      name: 'crypto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Currency`
+  String get currency {
+    return Intl.message(
+      'Currency',
+      name: 'currency',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Expenses`
+  String get totalExpenses {
+    return Intl.message(
+      'Total Expenses',
+      name: 'totalExpenses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Payments`
+  String get totalPayments {
+    return Intl.message(
+      'Total Payments',
+      name: 'totalPayments',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
