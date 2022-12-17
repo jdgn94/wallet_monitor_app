@@ -1,0 +1,153 @@
+import 'package:flutter/material.dart';
+
+import 'package:wallet_monitor/src/models/card_value.dart';
+import 'package:wallet_monitor/src/settings/color_schema.dart';
+
+class HomeHistoryWidget extends StatefulWidget {
+  const HomeHistoryWidget({super.key});
+
+  @override
+  State<HomeHistoryWidget> createState() => _HomeHistoryWidgetState();
+}
+
+class _HomeHistoryWidgetState extends State<HomeHistoryWidget> {
+  final colorSchema = ColorSchemaApp();
+  final List<CardValue> _cardValues = [
+    CardValue(
+      title: "Shopping",
+      moneyDenomination: "\$",
+      amount: 300.0,
+      category: "shopping",
+    ),
+    CardValue(
+      title: "Food",
+      moneyDenomination: "\$",
+      amount: 215.25,
+      category: "food",
+    ),
+    CardValue(
+      title: "Games",
+      moneyDenomination: "\$",
+      amount: 160.2,
+      category: "games",
+    ),
+    CardValue(
+      title: "Entertainment",
+      moneyDenomination: "\$",
+      amount: 62.57,
+      category: "entertainment",
+    ),
+    CardValue(
+      title: "Gas",
+      moneyDenomination: "\$",
+      amount: 57.35,
+      category: "gas",
+    ),
+    CardValue(
+      title: "Parking",
+      moneyDenomination: "\$",
+      amount: 300.0,
+      category: "parking",
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(8.0),
+      constraints: const BoxConstraints(maxWidth: 600),
+      child: ListView.separated(
+        itemCount: _cardValues.length,
+        separatorBuilder: (context, index) => const Divider(),
+        itemBuilder: (context, index) {
+          final item = _cardValues[index];
+          return InkWell(
+            onTap: () {},
+            borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+            child: Ink(
+              width: double.infinity,
+              height: 60.0,
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                color: _colorSelector(context),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Row(
+                  children: [
+                    Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Icon(
+                          _iconSelector(item.category),
+                          size: 35.0,
+                        )),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            item.title,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16.0,
+                            ),
+                          ),
+                          Text(
+                            item.subtitle ?? "",
+                            style: const TextStyle(fontWeight: FontWeight.w500),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(5.0),
+                      margin: EdgeInsets.all(10.0),
+                      decoration: BoxDecoration(
+                        color: colorSchema.primary.withOpacity(0.2),
+                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                      ),
+                      child: Text(
+                        '${item.moneyDenomination} ${item.amount}',
+                        style: TextStyle(
+                          color: colorSchema.primary,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Color _colorSelector(BuildContext context) {
+    if (Theme.of(context).colorScheme.brightness == Brightness.dark) {
+      return Colors.grey.shade900;
+    }
+
+    return Colors.grey.shade200;
+  }
+
+  IconData _iconSelector(String category) {
+    switch (category.toLowerCase()) {
+      case 'shopping':
+        return Icons.shopping_cart;
+      case 'food':
+        return Icons.fastfood;
+      case 'games':
+        return Icons.games;
+      case 'entertainment':
+        return Icons.local_attraction_sharp;
+      case 'gas':
+        return Icons.local_gas_station;
+      case 'parking':
+        return Icons.local_parking;
+      default:
+        return Icons.question_mark;
+    }
+  }
+}

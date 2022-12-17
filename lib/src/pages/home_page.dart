@@ -5,6 +5,7 @@ import 'package:wallet_monitor/generated/l10n.dart';
 import 'package:wallet_monitor/src/pages/home/home_calendar.dart';
 import 'package:wallet_monitor/src/settings/color_schema.dart';
 import 'package:wallet_monitor/src/util/app_drawer.dart';
+import 'package:wallet_monitor/src/widgets/button_global.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -58,19 +59,14 @@ class _HomePageState extends State<HomePage> {
             HomeCalendarWidget(),
           ],
         ),
-        bottomNavigationBar: _bottomAppBar(),
+        bottomNavigationBar: _bottomAppBar(context),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: InkWell(
-          borderRadius: const BorderRadius.all(Radius.circular(40.0)),
-          onTap: () {},
-          child: Ink(
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(40.0)),
-              color: colorScheme.primary,
-            ),
-            padding: const EdgeInsets.all(16.0),
-            child: const Icon(Icons.add),
-          ),
+        floatingActionButton: ButtonGlobal(
+          callback: () {},
+          icon: Icons.add,
+          backgroundColor: colorScheme.primary,
+          textColor: Colors.white,
+          size: Size(MediaQuery.of(context).size.width * .2 - 10, 40.0),
         ),
       ),
     );
@@ -80,15 +76,18 @@ class _HomePageState extends State<HomePage> {
     return InkWell(
       child: Container(
         padding: const EdgeInsets.all(8.0),
-        width: MediaQuery.of(context).size.width * .15,
+        width: MediaQuery.of(context).size.width * .2,
         height: 50.0,
-        child: Icon(icon),
+        child: Icon(
+          icon,
+          color: Colors.white,
+        ),
       ),
       onTap: () {},
     );
   }
 
-  BottomAppBar _bottomAppBar() {
+  BottomAppBar _bottomAppBar(BuildContext context) {
     if (isReadyToDraw) {
       return BottomAppBar(
         child: Container(),
@@ -96,17 +95,13 @@ class _HomePageState extends State<HomePage> {
     }
 
     return BottomAppBar(
-      notchMargin: 6.0,
+      notchMargin: 5.0,
+      color: colorScheme.primary,
       shape: const AutomaticNotchedShape(
         RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(15)),
+          borderRadius: BorderRadius.all(Radius.circular(15.0)),
         ),
-        StadiumBorder(
-            side: BorderSide(
-          width: 10.0,
-          color: Colors.red,
-          style: BorderStyle.solid,
-        )),
+        StadiumBorder(),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.max,
@@ -114,7 +109,9 @@ class _HomePageState extends State<HomePage> {
         children: [
           _bottomAction(Icons.history),
           _bottomAction(Icons.pie_chart),
-          const SizedBox(width: 48.0),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * .2,
+          ),
           _bottomAction(Icons.wallet),
           _bottomAction(Icons.settings),
         ],

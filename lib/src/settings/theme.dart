@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:flutter/services.dart';
 import 'package:wallet_monitor/src/settings/color_schema.dart';
 
 ThemeData themeLight() {
@@ -20,6 +21,13 @@ ThemeData themeLight() {
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: colorSchema.primaryDark,
       foregroundColor: Colors.white,
+    ),
+    appBarTheme: AppBarTheme(
+      color: colorSchema.primary,
+      foregroundColor: Colors.white,
+      systemOverlayStyle: SystemUiOverlayStyle.dark,
+      iconTheme: const IconThemeData(color: Colors.white),
+      actionsIconTheme: const IconThemeData(color: Colors.white),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: colorSchema.primary,
@@ -57,6 +65,7 @@ ThemeData themeDark() {
       selectedItemColor: colorSchema.primaryDark,
       unselectedItemColor: Colors.black.withOpacity(0.5),
     ),
+    scaffoldBackgroundColor: Colors.black,
     fontFamily: "Roboto",
     brightness: Brightness.dark,
     useMaterial3: true,

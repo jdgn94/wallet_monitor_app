@@ -4,7 +4,7 @@ import 'package:wallet_monitor/src/settings/color_schema.dart';
 
 class ButtonGlobal extends StatelessWidget {
   final ColorSchemaApp colorSchema = ColorSchemaApp();
-  final String text;
+  final String? text;
   final VoidCallback? callback;
   final Size? size;
   final Color? backgroundColor;
@@ -16,8 +16,8 @@ class ButtonGlobal extends StatelessWidget {
   @override
   ButtonGlobal({
     Key? key,
-    required this.text,
     required this.callback,
+    this.text,
     this.size,
     this.backgroundColor,
     this.textColor,
@@ -57,10 +57,11 @@ class ButtonGlobal extends StatelessWidget {
               icon,
               color: textColor ?? defaultColor(context),
             ),
-          if (icon != null && !loading) const SizedBox(width: 10),
-          if (!loading)
+          if (icon != null && text != null && !loading)
+            const SizedBox(width: 10),
+          if (!loading && text != null)
             Text(
-              text,
+              text ?? "",
               style: TextStyle(
                 color: textColor ?? defaultColor(context),
               ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:wallet_monitor/generated/l10n.dart';
 import 'package:wallet_monitor/src/pages/home/home_graph.dart';
+import 'package:wallet_monitor/src/pages/home/home_history.dart';
 import 'package:wallet_monitor/src/settings/color_schema.dart';
 import 'package:wallet_monitor/src/widgets/icon_button.dart';
 
@@ -54,12 +55,25 @@ class _HomeCalendarWidgetState extends State<HomeCalendarWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        _selector(),
-        _expenses(),
-        _graph(),
-      ],
+    return SizedBox(
+      height: MediaQuery.of(context).size.height - 106.0,
+      child: Column(
+        children: [
+          Container(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            child: _selector(),
+          ),
+          Container(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            child: _expenses(),
+          ),
+          Container(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            child: _graph(),
+          ),
+          Expanded(child: _history()),
+        ],
+      ),
     );
   }
 
@@ -123,7 +137,10 @@ class _HomeCalendarWidgetState extends State<HomeCalendarWidget> {
 
   Widget _expenses() {
     return Container(
+      width: double.infinity,
       margin: const EdgeInsets.only(bottom: 10.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      constraints: const BoxConstraints(maxWidth: 600),
       child: Column(
         children: const [
           Text(
@@ -140,10 +157,16 @@ class _HomeCalendarWidgetState extends State<HomeCalendarWidget> {
   }
 
   Widget _graph() {
-    return SizedBox(
+    return Container(
       width: MediaQuery.of(context).size.width,
       height: 270.0,
-      child: HomeGraphWidget(),
+      constraints: const BoxConstraints(maxWidth: 600),
+      padding: const EdgeInsets.all(8.0),
+      child: const HomeGraphWidget(),
     );
+  }
+
+  Widget _history() {
+    return HomeHistoryWidget();
   }
 }

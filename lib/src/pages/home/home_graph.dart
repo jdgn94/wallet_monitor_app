@@ -190,9 +190,9 @@ class _HomeGraphWidgetState extends State<HomeGraphWidget> {
     return AspectRatio(
       aspectRatio: 1.23,
       child: DecoratedBox(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(18)),
-          color: Color(0x21000000),
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(18)),
+          color: _colorSelector(context),
         ),
         child: Stack(
           children: <Widget>[
@@ -217,5 +217,13 @@ class _HomeGraphWidgetState extends State<HomeGraphWidget> {
         ),
       ),
     );
+  }
+
+  Color _colorSelector(BuildContext context) {
+    if (Theme.of(context).colorScheme.brightness == Brightness.dark) {
+      return Colors.grey.shade900;
+    }
+
+    return Colors.grey.shade200;
   }
 }
