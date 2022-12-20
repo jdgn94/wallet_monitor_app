@@ -12,6 +12,7 @@ class HomeHistoryWidget extends StatefulWidget {
 
 class _HomeHistoryWidgetState extends State<HomeHistoryWidget> {
   final colorSchema = ColorSchemaApp();
+  List<int> cardSelects = [];
   final List<CardValue> _cardValues = [
     CardValue(
       title: "Shopping",
@@ -51,6 +52,26 @@ class _HomeHistoryWidgetState extends State<HomeHistoryWidget> {
     ),
   ];
 
+  void _selectCard(int index) {
+    if (_indexIsSelected(index)) {
+      setState(() {
+        cardSelects.removeWhere((element) => element == index);
+      });
+      return;
+    }
+
+    setState(() {
+      cardSelects.add(index);
+    });
+    return;
+  }
+
+  bool _indexIsSelected(int index) {
+    final indexInCard = cardSelects.indexOf(index);
+    if (indexInCard == -1) return false;
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -61,74 +82,89 @@ class _HomeHistoryWidgetState extends State<HomeHistoryWidget> {
         separatorBuilder: (context, index) => const Divider(),
         itemBuilder: (context, index) {
           final item = _cardValues[index];
-          return InkWell(
-            onTap: () {},
-            borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-            child: Ink(
-              width: double.infinity,
-              height: 60.0,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                color: _colorSelector(context),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: Row(
-                  children: [
-                    Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: Icon(
-                          _iconSelector(item.category),
-                          size: 35.0,
-                        )),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            item.title,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16.0,
-                            ),
-                          ),
-                          Text(
-                            item.subtitle ?? "",
-                            style: const TextStyle(fontWeight: FontWeight.w500),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(5.0),
-                      margin: EdgeInsets.all(10.0),
-                      decoration: BoxDecoration(
-                        color: colorSchema.primary.withOpacity(0.2),
-                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                      ),
-                      child: Text(
-                        '${item.moneyDenomination} ${item.amount}',
-                        style: TextStyle(
-                          color: colorSchema.primary,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
+          return _cardHistory(item, index);
         },
       ),
     );
   }
 
-  Color _colorSelector(BuildContext context) {
+  InkWell _cardHistory(CardValue item, int index) {
+    return InkWell(
+      onTap: () => _selectCard(index),
+      onLongPress: () {
+        print(
+            'open modal to view all transactions with this category in this month');
+      },
+      borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+      splashColor: colorSchema.primary.withOpacity(0.5),
+      child: Ink(
+        width: double.infinity,
+        height: 60.0,
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+          color: _colorSelector(context, index),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Row(
+            children: [
+              Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Icon(
+                    _iconSelector(item.category),
+                    size: 35.0,
+                  )),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      item.title,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0,
+                      ),
+                    ),
+                    Text(
+                      item.subtitle ?? "",
+                      style: const TextStyle(fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.all(5.0),
+                margin: EdgeInsets.all(10.0),
+                decoration: BoxDecoration(
+                  color: colorSchema.primary.withOpacity(0.2),
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                ),
+                child: Text(
+                  '${item.moneyDenomination} ${item.amount}',
+                  style: TextStyle(
+                    color: colorSchema.primary,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Color _colorSelector(BuildContext context, int index) {
     if (Theme.of(context).colorScheme.brightness == Brightness.dark) {
+      if (_indexIsSelected(index)) {
+        return colorSchema.primaryDark.withOpacity(0.4);
+      }
       return Colors.grey.shade900;
     }
 
+    if (_indexIsSelected(index)) {
+      return colorSchema.primaryLight.withOpacity(0.4);
+    }
     return Colors.grey.shade200;
   }
 
