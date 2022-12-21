@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'package:wallet_monitor/generated/l10n.dart';
+import 'package:wallet_monitor/src/bloc/date/date_bloc.dart';
 import 'package:wallet_monitor/src/pages/home/home_graph.dart';
 import 'package:wallet_monitor/src/pages/home/home_history.dart';
 import 'package:wallet_monitor/src/settings/color_schema.dart';
-import 'package:wallet_monitor/src/widgets/icon_button.dart';
+import 'package:wallet_monitor/src/util/icons.dart';
+import 'package:wallet_monitor/src/widgets/text_button_global.dart';
 
 class HomeCalendarWidget extends StatefulWidget {
-  const HomeCalendarWidget({super.key});
+  HomeCalendarWidget({super.key});
 
   @override
   State<HomeCalendarWidget> createState() => _HomeCalendarWidgetState();
@@ -20,7 +22,7 @@ class _HomeCalendarWidgetState extends State<HomeCalendarWidget> {
 
   @override
   void initState() {
-    final month = DateTime.now().month;
+    final month = DateBloc().state.month;
     super.initState();
     _controller = PageController(initialPage: month - 1);
     _controller.addListener(onChangePage);
@@ -104,17 +106,19 @@ class _HomeCalendarWidgetState extends State<HomeCalendarWidget> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButtonGlobal(
-                icon: Icons.arrow_back_ios_new_rounded,
-                onPressed: previousPage,
-                color: colorSchema.primary,
-                disabled: _actualPage <= 0,
+              TextButtonGlobal(
+                icon: getIcon('previousPage'),
+                size: const Size(40.0, 15.0),
+                callback: previousPage,
+                textColor: colorSchema.primary,
+                disabledButton: _actualPage <= 0,
               ),
-              IconButtonGlobal(
-                icon: Icons.arrow_forward_ios_rounded,
-                onPressed: nextPage,
-                color: colorSchema.primary,
-                disabled: _actualPage >= 11,
+              TextButtonGlobal(
+                icon: getIcon('nextPage'),
+                size: const Size(40.0, 15.0),
+                callback: nextPage,
+                textColor: colorSchema.primary,
+                disabledButton: _actualPage >= 11,
               ),
             ],
           )

@@ -1,11 +1,12 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:flutter/material.dart';
-// -----------------------------
+
 import 'package:wallet_monitor/generated/l10n.dart';
 import 'package:wallet_monitor/src/localStorage/settings.dart';
 import 'package:wallet_monitor/src/settings/color_schema.dart';
 import 'package:wallet_monitor/src/util/background.dart';
 import 'package:wallet_monitor/src/widgets/text_button_global.dart';
+import 'package:wallet_monitor/src/util/icons.dart';
 
 class AppDrawer extends StatelessWidget {
   final String routeSelect;
@@ -53,7 +54,7 @@ class AppDrawer extends StatelessWidget {
                         redirect,
                         '/home',
                         S.current.home,
-                        Icons.home_rounded,
+                        getIcon('home'),
                         routeSelect == 'home',
                       ),
                     ],
@@ -66,13 +67,13 @@ class AppDrawer extends StatelessWidget {
                     children: [
                       TextButtonGlobal(
                         text: S.current.logOut,
-                        icon: Icons.logout_outlined,
+                        icon: getIcon('logOut'),
                         size: const Size(160.0, 35.0),
                         callback: () => redirect(context, "/log_in"),
                       ),
                       TextButtonGlobal(
                         text: S.current.settings,
-                        icon: Icons.settings,
+                        icon: getIcon('settings'),
                         size: const Size(160.0, 35.0),
                         disabledButton: routeSelect == 'settings',
                         textColor: routeSelect == 'settings'

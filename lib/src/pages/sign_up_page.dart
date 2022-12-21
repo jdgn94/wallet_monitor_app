@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-// -----------------------------
+
 import 'package:wallet_monitor/generated/l10n.dart';
 import 'package:wallet_monitor/src/settings/color_schema.dart';
 import 'package:wallet_monitor/src/util/app_dialog.dart';
 import 'package:wallet_monitor/src/util/app_message.dart';
 import 'package:wallet_monitor/src/util/background.dart';
+import 'package:wallet_monitor/src/util/icons.dart';
 import 'package:wallet_monitor/src/widgets/box_container.dart';
 import 'package:wallet_monitor/src/widgets/button_global.dart';
 import 'package:wallet_monitor/src/widgets/text_button_global.dart';
@@ -227,7 +228,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   TextButtonGlobal(
                     text: S.current.requirements,
-                    icon: Icons.info_outline,
+                    icon: getIcon('info'),
                     callback: openDialog,
                     disabledButton: _verifyInServer,
                   ),
@@ -365,7 +366,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Row(
       children: [
         Icon(
-          error ? Icons.clear : Icons.check,
+          error ? getIcon('clear') : getIcon('check'),
           color: color,
         ),
         const SizedBox(width: 10.0),

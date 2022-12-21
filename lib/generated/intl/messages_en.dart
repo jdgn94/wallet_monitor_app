@@ -22,11 +22,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "accessories": MessageLookupByLibrary.simpleMessage("Accessories"),
         "apr": MessageLookupByLibrary.simpleMessage("April"),
         "aug": MessageLookupByLibrary.simpleMessage("August"),
         "bank": MessageLookupByLibrary.simpleMessage("Bank"),
+        "car": MessageLookupByLibrary.simpleMessage("car"),
         "cash": MessageLookupByLibrary.simpleMessage("Cash"),
+        "categories": MessageLookupByLibrary.simpleMessage("Categories"),
         "change": MessageLookupByLibrary.simpleMessage("Change"),
+        "cleaning": MessageLookupByLibrary.simpleMessage("cleaning"),
         "commission": MessageLookupByLibrary.simpleMessage("Commission"),
         "crypto": MessageLookupByLibrary.simpleMessage("Crypto"),
         "currency": MessageLookupByLibrary.simpleMessage("Currency"),
@@ -43,6 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Log in without account?"),
         "dic": MessageLookupByLibrary.simpleMessage("December"),
         "digital": MessageLookupByLibrary.simpleMessage("Digital"),
+        "electronic": MessageLookupByLibrary.simpleMessage("Electronic"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailError":
             MessageLookupByLibrary.simpleMessage("The email is not valid."),
@@ -53,14 +58,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailUsername":
             MessageLookupByLibrary.simpleMessage("Email or Username"),
         "en": MessageLookupByLibrary.simpleMessage("English"),
+        "entertainment": MessageLookupByLibrary.simpleMessage("Entertainment"),
         "es": MessageLookupByLibrary.simpleMessage("Spanish"),
         "feb": MessageLookupByLibrary.simpleMessage("February"),
+        "food": MessageLookupByLibrary.simpleMessage("Food"),
+        "games": MessageLookupByLibrary.simpleMessage("Games"),
+        "gas": MessageLookupByLibrary.simpleMessage("Gas"),
+        "history": MessageLookupByLibrary.simpleMessage("History"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
+        "homeCategory": MessageLookupByLibrary.simpleMessage("Home"),
         "jan": MessageLookupByLibrary.simpleMessage("January"),
         "jul": MessageLookupByLibrary.simpleMessage("July"),
         "jun": MessageLookupByLibrary.simpleMessage("June"),
         "languages": MessageLookupByLibrary.simpleMessage("Languages"),
         "light": MessageLookupByLibrary.simpleMessage("Light"),
+        "loan": MessageLookupByLibrary.simpleMessage("Loan"),
         "logIn": MessageLookupByLibrary.simpleMessage("Log in"),
         "logInError": MessageLookupByLibrary.simpleMessage(
             "Email/Username or password is not correct."),
@@ -71,6 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Use without account"),
         "nov": MessageLookupByLibrary.simpleMessage("November"),
         "oct": MessageLookupByLibrary.simpleMessage("October"),
+        "parking": MessageLookupByLibrary.simpleMessage("Parking"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordError":
             MessageLookupByLibrary.simpleMessage("The password is not valid."),
@@ -100,7 +113,9 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Special character are allowed."),
         "passwordSuccessRequirementUpper":
             MessageLookupByLibrary.simpleMessage("Upper letter are allowed."),
+        "pay": MessageLookupByLibrary.simpleMessage("pay"),
         "payment": MessageLookupByLibrary.simpleMessage("Payment"),
+        "present": MessageLookupByLibrary.simpleMessage("Present"),
         "requirements": MessageLookupByLibrary.simpleMessage("Requirements"),
         "sale": MessageLookupByLibrary.simpleMessage("Sale"),
         "sep": MessageLookupByLibrary.simpleMessage("September"),

@@ -1,8 +1,10 @@
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as PathProvider;
 import 'package:uuid/uuid.dart';
-// -----------------------------
+
 import 'package:wallet_monitor/src/db/models/currency.dart';
+import 'package:wallet_monitor/src/db/models/category.dart';
+import 'package:wallet_monitor/src/db/models/bank.dart';
 
 class DB {
   static late Box _currencies;
@@ -14,6 +16,8 @@ class DB {
     Hive.init(path.path);
 
     Hive.registerAdapter(CurrencyAdapter());
+    Hive.registerAdapter(CategoryAdapter());
+    Hive.registerAdapter(BankAdapter());
 
     _currencies = await Hive.openBox('currencies');
   }

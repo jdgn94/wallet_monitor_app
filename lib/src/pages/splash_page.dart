@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:wallet_monitor/src/localStorage/settings.dart';
 import 'package:wallet_monitor/src/settings/color_schema.dart';
 import 'package:wallet_monitor/src/util/background.dart';
+import 'package:wallet_monitor/src/util/icons.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -67,10 +68,11 @@ class _SplashPageState extends State<SplashPage> {
         color: colorSchema.primary,
         borderRadius: const BorderRadius.all(Radius.circular(100.0)),
       ),
-      child: const Center(
+      child: Center(
         child: Icon(
-          Icons.wallet_outlined,
+          getIcon('splash'),
           size: 100.0,
+          color: Colors.white,
         ),
       ),
     );

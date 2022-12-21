@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:wallet_monitor/src/models/card_value.dart';
 import 'package:wallet_monitor/src/settings/color_schema.dart';
+import 'package:wallet_monitor/src/util/icons.dart';
 
 class HomeHistoryWidget extends StatefulWidget {
   const HomeHistoryWidget({super.key});
@@ -111,7 +112,7 @@ class _HomeHistoryWidgetState extends State<HomeHistoryWidget> {
               Padding(
                   padding: EdgeInsets.all(10.0),
                   child: Icon(
-                    _iconSelector(item.category),
+                    getIcon(item.category),
                     size: 35.0,
                   )),
               Expanded(
@@ -166,24 +167,5 @@ class _HomeHistoryWidgetState extends State<HomeHistoryWidget> {
       return colorSchema.primaryLight.withOpacity(0.4);
     }
     return Colors.grey.shade200;
-  }
-
-  IconData _iconSelector(String category) {
-    switch (category.toLowerCase()) {
-      case 'shopping':
-        return Icons.shopping_cart;
-      case 'food':
-        return Icons.fastfood;
-      case 'games':
-        return Icons.games;
-      case 'entertainment':
-        return Icons.local_attraction_sharp;
-      case 'gas':
-        return Icons.local_gas_station;
-      case 'parking':
-        return Icons.local_parking;
-      default:
-        return Icons.question_mark;
-    }
   }
 }

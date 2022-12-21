@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // -----------------------------
 import 'package:wallet_monitor/src/settings/color_schema.dart';
+import 'package:wallet_monitor/src/util/icons.dart';
 
 class AppMessage {
   AppMessage._();
@@ -21,7 +22,7 @@ class AppMessage {
             children: [
               Row(
                 children: [
-                  _showIcon(type),
+                  Icon(getIcon(type)),
                   const SizedBox(width: 10.0),
                   Container(
                     constraints: BoxConstraints(
@@ -43,7 +44,7 @@ class AppMessage {
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();
                 },
                 icon: Icon(
-                  Icons.clear,
+                  getIcon('clear'),
                   color: _colorSelector("message"),
                 ),
               ),
@@ -53,14 +54,6 @@ class AppMessage {
       ),
     );
   }
-}
-
-Icon _showIcon(String type) {
-  if (type == "info") return const Icon(Icons.info_outline);
-  if (type == "error") return const Icon(Icons.error_outline);
-  if (type == "warning") return const Icon(Icons.warning_amber_outlined);
-  if (type == "success") return const Icon(Icons.check_circle_outline);
-  return const Icon(Icons.question_mark);
 }
 
 Color _colorSelector(String type) {

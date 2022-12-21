@@ -1,0 +1,78 @@
+[
+	{
+		"uuid": "food",
+		"name": "food"
+	},
+	{
+		"uuid": "games",
+		"name": "games"
+	},
+	{
+		"uuid": "entertainment",
+		"name": "entertainment"
+	},
+	{
+		"uuid": "gas",
+		"name": "gas"
+	},
+	{
+		"uuid": "parking",
+		"name": "parking"
+	},
+	{
+		"uuid": "shopping",
+		"name": "shopping"
+	},
+	{
+		"uuid": "electronic",
+		"name": "electronic"
+	},
+	{
+		"uuid": "home",
+		"name": "home"
+	},
+	{
+		"uuid": "accessories",
+		"name": "accessories"
+	},
+	{
+		"uuid": "present",
+		"name": "present"
+	},
+	{
+		"uuid": "service",
+		"name": "service"
+	},
+	{
+		"uuid": "loan",
+		"name": "loan"
+	},
+	{
+		"uuid": "payment",
+		"name": "payment"
+	},
+	{
+		"uuid": "pay",
+		"name": "pay"
+	},
+	{
+		"uuid": "car",
+		"name": "car"
+	},
+	{
+		"uuid": "cleaning",
+		"name": "cleaning"
+	},
+	{
+		"uuid": "sale",
+		"name": "sale"
+	},
+	{
+		"uuid": "change",
+		"name": "change"
+	},
+	{
+		"uuid": "commission",
+		"name": "commission"
+	}
+]

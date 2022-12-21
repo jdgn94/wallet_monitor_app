@@ -660,6 +660,136 @@ class S {
     );
   }
 
+  /// `Food`
+  String get food {
+    return Intl.message(
+      'Food',
+      name: 'food',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Games`
+  String get games {
+    return Intl.message(
+      'Games',
+      name: 'games',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Entertainment`
+  String get entertainment {
+    return Intl.message(
+      'Entertainment',
+      name: 'entertainment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gas`
+  String get gas {
+    return Intl.message(
+      'Gas',
+      name: 'gas',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Parking`
+  String get parking {
+    return Intl.message(
+      'Parking',
+      name: 'parking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Electronic`
+  String get electronic {
+    return Intl.message(
+      'Electronic',
+      name: 'electronic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get homeCategory {
+    return Intl.message(
+      'Home',
+      name: 'homeCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accessories`
+  String get accessories {
+    return Intl.message(
+      'Accessories',
+      name: 'accessories',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Present`
+  String get present {
+    return Intl.message(
+      'Present',
+      name: 'present',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loan`
+  String get loan {
+    return Intl.message(
+      'Loan',
+      name: 'loan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `pay`
+  String get pay {
+    return Intl.message(
+      'pay',
+      name: 'pay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `car`
+  String get car {
+    return Intl.message(
+      'car',
+      name: 'car',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `cleaning`
+  String get cleaning {
+    return Intl.message(
+      'cleaning',
+      name: 'cleaning',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Bank`
   String get bank {
     return Intl.message(
@@ -725,6 +855,26 @@ class S {
     return Intl.message(
       'Total Payments',
       name: 'totalPayments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `History`
+  String get history {
+    return Intl.message(
+      'History',
+      name: 'history',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Categories`
+  String get categories {
+    return Intl.message(
+      'Categories',
+      name: 'categories',
       desc: '',
       args: [],
     );

@@ -14,15 +14,13 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   SettingsBloc({required this.pref})
       : super(SettingsState(
           theme: pref.getString('theme')!,
-          lang:
-              Locale.fromSubtags(languageCode: pref.getString('lang') ?? 'und'),
+          lang: Locale.fromSubtags(
+            languageCode: pref.getString('lang') ?? 'und',
+          ),
         )) {
     // ignore: void_checks
     on<SettingsEvent>((event, emit) {
-      print("Estoy en el manejador de eventos");
       if (event is ChangeTheme) {
-        print(
-            "Estoy llegando al evento del cambio del tema con el valor de ${event.theme}");
         pref.setString('theme', event.theme);
         emit(
           SettingsState(
@@ -34,8 +32,6 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       }
 
       if (event is ChangeLanguage) {
-        print(
-            "Estoy en el evento del cambio de idioma por el valor de: ${event.language}");
         if (event.language == "") {
           pref.remove('lang');
         } else {

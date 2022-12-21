@@ -22,10 +22,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "accessories": MessageLookupByLibrary.simpleMessage("Accesorios"),
         "apr": MessageLookupByLibrary.simpleMessage("Abril"),
         "aug": MessageLookupByLibrary.simpleMessage("Agosto"),
         "bank": MessageLookupByLibrary.simpleMessage("Banco"),
         "cash": MessageLookupByLibrary.simpleMessage("Efectivo"),
+        "categories": MessageLookupByLibrary.simpleMessage("Categorías"),
         "change": MessageLookupByLibrary.simpleMessage("Cambio"),
         "commission": MessageLookupByLibrary.simpleMessage("Comisión"),
         "crypto": MessageLookupByLibrary.simpleMessage("Cripto"),
@@ -43,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("¿Ingresar sin cuenta?"),
         "dic": MessageLookupByLibrary.simpleMessage("Diciembre"),
         "digital": MessageLookupByLibrary.simpleMessage("Digital"),
+        "electronic": MessageLookupByLibrary.simpleMessage("Electrónico"),
         "email": MessageLookupByLibrary.simpleMessage("Correo"),
         "emailError":
             MessageLookupByLibrary.simpleMessage("Correo no es valido."),
@@ -52,14 +55,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailUsername":
             MessageLookupByLibrary.simpleMessage("Correo o Nombre de usuario"),
         "en": MessageLookupByLibrary.simpleMessage("Ingles"),
+        "entertainment":
+            MessageLookupByLibrary.simpleMessage("Entretenimiento"),
         "es": MessageLookupByLibrary.simpleMessage("Español"),
         "feb": MessageLookupByLibrary.simpleMessage("Febrero"),
+        "food": MessageLookupByLibrary.simpleMessage("Comida"),
+        "games": MessageLookupByLibrary.simpleMessage("Juegos"),
+        "gas": MessageLookupByLibrary.simpleMessage("Gasolina"),
+        "history": MessageLookupByLibrary.simpleMessage("Historial"),
         "home": MessageLookupByLibrary.simpleMessage("Inicio"),
+        "homeCategory": MessageLookupByLibrary.simpleMessage("Hogar"),
         "jan": MessageLookupByLibrary.simpleMessage("Enero"),
         "jul": MessageLookupByLibrary.simpleMessage("Julio"),
         "jun": MessageLookupByLibrary.simpleMessage("Junio"),
         "languages": MessageLookupByLibrary.simpleMessage("Lenguajes"),
         "light": MessageLookupByLibrary.simpleMessage("Claro"),
+        "loan": MessageLookupByLibrary.simpleMessage("Préstamo"),
         "logIn": MessageLookupByLibrary.simpleMessage("Ingresar"),
         "logInError": MessageLookupByLibrary.simpleMessage(
             "Correo/Nombre de usuario o contraseña no son correctos."),
@@ -69,6 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "noAccount": MessageLookupByLibrary.simpleMessage("Usar sin cuenta"),
         "nov": MessageLookupByLibrary.simpleMessage("Noviembre"),
         "oct": MessageLookupByLibrary.simpleMessage("Octubre"),
+        "parking": MessageLookupByLibrary.simpleMessage("Estacionamiento"),
         "password": MessageLookupByLibrary.simpleMessage("Contraseña"),
         "passwordError":
             MessageLookupByLibrary.simpleMessage("Contraseña no valida."),
@@ -98,6 +110,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordSuccessRequirementUpper":
             MessageLookupByLibrary.simpleMessage("Letra minúscula agregada."),
         "payment": MessageLookupByLibrary.simpleMessage("Cobro"),
+        "present": MessageLookupByLibrary.simpleMessage("Regalo"),
         "requirements": MessageLookupByLibrary.simpleMessage("Requerimientos"),
         "sale": MessageLookupByLibrary.simpleMessage("Venta"),
         "sep": MessageLookupByLibrary.simpleMessage("Septiembre"),

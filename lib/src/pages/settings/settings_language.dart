@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-// -----------------------------
+
 import 'package:flutter_bloc/flutter_bloc.dart';
-// -----------------------------
+
 import 'package:wallet_monitor/generated/l10n.dart';
 import 'package:wallet_monitor/src/bloc/settings/settings_bloc.dart';
 import 'package:wallet_monitor/src/localStorage/settings.dart';
 import 'package:wallet_monitor/src/settings/color_schema.dart';
 import 'package:wallet_monitor/src/util/app_dialog.dart';
+import 'package:wallet_monitor/src/util/icons.dart';
 
 class SettingsLanguageWidget extends StatefulWidget {
   const SettingsLanguageWidget({Key? key}) : super(key: key);
@@ -79,7 +80,7 @@ class _SettingsLanguageWidgetState extends State<SettingsLanguageWidget> {
               Row(
                 children: [
                   Icon(
-                    Icons.language,
+                    getIcon('language'),
                     color: colorSchema.primary,
                     size: 50.0,
                   ),
@@ -104,7 +105,7 @@ class _SettingsLanguageWidgetState extends State<SettingsLanguageWidget> {
                   ),
                 ],
               ),
-              const Icon(Icons.arrow_drop_down),
+              Icon(getIcon('arrowDropDown')),
             ],
           ),
         ),

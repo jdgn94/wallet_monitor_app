@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_monitor/src/util/icons.dart';
 
 class TextFieldGlobal extends StatefulWidget {
   final TextEditingController textEditingController;
@@ -71,7 +72,7 @@ class _TextFieldGlobal extends State<TextFieldGlobal> {
   Icon iconPassShow() {
     return widget.changeObscureText
         ? Icon(
-            obscureText ? Icons.remove_red_eye : Icons.visibility_off,
+            obscureText ? getIcon('viewText') : getIcon('obscureText'),
           )
         : const Icon(null);
   }
