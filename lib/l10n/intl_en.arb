@@ -70,9 +70,9 @@
 	"accessories": "Accessories",
 	"present": "Present",
 	"loan": "Loan",
-	"pay": "pay",
-	"car": "car",
-	"cleaning": "cleaning",
+	"pay": "Pay",
+	"car": "Car Service",
+	"cleaning": "Cleaning",
 	"bank": "Bank",
 	"cash": "Cash",
 	"digital": "Digital",
@@ -81,5 +81,7 @@
 	"totalExpenses": "Total Expenses",
 	"totalPayments": "Total Payments",
 	"history": "History",
+	"expenses": "Expenses",
+	"profits": "Profits",
 	"categories": "Categories"
 }

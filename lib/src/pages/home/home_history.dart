@@ -109,12 +109,16 @@ class _HomeHistoryWidgetState extends State<HomeHistoryWidget> {
           padding: const EdgeInsets.all(5.0),
           child: Row(
             children: [
-              Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: Icon(
-                    getIcon(item.category),
-                    size: 35.0,
-                  )),
+              Container(
+                width: 60.0,
+                height: 60.0,
+                padding: const EdgeInsets.all(5.0),
+                margin: const EdgeInsets.only(right: 10.0),
+                child: Icon(
+                  getIcon(item.category),
+                  size: 30.0,
+                ),
+              ),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

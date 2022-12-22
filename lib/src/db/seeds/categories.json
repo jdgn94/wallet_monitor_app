@@ -1,78 +1,94 @@
-[
-	{
-		"uuid": "food",
-		"name": "food"
-	},
-	{
-		"uuid": "games",
-		"name": "games"
-	},
-	{
-		"uuid": "entertainment",
-		"name": "entertainment"
-	},
-	{
-		"uuid": "gas",
-		"name": "gas"
-	},
-	{
-		"uuid": "parking",
-		"name": "parking"
-	},
-	{
-		"uuid": "shopping",
-		"name": "shopping"
-	},
-	{
-		"uuid": "electronic",
-		"name": "electronic"
-	},
-	{
-		"uuid": "home",
-		"name": "home"
-	},
-	{
-		"uuid": "accessories",
-		"name": "accessories"
-	},
-	{
-		"uuid": "present",
-		"name": "present"
-	},
-	{
-		"uuid": "service",
-		"name": "service"
-	},
-	{
-		"uuid": "loan",
-		"name": "loan"
-	},
-	{
-		"uuid": "payment",
-		"name": "payment"
-	},
-	{
-		"uuid": "pay",
-		"name": "pay"
-	},
-	{
-		"uuid": "car",
-		"name": "car"
-	},
-	{
-		"uuid": "cleaning",
-		"name": "cleaning"
-	},
-	{
-		"uuid": "sale",
-		"name": "sale"
-	},
-	{
-		"uuid": "change",
-		"name": "change"
-	},
-	{
-		"uuid": "commission",
-		"name": "commission"
-	}
-]
+{
+	"categories": [
+		{
+			"uuid": "c488b7be-5fa9-4fa3-b270-4f648400b5b0",
+			"name": "food",
+			"operation": "-"
+		},
+		{
+			"uuid": "c488b7be-5fa9-4fa3-b270-4f648400b5b1",
+			"name": "games",
+			"operation": "-"
+		},
+		{
+			"uuid": "c488b7be-5fa9-4fa3-b270-4f648400b5b2",
+			"name": "entertainment",
+			"operation": "-"
+		},
+		{
+			"uuid": "c488b7be-5fa9-4fa3-b270-4f648400b5b3",
+			"name": "gas",
+			"operation": "-"
+		},
+		{
+			"uuid": "c488b7be-5fa9-4fa3-b270-4f648400b5b4",
+			"name": "parking",
+			"operation": "-"
+		},
+		{
+			"uuid": "c488b7be-5fa9-4fa3-b270-4f648400b5b5",
+			"name": "shopping",
+			"operation": "-"
+		},
+		{
+			"uuid": "c488b7be-5fa9-4fa3-b270-4f648400b5b6",
+			"name": "electronic",
+			"operation": "-"
+		},
+		{
+			"uuid": "c488b7be-5fa9-4fa3-b270-4f648400b5b7",
+			"name": "homeCategory",
+			"operation": "-"
+		},
+		{
+			"uuid": "c488b7be-5fa9-4fa3-b270-4f648400b5b8",
+			"name": "accessories",
+			"operation": "-"
+		},
+		{
+			"uuid": "c488b7be-5fa9-4fa3-b270-4f648400b5b9",
+			"name": "present",
+			"operation": "-"
+		},
+		{
+			"uuid": "c488b7be-5fa9-4fa3-b270-4f648400b5c0",
+			"name": "service",
+			"operation": "-"
+		},
+		{
+			"uuid": "c488b7be-5fa9-4fa3-b270-4f648400b5c1",
+			"name": "loan",
+			"operation": "+"
+		},
+		{
+			"uuid": "c488b7be-5fa9-4fa3-b270-4f648400b5c2",
+			"name": "payment",
+			"operation": "+"
+		},
+		{
+			"uuid": "c488b7be-5fa9-4fa3-b270-4f648400b5c3",
+			"name": "pay",
+			"operation": "-"
+		},
+		{
+			"uuid": "c488b7be-5fa9-4fa3-b270-4f648400b5c4",
+			"name": "car",
+			"operation": "-"
+		},
+		{
+			"uuid": "c488b7be-5fa9-4fa3-b270-4f648400b5c5",
+			"name": "cleaning",
+			"operation": "-"
+		},
+		{
+			"uuid": "c488b7be-5fa9-4fa3-b270-4f648400b5c6",
+			"name": "sale",
+			"operation": "+"
+		},
+		{
+			"uuid": "c488b7be-5fa9-4fa3-b270-4f648400b5c7",
+			"name": "commission",
+			"operation": "-"
+		}
+	]
+}

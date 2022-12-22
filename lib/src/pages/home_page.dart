@@ -4,15 +4,15 @@ import 'package:flutter/scheduler.dart';
 import 'package:rect_getter/rect_getter.dart';
 
 import 'package:wallet_monitor/generated/l10n.dart';
+import 'package:wallet_monitor/src/pages/add_expense_page.dart';
 import 'package:wallet_monitor/src/pages/home/home_calendar.dart';
 import 'package:wallet_monitor/src/settings/color_schema.dart';
 import 'package:wallet_monitor/src/util/app_dialog.dart';
 import 'package:wallet_monitor/src/util/app_drawer.dart';
 import 'package:wallet_monitor/src/util/app_page_transition.dart';
 import 'package:wallet_monitor/src/util/icons.dart';
+import 'package:wallet_monitor/src/widgets/bottom_navigation_bar_global.dart';
 import 'package:wallet_monitor/src/widgets/button_global.dart';
-
-import 'add_expense.dart';
 
 class HomePage extends StatefulWidget {
   final Rect? buttonPosition;
@@ -95,9 +95,6 @@ class _HomePageState extends State<HomePage> {
             );
 
             Navigator.of(context).push(page);
-            // final args =
-            //     '${buttonRect.left},${buttonRect.top},${buttonRect.right},${buttonRect.bottom}';
-            // Navigator.pushNamed(context, '/add_expense', arguments: args);
           },
           icon: getIcon('add'),
           backgroundColor: colorScheme.primary,
@@ -122,28 +119,6 @@ class _HomePageState extends State<HomePage> {
     ];
   }
 
-  Widget _bottomAction(IconData icon, String message, String? route) {
-    return Tooltip(
-      message: message,
-      child: InkWell(
-        child: Container(
-          padding: const EdgeInsets.all(8.0),
-          width: MediaQuery.of(context).size.width * .2,
-          height: 50.0,
-          child: Icon(
-            icon,
-            color: Colors.white,
-          ),
-        ),
-        onTap: () {
-          if (route != null) {
-            Navigator.pushNamed(context, '/$route');
-          }
-        },
-      ),
-    );
-  }
-
   BottomAppBar _bottomAppBar(BuildContext context) {
     if (isReadyToDraw) {
       return BottomAppBar(
@@ -151,27 +126,7 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    return BottomAppBar(
-      notchMargin: 5.0,
-      color: colorScheme.primary,
-      shape: const AutomaticNotchedShape(
-        RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(15.0)),
-        ),
-        StadiumBorder(),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          _bottomAction(getIcon('history'), S.current.history, null),
-          _bottomAction(getIcon('currency'), S.current.currency, null),
-          SizedBox(width: MediaQuery.of(context).size.width * .2),
-          _bottomAction(getIcon('bank'), S.current.bank, null),
-          _bottomAction(getIcon('settings'), S.current.settings, 'settings'),
-        ],
-      ),
-    );
+    return bottomNavigationBarGlobal(context, widget);
   }
 
   Widget _calendar() {

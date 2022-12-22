@@ -1,25 +1,28 @@
-import 'package:hive/hive.dart';
+import 'dart:io';
+import 'dart:convert';
+
+import 'package:isar/isar.dart';
 
 part 'category.g.dart';
 
-@HiveType(typeId: 1)
+@Collection()
 class Category {
-  @HiveField(0)
-  int? id;
-  @HiveField(1)
-  String? uuid;
-  @HiveField(2)
+  Id id = Isar.autoIncrement;
+  @Index(unique: true, caseSensitive: true)
+  String uuid;
+  @Index(unique: true, caseSensitive: true)
   String name;
-  @HiveField(3)
-  DateTime? createdAt;
-  @HiveField(4)
-  DateTime? updatedAt;
+  String operation;
+  DateTime createdAt;
+  DateTime updatedAt;
 
   Category({
-    this.id,
-    this.uuid,
+    required this.uuid,
     required this.name,
-    this.createdAt,
-    this.updatedAt,
+    required this.operation,
+    required this.createdAt,
+    required this.updatedAt,
   });
+
+  // jsonToClass()
 }

@@ -1,25 +1,38 @@
-import 'package:hive/hive.dart';
+import 'dart:convert';
+import 'dart:ffi';
+import 'dart:io';
+
+import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart' as PathProvider;
 import 'package:uuid/uuid.dart';
 
 import 'package:wallet_monitor/src/db/models/currency.dart';
 import 'package:wallet_monitor/src/db/models/category.dart';
 import 'package:wallet_monitor/src/db/models/bank.dart';
+import 'package:wallet_monitor/src/db/models/bank_and_currency.dart';
+
+export 'package:wallet_monitor/src/db/models/currency.dart';
+export 'package:wallet_monitor/src/db/models/category.dart';
+export 'package:wallet_monitor/src/db/models/bank.dart';
+export 'package:wallet_monitor/src/db/models/bank_and_currency.dart';
 
 class DB {
-  static late Box _currencies;
+  static late Isar _db;
 
   DB();
 
   static Future<void> initDB() async {
-    final path = await PathProvider.getApplicationDocumentsDirectory();
-    Hive.init(path.path);
-
-    Hive.registerAdapter(CurrencyAdapter());
-    Hive.registerAdapter(CategoryAdapter());
-    Hive.registerAdapter(BankAdapter());
-
-    _currencies = await Hive.openBox('currencies');
+    print("Estoy en la inicialización de la bd");
+    // final path = await PathProvider.getApplicationDocumentsDirectory();
+    if (Isar.instanceNames.isEmpty) {
+      _db = await Isar.open(
+        [CurrencySchema, CategorySchema, BankSchema, BankAndCurrencySchema],
+        inspector: true,
+      );
+    } else {
+      _db = await Future.value(Isar.getInstance());
+    }
+    await _insertSeeds();
   }
 
   String _generateUuid() {
@@ -27,16 +40,39 @@ class DB {
     return uuid.v4();
   }
 
-  Box getAllCurrencies() => _currencies;
-
-  Future<void> createCurrency(String name, String symbol, String color) async {
+  static Future<void> _insertSeeds() async {
+    final isar = _db;
     final newDate = DateTime.now();
-    final newCurrency = Currency(
-      uuid: _generateUuid(),
-      name: name,
-      symbol: symbol,
-      createdAt: newDate,
-      updatedAt: newDate,
-    );
+    final categoriesInserted = isar.categorys;
+
+    String input =
+        await File('lib/src/db/seeds/categories.json').readAsString();
+    dynamic json = jsonDecode(input);
+    final List<dynamic> categories = json['categories'];
+    final int totalCategoriesInSeeds = categories.length;
+    int newSeedInserted = 0;
+
+    for (int i = 0; i < totalCategoriesInSeeds; i++) {
+      final categoryInserted = await categoriesInserted
+          .filter()
+          .uuidEqualTo(categories[i]['uuid'])
+          .findAll();
+      print(categoryInserted);
+
+      if (categoryInserted.isEmpty) {
+        final category = Category(
+          uuid: categories[i]['uuid'],
+          name: categories[i]['name'],
+          operation: categories[i]['operation'],
+          createdAt: newDate,
+          updatedAt: newDate,
+        );
+
+        isar.writeTxnSync(() => categoriesInserted.putSync(category));
+      }
+    }
   }
+
+  Future<List<Category>> getAllCategories() async =>
+      await _db.categorys.where().findAll();
 }

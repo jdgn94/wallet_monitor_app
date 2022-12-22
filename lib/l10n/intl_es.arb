@@ -70,6 +70,9 @@
 	"accessories": "Accesorios",
 	"present": "Regalo",
 	"loan": "Préstamo",
+	"pay": "Pago",
+	"car": "Servicio de Auto",
+	"cleaning": "Limpieza",
 	"bank": "Banco",
 	"cash": "Efectivo",
 	"digital": "Digital",
@@ -78,5 +81,7 @@
 	"totalExpenses": "Gastos Totales",
 	"totalPayments": "Cobros Totales",
 	"history": "Historial",
+	"expenses": "Gastos",
+	"profits": "Ganancias",
 	"categories": "Categorías"
 }

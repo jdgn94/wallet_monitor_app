@@ -1,12 +1,10 @@
 import 'package:flutter/widgets.dart';
 
-import 'package:wallet_monitor/src/pages/add_expense.dart';
 import 'package:wallet_monitor/src/pages/home_page.dart';
 import 'package:wallet_monitor/src/pages/logIn_page.dart';
 import 'package:wallet_monitor/src/pages/settings_page.dart';
 import 'package:wallet_monitor/src/pages/sign_up_page.dart';
 import 'package:wallet_monitor/src/pages/splash_page.dart';
-import 'package:wallet_monitor/src/util/app_page_transition.dart';
 
 Map<String, WidgetBuilder> getApplicationRouters() {
   return <String, WidgetBuilder>{

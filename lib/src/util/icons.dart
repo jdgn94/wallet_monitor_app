@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 IconData getIcon(String category) {
   switch (category) {
     case "splash":
@@ -38,8 +40,12 @@ IconData getIcon(String category) {
       return Icons.visibility_off;
     case "history":
       return Icons.history;
+    case "expenses":
+      return FontAwesomeIcons.moneyBill;
+    case "profits":
+      return FontAwesomeIcons.piggyBank;
     case "currency":
-      return Icons.currency_exchange;
+      return FontAwesomeIcons.dollarSign;
     case "bank":
       return Icons.assured_workload;
     case "previousPage":
@@ -49,9 +55,9 @@ IconData getIcon(String category) {
     case "food":
       return Icons.fastfood_rounded;
     case "games":
-      return Icons.gamepad_rounded;
+      return FontAwesomeIcons.gamepad;
     case "entertainment":
-      return Icons.local_attraction;
+      return FontAwesomeIcons.ticket;
     case "gas":
       return Icons.local_gas_station_rounded;
     case "parking":
@@ -67,21 +73,49 @@ IconData getIcon(String category) {
     case "service":
       return Icons.room_service;
     case "loan":
-      return Icons.handshake;
+      return FontAwesomeIcons.coins;
     case "payment":
-      return Icons.payment_rounded;
+      return FontAwesomeIcons.moneyBills;
     case "pay":
-      return Icons.payments;
+      return Icons.payment;
     case "car":
-      return Icons.car_rental;
+      return FontAwesomeIcons.car;
     case "cleaning":
       return Icons.cleaning_services_rounded;
     case "sale":
       return Icons.point_of_sale;
     case "change":
-      return Icons.change_circle;
+      return FontAwesomeIcons.moneyBillTransfer;
     case "commission":
-      return Icons.playlist_remove_outlined;
+      return FontAwesomeIcons.userMinus;
+    case "homeCategory":
+      return FontAwesomeIcons.house;
+    case "<":
+      return FontAwesomeIcons.deleteLeft;
+    case "0":
+      return FontAwesomeIcons.zero;
+    case "1":
+      return FontAwesomeIcons.one;
+    case "2":
+      return FontAwesomeIcons.two;
+    case "3":
+      return FontAwesomeIcons.three;
+    case "4":
+      return FontAwesomeIcons.four;
+    case "5":
+      return FontAwesomeIcons.five;
+    case "6":
+      return FontAwesomeIcons.six;
+    case "7":
+      return FontAwesomeIcons.seven;
+    case "8":
+      return FontAwesomeIcons.eight;
+    case "9":
+      return FontAwesomeIcons.nine;
+    case "A":
+      return FontAwesomeIcons.a;
+    case "C":
+      return FontAwesomeIcons.c;
     default:
       return Icons.question_mark;
   }

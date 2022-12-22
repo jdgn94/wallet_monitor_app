@@ -760,30 +760,30 @@ class S {
     );
   }
 
-  /// `pay`
+  /// `Pay`
   String get pay {
     return Intl.message(
-      'pay',
+      'Pay',
       name: 'pay',
       desc: '',
       args: [],
     );
   }
 
-  /// `car`
+  /// `Car Service`
   String get car {
     return Intl.message(
-      'car',
+      'Car Service',
       name: 'car',
       desc: '',
       args: [],
     );
   }
 
-  /// `cleaning`
+  /// `Cleaning`
   String get cleaning {
     return Intl.message(
-      'cleaning',
+      'Cleaning',
       name: 'cleaning',
       desc: '',
       args: [],
@@ -865,6 +865,26 @@ class S {
     return Intl.message(
       'History',
       name: 'history',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expenses`
+  String get expenses {
+    return Intl.message(
+      'Expenses',
+      name: 'expenses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profits`
+  String get profits {
+    return Intl.message(
+      'Profits',
+      name: 'profits',
       desc: '',
       args: [],
     );

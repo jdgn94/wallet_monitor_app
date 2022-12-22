@@ -1,28 +1,28 @@
-import 'package:hive/hive.dart';
+import 'dart:io';
+import 'dart:convert';
+
+import 'package:isar/isar.dart';
+import 'package:wallet_monitor/src/db/models/bank_and_currency.dart';
 
 part 'currency.g.dart';
 
-@HiveType(typeId: 0)
+@Collection()
 class Currency {
-  @HiveField(0)
-  int? id;
-  @HiveField(1)
-  String? uuid;
-  @HiveField(2)
+  Id id = Isar.autoIncrement;
+  @Index(unique: true, caseSensitive: true)
+  String uuid;
+  @Index(unique: true, caseSensitive: true)
   String name;
-  @HiveField(3)
   String symbol;
-  @HiveField(4)
-  DateTime? createdAt;
-  @HiveField(5)
-  DateTime? updatedAt;
+  DateTime createdAt;
+  DateTime updatedAt;
+  final banksAndCurrency = IsarLinks<BankAndCurrency>();
 
   Currency({
-    this.id,
-    this.uuid,
+    required this.uuid,
     required this.name,
     required this.symbol,
-    this.createdAt,
-    this.updatedAt,
+    required this.createdAt,
+    required this.updatedAt,
   });
 }

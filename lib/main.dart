@@ -9,16 +9,13 @@ import 'package:wallet_monitor/src/bloc/date/date_bloc.dart';
 import 'package:wallet_monitor/src/bloc/settings/settings_bloc.dart';
 import "package:wallet_monitor/src/db/index.dart";
 import 'package:wallet_monitor/src/localStorage/settings.dart';
-import 'package:wallet_monitor/src/pages/add_expense.dart';
-import 'package:wallet_monitor/src/pages/home_page.dart';
 import "package:wallet_monitor/src/routes/index.dart";
 import "package:wallet_monitor/src/settings/theme.dart";
-import 'package:wallet_monitor/src/util/app_page_transition.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SettingsLocalStorage.configureSettings();
-  await DB.initDB();
+  DB.initDB();
   runApp(AppState());
 }
 
@@ -53,15 +50,6 @@ class MyApp extends StatelessWidget {
           darkTheme: themeDark(),
           themeMode: _getThemeMode(state.theme),
           routes: getApplicationRouters(),
-          onGenerateRoute: (settings) {
-            final rect = _createRect(settings.arguments.toString());
-            if (settings.name == '/add_expense') {
-              return AppPageTransition(
-                background: const HomePage(),
-                page: AddExpensePage(buttonRect: rect),
-              );
-            }
-          },
           initialRoute: "/splash",
           localizationsDelegates: const [
             S.delegate,
