@@ -120,6 +120,16 @@ class S {
     );
   }
 
+  /// `Save`
+  String get dialogConfirmTextBottom {
+    return Intl.message(
+      'Save',
+      name: 'dialogConfirmTextBottom',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Cancel`
   String get dialogCancelTextBottom {
     return Intl.message(
@@ -895,6 +905,156 @@ class S {
     return Intl.message(
       'Categories',
       name: 'categories',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Currencies`
+  String get currencies {
+    return Intl.message(
+      'Currencies',
+      name: 'currencies',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Currency`
+  String get createCurrency {
+    return Intl.message(
+      'Create Currency',
+      name: 'createCurrency',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Currency`
+  String get editCurrency {
+    return Intl.message(
+      'Edit Currency',
+      name: 'editCurrency',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Data is missing to create currency.`
+  String get createCurrencyError {
+    return Intl.message(
+      'Data is missing to create currency.',
+      name: 'createCurrencyError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Currency create.`
+  String get createCurrencySuccess {
+    return Intl.message(
+      'Currency create.',
+      name: 'createCurrencySuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Data is missing to edit currency.`
+  String get editCurrencyError {
+    return Intl.message(
+      'Data is missing to edit currency.',
+      name: 'editCurrencyError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Currency edit.`
+  String get editCurrencySuccess {
+    return Intl.message(
+      'Currency edit.',
+      name: 'editCurrencySuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get name {
+    return Intl.message(
+      'Name',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Symbol`
+  String get symbol {
+    return Intl.message(
+      'Symbol',
+      name: 'symbol',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Created at`
+  String get createdAt {
+    return Intl.message(
+      'Created at',
+      name: 'createdAt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Updated at`
+  String get updatedAt {
+    return Intl.message(
+      'Updated at',
+      name: 'updatedAt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get edit {
+    return Intl.message(
+      'Edit',
+      name: 'edit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get delete {
+    return Intl.message(
+      'Delete',
+      name: 'delete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show`
+  String get show {
+    return Intl.message(
+      'Show',
+      name: 'show',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hide`
+  String get hide {
+    return Intl.message(
+      'Hide',
+      name: 'hide',
       desc: '',
       args: [],
     );

@@ -116,6 +116,10 @@ IconData getIcon(String category) {
       return FontAwesomeIcons.a;
     case "C":
       return FontAwesomeIcons.c;
+    case 'pencil':
+      return FontAwesomeIcons.pencil;
+    case 'bin':
+      return Icons.delete_forever;
     default:
       return Icons.question_mark;
   }

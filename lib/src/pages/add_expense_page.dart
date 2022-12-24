@@ -6,6 +6,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:wallet_monitor/generated/l10n.dart';
 import 'package:wallet_monitor/src/db/index.dart';
 import 'package:wallet_monitor/src/settings/color_schema.dart';
+import 'package:wallet_monitor/src/util/app_dialog.dart';
 import 'package:wallet_monitor/src/util/category.dart';
 import 'package:wallet_monitor/src/util/icons.dart';
 import 'package:wallet_monitor/src/widgets/button_global.dart';
@@ -21,8 +22,8 @@ class AddExpensePage extends StatefulWidget {
 
 class _AddExpenseScreenState extends State<AddExpensePage>
     with SingleTickerProviderStateMixin {
+  final _db = DB();
   final ColorSchemaApp colorSchema = ColorSchemaApp();
-  late List<Category> categories;
   final List<String> keyboardSymbol = [
     '1',
     '2',
@@ -37,14 +38,17 @@ class _AddExpenseScreenState extends State<AddExpensePage>
     '0',
     '<'
   ];
+  late List<Category> allCategories;
+  late List<Currency> allCurrencies;
   late AnimationController _controller;
   late Animation _buttonAnimation;
   late Animation _pageAnimation;
   late TextEditingController _descriptionController;
   late double buttonWidth;
   late Category categorySelected;
+  late Currency currencySelected;
   int indexSelected = -1;
-  String moneySymbol = '\$';
+  String currencySymbol = '';
   String integerValue = '0';
   String floatValue = '00';
   bool writeInFloat = false;
@@ -57,7 +61,12 @@ class _AddExpenseScreenState extends State<AddExpensePage>
       (_) {
         if (mounted) {
           Future.delayed(const Duration(milliseconds: 10)).then((v) async {
-            categories = await DB().getAllCategories();
+            allCategories = await _db.getAllCategories();
+            allCurrencies = await _db.getAllCurrencies();
+            if (allCurrencies.isNotEmpty) {
+              currencySelected = allCurrencies[0];
+              currencySymbol = allCurrencies[0].symbol;
+            }
             setState(() {
               isReadyToDraw = false;
             });
@@ -77,7 +86,7 @@ class _AddExpenseScreenState extends State<AddExpensePage>
         curve: Curves.fastOutSlowIn,
       ),
     );
-    _pageAnimation = Tween<double>(begin: -1.0, end: 1.0).animate(
+    _pageAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _controller,
         curve: Curves.fastLinearToSlowEaseIn,
@@ -105,7 +114,7 @@ class _AddExpenseScreenState extends State<AddExpensePage>
   }
 
   Future<void> getGategories() async {
-    categories = await DB().getAllCategories();
+    allCategories = await _db.getAllCategories();
   }
 
   void _actionKeyboard(String value) {
@@ -168,6 +177,26 @@ class _AddExpenseScreenState extends State<AddExpensePage>
       integerValue += value;
     });
     return;
+  }
+
+  void _openChangeCurrency() {
+    AppDialog.buildMessageDialog(
+      context,
+      _currenciesList(context),
+      S.current.currencies,
+      null,
+      null,
+      null,
+      null,
+    );
+  }
+
+  void _changeCurrency(BuildContext dialogContext, Currency currency) {
+    Navigator.pop(dialogContext);
+    setState(() {
+      currencySelected = currency;
+      currencySymbol = currency.symbol;
+    });
   }
 
   @override
@@ -298,10 +327,10 @@ class _AddExpenseScreenState extends State<AddExpensePage>
       width: MediaQuery.of(context).size.width,
       height: 150.0,
       child: ListView.builder(
-        itemCount: categories.length,
+        itemCount: allCategories.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          final category = categories[index];
+          final category = allCategories[index];
           return _category(category, index);
         },
       ),
@@ -356,6 +385,58 @@ class _AddExpenseScreenState extends State<AddExpensePage>
     return colorSchema.primaryMoreLight;
   }
 
+  Widget _currenciesList(BuildContext dialogContext) {
+    final currenciesQuantity = allCurrencies.length;
+    return Container(
+      height: 60.0 * currenciesQuantity,
+      width: 400.0,
+      constraints: BoxConstraints(
+        maxHeight: MediaQuery.of(context).size.height - 200,
+      ),
+      child: ListView.separated(
+        itemCount: currenciesQuantity,
+        separatorBuilder: (_, __) {
+          return const Padding(
+            padding: EdgeInsets.all(5.0),
+            child: Divider(),
+          );
+        },
+        itemBuilder: (_, index) {
+          final currency = allCurrencies[index];
+          return InkWell(
+            onTap: () => _changeCurrency(dialogContext, currency),
+            borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+            splashColor: colorSchema.primary.withOpacity(0.5),
+            hoverColor: colorSchema.primary.withOpacity(0.3),
+            child: Ink(
+              padding: const EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                  color: currency.id == currencySelected.id
+                      ? (Theme.of(context).brightness == Brightness.dark
+                          ? colorSchema.primaryMoreDark
+                          : colorSchema.primaryLight)
+                      : Colors.transparent),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    currency.name,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    currency.symbol,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
   Widget _quantityInserted() {
     return Container(
       width: double.infinity,
@@ -366,13 +447,18 @@ class _AddExpenseScreenState extends State<AddExpensePage>
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            margin: const EdgeInsets.only(right: 10.0),
-            child: Text(
-              moneySymbol,
-              style: TextStyle(
-                fontSize: 45.0,
-                color: colorSchema.primary,
+          InkWell(
+            onTap: () => _openChangeCurrency(),
+            borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+            child: Ink(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Text(
+                currencySymbol,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 45.0,
+                  color: colorSchema.primary,
+                ),
               ),
             ),
           ),
@@ -397,7 +483,7 @@ class _AddExpenseScreenState extends State<AddExpensePage>
               hoverColor: colorSchema.primary.withOpacity(.3),
               focusColor: colorSchema.primary.withOpacity(.3),
               child: Ink(
-                width: 65.0,
+                width: 45.0,
                 height: 45.0,
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(90.0)),
@@ -406,7 +492,6 @@ class _AddExpenseScreenState extends State<AddExpensePage>
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(getIcon('A')),
                     Icon(getIcon('C')),
                   ],
                 ),
@@ -421,7 +506,7 @@ class _AddExpenseScreenState extends State<AddExpensePage>
   Widget _boxDescription() {
     return Container(
       constraints: const BoxConstraints(maxWidth: 615.0),
-      padding: EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(10.0),
       child: TextFormField(
         controller: _descriptionController,
         decoration: InputDecoration(

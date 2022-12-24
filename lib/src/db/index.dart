@@ -75,4 +75,37 @@ class DB {
 
   Future<List<Category>> getAllCategories() async =>
       await _db.categorys.where().findAll();
+
+  Future<void> setCurrency(String name, String symbol) async {
+    final isar = _db;
+    final newDate = DateTime.now();
+    final newCurrency = Currency(
+      uuid: _generateUuid(),
+      name: name,
+      symbol: symbol,
+      createdAt: newDate,
+      updatedAt: newDate,
+    );
+
+    await isar.writeTxnSync(() => isar.currencys.putSync(newCurrency));
+  }
+
+  Future<bool> putCurrency(int id, String name, String symbol) async {
+    final isar = _db;
+    final currencyToUpdate = await isar.currencys.get(id);
+    print(currencyToUpdate);
+    if (currencyToUpdate != null) {
+      currencyToUpdate.name = name;
+      currencyToUpdate.symbol = symbol;
+      currencyToUpdate.createdAt = DateTime.now();
+      await isar
+          .writeTxnSync(() => isar.currencys.putByUuidSync(currencyToUpdate));
+      return true;
+    }
+    return false;
+  }
+
+  Future<List<Currency>> getAllCurrencies() async {
+    return await _db.currencys.where().findAll();
+  }
 }

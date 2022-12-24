@@ -32,13 +32,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "change": MessageLookupByLibrary.simpleMessage("Cambio"),
         "cleaning": MessageLookupByLibrary.simpleMessage("Limpieza"),
         "commission": MessageLookupByLibrary.simpleMessage("Comisión"),
+        "createCurrency": MessageLookupByLibrary.simpleMessage("Crear Moneda"),
+        "createCurrencyError": MessageLookupByLibrary.simpleMessage(
+            "Faltan datos para poder crear la moneda."),
+        "createCurrencySuccess":
+            MessageLookupByLibrary.simpleMessage("La moneda fue creada."),
+        "createdAt": MessageLookupByLibrary.simpleMessage("Creado el"),
         "crypto": MessageLookupByLibrary.simpleMessage("Cripto"),
+        "currencies": MessageLookupByLibrary.simpleMessage("Monedas"),
         "currency": MessageLookupByLibrary.simpleMessage("Moneda"),
         "dark": MessageLookupByLibrary.simpleMessage("Oscuro"),
+        "delete": MessageLookupByLibrary.simpleMessage("Eliminar"),
         "dialogCancelTextBottom":
             MessageLookupByLibrary.simpleMessage("Cancelar"),
         "dialogCancelTextBottomDefault":
             MessageLookupByLibrary.simpleMessage("Cerrar"),
+        "dialogConfirmTextBottom":
+            MessageLookupByLibrary.simpleMessage("Guardar"),
         "dialogConfirmTextBottomDefault":
             MessageLookupByLibrary.simpleMessage("Confirmar"),
         "dialogNoAccountText": MessageLookupByLibrary.simpleMessage(
@@ -47,6 +57,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("¿Ingresar sin cuenta?"),
         "dic": MessageLookupByLibrary.simpleMessage("Diciembre"),
         "digital": MessageLookupByLibrary.simpleMessage("Digital"),
+        "edit": MessageLookupByLibrary.simpleMessage("Editar"),
+        "editCurrency": MessageLookupByLibrary.simpleMessage("Editar Moneda"),
+        "editCurrencyError": MessageLookupByLibrary.simpleMessage(
+            "Faltan datos para poder edutar la moneda."),
+        "editCurrencySuccess":
+            MessageLookupByLibrary.simpleMessage("La moneda fue editada."),
         "electronic": MessageLookupByLibrary.simpleMessage("Electrónico"),
         "email": MessageLookupByLibrary.simpleMessage("Correo"),
         "emailError":
@@ -65,6 +81,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "food": MessageLookupByLibrary.simpleMessage("Comida"),
         "games": MessageLookupByLibrary.simpleMessage("Juegos"),
         "gas": MessageLookupByLibrary.simpleMessage("Gasolina"),
+        "hide": MessageLookupByLibrary.simpleMessage("Ocultar"),
         "history": MessageLookupByLibrary.simpleMessage("Historial"),
         "home": MessageLookupByLibrary.simpleMessage("Inicio"),
         "homeCategory": MessageLookupByLibrary.simpleMessage("Hogar"),
@@ -80,6 +97,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logOut": MessageLookupByLibrary.simpleMessage("Cerrar Sesión"),
         "mar": MessageLookupByLibrary.simpleMessage("Marzo"),
         "may": MessageLookupByLibrary.simpleMessage("Mayo"),
+        "name": MessageLookupByLibrary.simpleMessage("Nombre"),
         "noAccount": MessageLookupByLibrary.simpleMessage("Usar sin cuenta"),
         "nov": MessageLookupByLibrary.simpleMessage("Noviembre"),
         "oct": MessageLookupByLibrary.simpleMessage("Octubre"),
@@ -122,11 +140,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "service": MessageLookupByLibrary.simpleMessage("Servicio"),
         "settings": MessageLookupByLibrary.simpleMessage("Configuraciones"),
         "shopping": MessageLookupByLibrary.simpleMessage("Compra"),
+        "show": MessageLookupByLibrary.simpleMessage("Mostrar"),
         "signUp": MessageLookupByLibrary.simpleMessage("Registrarse"),
+        "symbol": MessageLookupByLibrary.simpleMessage("Símbolo"),
         "system": MessageLookupByLibrary.simpleMessage("Sistema"),
         "theme": MessageLookupByLibrary.simpleMessage("Tema"),
         "totalExpenses": MessageLookupByLibrary.simpleMessage("Gastos Totales"),
         "totalPayments": MessageLookupByLibrary.simpleMessage("Cobros Totales"),
+        "updatedAt": MessageLookupByLibrary.simpleMessage("Actualizado el"),
         "username": MessageLookupByLibrary.simpleMessage("Nombre de usuario"),
         "usernameError": MessageLookupByLibrary.simpleMessage(
             "El nombre de usuario no es valido, caracteres validos (a-z 0-9 . _ -)."),

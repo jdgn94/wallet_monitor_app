@@ -8,9 +8,9 @@ class ColorSchemaApp {
   final Color primaryMoreDark = Colors.teal.shade800;
   final Color secondary = Colors.purple;
   final Color error = Colors.red;
-  final Color info = Colors.blue;
-  final Color warning = Colors.orange;
-  final Color success = Colors.green;
+  final Color info = Colors.blue.shade700;
+  final Color warning = Colors.orange.shade800;
+  final Color success = Colors.green.shade700;
   final Color notificationText = Colors.white;
 
   Color darkenColor(Color color, [double opacity = .1]) {

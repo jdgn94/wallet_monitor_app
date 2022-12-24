@@ -22,7 +22,10 @@ class AppMessage {
             children: [
               Row(
                 children: [
-                  Icon(getIcon(type)),
+                  Icon(
+                    getIcon(type),
+                    color: _colorSelector("message"),
+                  ),
                   const SizedBox(width: 10.0),
                   Container(
                     constraints: BoxConstraints(
@@ -63,5 +66,5 @@ Color _colorSelector(String type) {
   if (type == "warning") return colorScheme.warning;
   if (type == "success") return colorScheme.success;
   if (type == "message") return colorScheme.notificationText;
-  return colorScheme.primary;
+  return colorScheme.secondary;
 }

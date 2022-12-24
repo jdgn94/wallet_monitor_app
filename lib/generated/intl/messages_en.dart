@@ -32,13 +32,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "change": MessageLookupByLibrary.simpleMessage("Change"),
         "cleaning": MessageLookupByLibrary.simpleMessage("Cleaning"),
         "commission": MessageLookupByLibrary.simpleMessage("Commission"),
+        "createCurrency":
+            MessageLookupByLibrary.simpleMessage("Create Currency"),
+        "createCurrencyError": MessageLookupByLibrary.simpleMessage(
+            "Data is missing to create currency."),
+        "createCurrencySuccess":
+            MessageLookupByLibrary.simpleMessage("Currency create."),
+        "createdAt": MessageLookupByLibrary.simpleMessage("Created at"),
         "crypto": MessageLookupByLibrary.simpleMessage("Crypto"),
+        "currencies": MessageLookupByLibrary.simpleMessage("Currencies"),
         "currency": MessageLookupByLibrary.simpleMessage("Currency"),
         "dark": MessageLookupByLibrary.simpleMessage("Dark"),
+        "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "dialogCancelTextBottom":
             MessageLookupByLibrary.simpleMessage("Cancel"),
         "dialogCancelTextBottomDefault":
             MessageLookupByLibrary.simpleMessage("Close"),
+        "dialogConfirmTextBottom": MessageLookupByLibrary.simpleMessage("Save"),
         "dialogConfirmTextBottomDefault":
             MessageLookupByLibrary.simpleMessage("Ok"),
         "dialogNoAccountText": MessageLookupByLibrary.simpleMessage(
@@ -47,6 +57,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Log in without account?"),
         "dic": MessageLookupByLibrary.simpleMessage("December"),
         "digital": MessageLookupByLibrary.simpleMessage("Digital"),
+        "edit": MessageLookupByLibrary.simpleMessage("Edit"),
+        "editCurrency": MessageLookupByLibrary.simpleMessage("Edit Currency"),
+        "editCurrencyError": MessageLookupByLibrary.simpleMessage(
+            "Data is missing to edit currency."),
+        "editCurrencySuccess":
+            MessageLookupByLibrary.simpleMessage("Currency edit."),
         "electronic": MessageLookupByLibrary.simpleMessage("Electronic"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailError":
@@ -65,6 +81,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "food": MessageLookupByLibrary.simpleMessage("Food"),
         "games": MessageLookupByLibrary.simpleMessage("Games"),
         "gas": MessageLookupByLibrary.simpleMessage("Gas"),
+        "hide": MessageLookupByLibrary.simpleMessage("Hide"),
         "history": MessageLookupByLibrary.simpleMessage("History"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "homeCategory": MessageLookupByLibrary.simpleMessage("Home"),
@@ -80,6 +97,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logOut": MessageLookupByLibrary.simpleMessage("Log Out"),
         "mar": MessageLookupByLibrary.simpleMessage("March"),
         "may": MessageLookupByLibrary.simpleMessage("May"),
+        "name": MessageLookupByLibrary.simpleMessage("Name"),
         "noAccount":
             MessageLookupByLibrary.simpleMessage("Use without account"),
         "nov": MessageLookupByLibrary.simpleMessage("November"),
@@ -124,11 +142,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "service": MessageLookupByLibrary.simpleMessage("Service"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "shopping": MessageLookupByLibrary.simpleMessage("Shopping"),
+        "show": MessageLookupByLibrary.simpleMessage("Show"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+        "symbol": MessageLookupByLibrary.simpleMessage("Symbol"),
         "system": MessageLookupByLibrary.simpleMessage("System"),
         "theme": MessageLookupByLibrary.simpleMessage("Theme"),
         "totalExpenses": MessageLookupByLibrary.simpleMessage("Total Expenses"),
         "totalPayments": MessageLookupByLibrary.simpleMessage("Total Payments"),
+        "updatedAt": MessageLookupByLibrary.simpleMessage("Updated at"),
         "username": MessageLookupByLibrary.simpleMessage("Username"),
         "usernameError": MessageLookupByLibrary.simpleMessage(
             "The username is not valid, character accepted (a-z 0-9 . _ -)."),

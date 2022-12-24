@@ -34,13 +34,13 @@ class AppDialog {
               backgroundColor: colorSelected("error"),
               size: const Size(100, 44.0),
             ),
-            if (callbackConfirm != null)
+            if (confirmButtonMessage != null)
               TextButtonGlobal(
-                text: confirmButtonMessage ??
-                    S.current.dialogConfirmTextBottomDefault,
+                text: S.current.dialogConfirmTextBottomDefault,
+                disabledButton: callbackConfirm == null,
                 callback: () {
                   Navigator.of(context).pop();
-                  callbackConfirm();
+                  callbackConfirm!();
                 },
                 textColor: colorSelected(""),
                 size: const Size(100, 44.0),

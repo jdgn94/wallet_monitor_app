@@ -9,7 +9,7 @@ import 'package:wallet_monitor/src/util/background.dart';
 import 'package:wallet_monitor/src/widgets/box_container.dart';
 import 'package:wallet_monitor/src/widgets/button_global.dart';
 import 'package:wallet_monitor/src/widgets/text_button_global.dart';
-import 'package:wallet_monitor/src/widgets/text_field.dart';
+import 'package:wallet_monitor/src/widgets/text_field_global.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({Key? key}) : super(key: key);
