@@ -1059,6 +1059,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Description`
+  String get description {
+    return Intl.message(
+      'Description',
+      name: 'description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Transaction`
+  String get addTransaction {
+    return Intl.message(
+      'Add Transaction',
+      name: 'addTransaction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date`
+  String get date {
+    return Intl.message(
+      'Date',
+      name: 'date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transaction type`
+  String get transactionType {
+    return Intl.message(
+      'Transaction type',
+      name: 'transactionType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Currency not selected.`
+  String get currencyNoSelected {
+    return Intl.message(
+      'Currency not selected.',
+      name: 'currencyNoSelected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Categories not selected.`
+  String get categoryNoSelected {
+    return Intl.message(
+      'Categories not selected.',
+      name: 'categoryNoSelected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount not found.`
+  String get amountNoFound {
+    return Intl.message(
+      'Amount not found.',
+      name: 'amountNoFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transaction without description.`
+  String get noDescription {
+    return Intl.message(
+      'Transaction without description.',
+      name: 'noDescription',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

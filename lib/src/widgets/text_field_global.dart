@@ -11,6 +11,7 @@ class TextFieldGlobal extends StatefulWidget {
   final bool changeObscureText;
   final bool enableSuggestions;
   final bool autocorrect;
+  final int? maxLines;
   final int? maxLength;
 
   const TextFieldGlobal({
@@ -24,6 +25,7 @@ class TextFieldGlobal extends StatefulWidget {
     this.changeObscureText = false,
     this.enableSuggestions = false,
     this.autocorrect = false,
+    this.maxLines,
     this.maxLength,
   }) : super(key: key);
 
@@ -54,6 +56,11 @@ class _TextFieldGlobal extends State<TextFieldGlobal> {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       controller: widget.textEditingController,
       maxLength: widget.maxLength,
+      maxLines: widget.maxLines,
+      enabled: !widget.disabledInput,
+      obscureText: obscureText,
+      enableSuggestions: widget.enableSuggestions,
+      autocorrect: widget.autocorrect,
       decoration: InputDecoration(
         label: Text(widget.label),
         border: widget.inputBorder,
@@ -65,10 +72,6 @@ class _TextFieldGlobal extends State<TextFieldGlobal> {
               )
             : const SizedBox(),
       ),
-      enabled: !widget.disabledInput,
-      obscureText: obscureText,
-      enableSuggestions: widget.enableSuggestions,
-      autocorrect: widget.autocorrect,
     );
   }
 

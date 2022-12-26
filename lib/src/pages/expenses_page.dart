@@ -14,15 +14,15 @@ import 'package:wallet_monitor/src/util/icons.dart';
 import 'package:wallet_monitor/src/widgets/bottom_navigation_bar_global.dart';
 import 'package:wallet_monitor/src/widgets/button_global.dart';
 
-class HomePage extends StatefulWidget {
+class ExpensesPage extends StatefulWidget {
   final Rect? buttonPosition;
-  const HomePage({Key? key, this.buttonPosition}) : super(key: key);
+  const ExpensesPage({Key? key, this.buttonPosition}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _ExpensesPageState createState() => _ExpensesPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _ExpensesPageState extends State<ExpensesPage> {
   GlobalKey<RectGetterState> globalKey = RectGetter.createGlobalKey();
   final colorScheme = ColorSchemaApp();
   late Rect buttonRect;
@@ -70,11 +70,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.current.home),
+        title: Text(S.current.expenses),
         actions: _appBarActions(),
       ),
       drawer: AppDrawer(
-        routeSelect: 'home',
+        routeSelect: 'expenses',
       ),
       body: Column(
         children: [

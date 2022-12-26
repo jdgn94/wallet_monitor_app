@@ -19,33 +19,37 @@ class AppDialog {
     showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: Text(title ?? ""),
-          content: widgets,
-          actions: [
-            TextButtonGlobal(
-              text:
-                  closeButtonMessage ?? S.current.dialogCancelTextBottomDefault,
-              callback: () {
-                Navigator.of(context).pop();
-                if (callbackClose != null) callbackClose();
-              },
-              textColor: colorSelected("error"),
-              backgroundColor: colorSelected("error"),
-              size: const Size(100, 44.0),
-            ),
-            if (confirmButtonMessage != null)
-              TextButtonGlobal(
-                text: S.current.dialogConfirmTextBottomDefault,
-                disabledButton: callbackConfirm == null,
-                callback: () {
-                  Navigator.of(context).pop();
-                  callbackConfirm!();
-                },
-                textColor: colorSelected(""),
-                size: const Size(100, 44.0),
-              ),
-          ],
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              title: Text(title ?? ""),
+              content: widgets,
+              actions: [
+                TextButtonGlobal(
+                  text: closeButtonMessage ??
+                      S.current.dialogCancelTextBottomDefault,
+                  callback: () {
+                    Navigator.of(context).pop();
+                    if (callbackClose != null) callbackClose();
+                  },
+                  textColor: colorSelected("error"),
+                  backgroundColor: colorSelected("error"),
+                  size: const Size(100, 44.0),
+                ),
+                if (confirmButtonMessage != null)
+                  TextButtonGlobal(
+                    text: S.current.dialogConfirmTextBottomDefault,
+                    disabledButton: callbackConfirm == null,
+                    callback: () {
+                      Navigator.of(context).pop();
+                      callbackConfirm!();
+                    },
+                    textColor: colorSelected(""),
+                    size: const Size(100, 44.0),
+                  ),
+              ],
+            );
+          },
         );
       },
     );

@@ -183,7 +183,7 @@ class _SignUpPageState extends State<SignUpPage> {
         });
       },
     );
-    // redirect("/home");
+    // redirect("/expenses");
   }
 
   @override

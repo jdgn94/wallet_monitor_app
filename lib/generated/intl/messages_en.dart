@@ -23,12 +23,18 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "accessories": MessageLookupByLibrary.simpleMessage("Accessories"),
+        "addTransaction":
+            MessageLookupByLibrary.simpleMessage("Add Transaction"),
+        "amountNoFound":
+            MessageLookupByLibrary.simpleMessage("Amount not found."),
         "apr": MessageLookupByLibrary.simpleMessage("April"),
         "aug": MessageLookupByLibrary.simpleMessage("August"),
         "bank": MessageLookupByLibrary.simpleMessage("Bank"),
         "car": MessageLookupByLibrary.simpleMessage("Car Service"),
         "cash": MessageLookupByLibrary.simpleMessage("Cash"),
         "categories": MessageLookupByLibrary.simpleMessage("Categories"),
+        "categoryNoSelected":
+            MessageLookupByLibrary.simpleMessage("Categories not selected."),
         "change": MessageLookupByLibrary.simpleMessage("Change"),
         "cleaning": MessageLookupByLibrary.simpleMessage("Cleaning"),
         "commission": MessageLookupByLibrary.simpleMessage("Commission"),
@@ -42,8 +48,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "crypto": MessageLookupByLibrary.simpleMessage("Crypto"),
         "currencies": MessageLookupByLibrary.simpleMessage("Currencies"),
         "currency": MessageLookupByLibrary.simpleMessage("Currency"),
+        "currencyNoSelected":
+            MessageLookupByLibrary.simpleMessage("Currency not selected."),
         "dark": MessageLookupByLibrary.simpleMessage("Dark"),
+        "date": MessageLookupByLibrary.simpleMessage("Date"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+        "description": MessageLookupByLibrary.simpleMessage("Description"),
         "dialogCancelTextBottom":
             MessageLookupByLibrary.simpleMessage("Cancel"),
         "dialogCancelTextBottomDefault":
@@ -100,6 +110,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "noAccount":
             MessageLookupByLibrary.simpleMessage("Use without account"),
+        "noDescription": MessageLookupByLibrary.simpleMessage(
+            "Transaction without description."),
         "nov": MessageLookupByLibrary.simpleMessage("November"),
         "oct": MessageLookupByLibrary.simpleMessage("October"),
         "parking": MessageLookupByLibrary.simpleMessage("Parking"),
@@ -149,6 +161,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "theme": MessageLookupByLibrary.simpleMessage("Theme"),
         "totalExpenses": MessageLookupByLibrary.simpleMessage("Total Expenses"),
         "totalPayments": MessageLookupByLibrary.simpleMessage("Total Payments"),
+        "transactionType":
+            MessageLookupByLibrary.simpleMessage("Transaction type"),
         "updatedAt": MessageLookupByLibrary.simpleMessage("Updated at"),
         "username": MessageLookupByLibrary.simpleMessage("Username"),
         "usernameError": MessageLookupByLibrary.simpleMessage(

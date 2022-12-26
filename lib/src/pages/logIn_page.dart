@@ -61,7 +61,7 @@ class _LogInPageState extends State<LogInPage> {
     try {
       final response = await HttpServices().logIn(usernameEmail, password);
       if (response['status'] == 'success') {
-        redirect('/home');
+        redirect('/expenses');
         return;
       }
       print("El fetch dio un error $response");
@@ -79,13 +79,13 @@ class _LogInPageState extends State<LogInPage> {
       loading = false;
     });
 
-    // redirect("/home");
+    // redirect("/expenses");
     // return;
   }
 
   Future<void> confirmLogInWithAccount() async {
     await pref.setString('token', "noUseInternet");
-    redirect("/home");
+    redirect("/expenses");
   }
 
   void logInWithoutAccount() {

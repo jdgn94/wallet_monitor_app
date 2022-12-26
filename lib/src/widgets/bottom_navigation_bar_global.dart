@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:wallet_monitor/generated/l10n.dart';
+import 'package:wallet_monitor/src/pages/banks_page.dart';
 import 'package:wallet_monitor/src/pages/currencies_page.dart';
 import 'package:wallet_monitor/src/settings/color_schema.dart';
 import 'package:wallet_monitor/src/util/app_page_transition.dart';
@@ -48,7 +49,7 @@ BottomAppBar bottomNavigationBarGlobal(BuildContext context, Widget widget) {
           context,
           'bank',
           S.current.bank,
-          null,
+          const BanksPage(),
           widget,
         ),
       ],

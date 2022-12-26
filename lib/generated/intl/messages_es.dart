@@ -23,12 +23,18 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "accessories": MessageLookupByLibrary.simpleMessage("Accesorios"),
+        "addTransaction":
+            MessageLookupByLibrary.simpleMessage("Agregar Transacción"),
+        "amountNoFound":
+            MessageLookupByLibrary.simpleMessage("Monto no ingresado."),
         "apr": MessageLookupByLibrary.simpleMessage("Abril"),
         "aug": MessageLookupByLibrary.simpleMessage("Agosto"),
         "bank": MessageLookupByLibrary.simpleMessage("Banco"),
         "car": MessageLookupByLibrary.simpleMessage("Servicio de Auto"),
         "cash": MessageLookupByLibrary.simpleMessage("Efectivo"),
         "categories": MessageLookupByLibrary.simpleMessage("Categorías"),
+        "categoryNoSelected":
+            MessageLookupByLibrary.simpleMessage("Categoría no seleccionada."),
         "change": MessageLookupByLibrary.simpleMessage("Cambio"),
         "cleaning": MessageLookupByLibrary.simpleMessage("Limpieza"),
         "commission": MessageLookupByLibrary.simpleMessage("Comisión"),
@@ -41,8 +47,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "crypto": MessageLookupByLibrary.simpleMessage("Cripto"),
         "currencies": MessageLookupByLibrary.simpleMessage("Monedas"),
         "currency": MessageLookupByLibrary.simpleMessage("Moneda"),
+        "currencyNoSelected":
+            MessageLookupByLibrary.simpleMessage("Moneda no seleccionada."),
         "dark": MessageLookupByLibrary.simpleMessage("Oscuro"),
+        "date": MessageLookupByLibrary.simpleMessage("Fecha"),
         "delete": MessageLookupByLibrary.simpleMessage("Eliminar"),
+        "description": MessageLookupByLibrary.simpleMessage("Descripción"),
         "dialogCancelTextBottom":
             MessageLookupByLibrary.simpleMessage("Cancelar"),
         "dialogCancelTextBottomDefault":
@@ -60,7 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "edit": MessageLookupByLibrary.simpleMessage("Editar"),
         "editCurrency": MessageLookupByLibrary.simpleMessage("Editar Moneda"),
         "editCurrencyError": MessageLookupByLibrary.simpleMessage(
-            "Faltan datos para poder edutar la moneda."),
+            "Faltan datos para poder editar la moneda."),
         "editCurrencySuccess":
             MessageLookupByLibrary.simpleMessage("La moneda fue editada."),
         "electronic": MessageLookupByLibrary.simpleMessage("Electrónico"),
@@ -99,6 +109,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "may": MessageLookupByLibrary.simpleMessage("Mayo"),
         "name": MessageLookupByLibrary.simpleMessage("Nombre"),
         "noAccount": MessageLookupByLibrary.simpleMessage("Usar sin cuenta"),
+        "noDescription": MessageLookupByLibrary.simpleMessage(
+            "Transacción sin descripción."),
         "nov": MessageLookupByLibrary.simpleMessage("Noviembre"),
         "oct": MessageLookupByLibrary.simpleMessage("Octubre"),
         "parking": MessageLookupByLibrary.simpleMessage("Estacionamiento"),
@@ -147,6 +159,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "theme": MessageLookupByLibrary.simpleMessage("Tema"),
         "totalExpenses": MessageLookupByLibrary.simpleMessage("Gastos Totales"),
         "totalPayments": MessageLookupByLibrary.simpleMessage("Cobros Totales"),
+        "transactionType":
+            MessageLookupByLibrary.simpleMessage("Tipo de transacción"),
         "updatedAt": MessageLookupByLibrary.simpleMessage("Actualizado el"),
         "username": MessageLookupByLibrary.simpleMessage("Nombre de usuario"),
         "usernameError": MessageLookupByLibrary.simpleMessage(

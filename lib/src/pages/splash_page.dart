@@ -24,11 +24,11 @@ class _SplashPageState extends State<SplashPage> {
     }
 
     if (token == "noUseInternet") {
-      Navigator.popAndPushNamed(context, "/home");
+      Navigator.popAndPushNamed(context, "/expenses");
       return;
     }
     // aquí se hace la lógica para verificar el token que se tiene guardado
-    Navigator.popAndPushNamed(context, "/home");
+    Navigator.popAndPushNamed(context, "/expenses");
     return;
   }
 

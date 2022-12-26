@@ -90,7 +90,7 @@
 	"editCurrency": "Editar Moneda",
 	"createCurrencyError": "Faltan datos para poder crear la moneda.",
 	"createCurrencySuccess": "La moneda fue creada.",
-	"editCurrencyError": "Faltan datos para poder edutar la moneda.",
+	"editCurrencyError": "Faltan datos para poder editar la moneda.",
 	"editCurrencySuccess": "La moneda fue editada.",
 	"name": "Nombre",
 	"symbol": "Símbolo",
@@ -99,5 +99,14 @@
 	"edit": "Editar",
 	"delete": "Eliminar",
 	"show": "Mostrar",
-	"hide": "Ocultar"
+	"hide": "Ocultar",
+	"description": "Descripción",
+	"addTransaction": "Agregar Transacción",
+	"date": "Fecha",
+	"transactionType": "Tipo de transacción",
+	"currencyNoSelected": "Moneda no seleccionada.",
+	"categoryNoSelected": "Categoría no seleccionada.",
+	"amountNoFound": "Monto no ingresado.",
+	"noDescription": "Transacción sin descripción."
+
 }

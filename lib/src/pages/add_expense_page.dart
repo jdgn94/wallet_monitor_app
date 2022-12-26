@@ -7,10 +7,13 @@ import 'package:wallet_monitor/generated/l10n.dart';
 import 'package:wallet_monitor/src/db/index.dart';
 import 'package:wallet_monitor/src/settings/color_schema.dart';
 import 'package:wallet_monitor/src/util/app_dialog.dart';
+import 'package:wallet_monitor/src/util/app_message.dart';
 import 'package:wallet_monitor/src/util/category.dart';
 import 'package:wallet_monitor/src/util/icons.dart';
 import 'package:wallet_monitor/src/widgets/button_global.dart';
+import 'package:wallet_monitor/src/widgets/custom_button_global.dart';
 import 'package:wallet_monitor/src/widgets/text_button_global.dart';
+import 'package:wallet_monitor/src/widgets/text_field_global.dart';
 
 class AddExpensePage extends StatefulWidget {
   final Rect buttonRect;
@@ -48,7 +51,7 @@ class _AddExpenseScreenState extends State<AddExpensePage>
   late Category categorySelected;
   late Currency currencySelected;
   int indexSelected = -1;
-  String currencySymbol = '';
+  String currencySymbol = '?';
   String integerValue = '0';
   String floatValue = '00';
   bool writeInFloat = false;
@@ -56,7 +59,20 @@ class _AddExpenseScreenState extends State<AddExpensePage>
 
   @override
   void initState() {
+    final newDate = DateTime.now();
     super.initState();
+    categorySelected = Category(
+        uuid: '0',
+        name: '',
+        operation: '',
+        createdAt: newDate,
+        updatedAt: newDate);
+    currencySelected = Currency(
+        uuid: '0',
+        name: '',
+        symbol: '?',
+        createdAt: newDate,
+        updatedAt: newDate);
     SchedulerBinding.instance.endOfFrame.then(
       (_) {
         if (mounted) {
@@ -199,9 +215,40 @@ class _AddExpenseScreenState extends State<AddExpensePage>
     });
   }
 
+  void _verifyValuesToCreateTransaction() {
+    String messageError = '';
+    if (currencySelected.uuid == '0') {
+      messageError = S.current.currencyNoSelected;
+    } else if (categorySelected.uuid == '0') {
+      messageError = S.current.categoryNoSelected;
+    } else if (integerValue == '0' && floatValue == '00') {
+      messageError = S.current.amountNoFound;
+    }
+
+    if (messageError.isNotEmpty) {
+      AppMessage.buildMessageSnackbar(
+        context,
+        messageError,
+        "error",
+      );
+      return;
+    }
+
+    AppDialog.buildMessageDialog(
+      context,
+      _dialogConfirmTransaction(context, setState),
+      S.current.addTransaction,
+      S.current.dialogCancelTextBottom,
+      null,
+      S.current.dialogConfirmTextBottom,
+      () {},
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final h = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: SafeArea(
@@ -222,37 +269,45 @@ class _AddExpenseScreenState extends State<AddExpensePage>
     );
   }
 
-  Widget _button() {
-    if (_controller.value < 1) {
-      return Positioned(
-        top: widget.buttonRect.top,
-        width: MediaQuery.of(context).size.width,
-        height: 70.0,
-        child: Column(
-          children: [
-            Container(
-              width: buttonWidth,
-              height: 40.0 + (30.0 * _buttonAnimation.value),
-              decoration: BoxDecoration(
-                color: colorSchema.primary,
-                borderRadius: const BorderRadius.all(Radius.circular(30)),
-              ),
-              child: Icon(getIcon('add'), color: Colors.white),
+  // dialog add transaction
+  Widget _dialogConfirmTransaction(context, setStateDialog) {
+    int counter = 0;
+    return SizedBox(
+      width: 400.0,
+      height: 150.0,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (_descriptionController.text.isEmpty)
+            Row(
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(right: 10.0),
+                  child: Icon(getIcon('warning'), color: colorSchema.warning),
+                ),
+                Text(
+                  S.current.noDescription,
+                  style: TextStyle(
+                    color: colorSchema.warning,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      );
-    } else {
-      return Positioned(
-        top: widget.buttonRect.top,
-        child: ButtonGlobal(
-          callback: () {},
-          text: 'add expense',
-          textColor: Colors.white,
-          size: Size(MediaQuery.of(context).size.width, 70.0),
-        ),
-      );
-    }
+          Text(counter.toString()),
+          ElevatedButton(
+            onPressed: () {
+              print("aqui estoy, $counter");
+              setStateDialog(() {
+                ++counter;
+              });
+            },
+            child: Icon(Icons.add, color: Colors.white),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _pageContent() {
@@ -284,11 +339,6 @@ class _AddExpenseScreenState extends State<AddExpensePage>
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          TextButtonGlobal(
-            callback: () {},
-            icon: getIcon('calendar'),
-            size: const Size(40, 55),
-          ),
           TextButtonGlobal(
             callback: () {
               _controller.reverse();
@@ -344,26 +394,19 @@ class _AddExpenseScreenState extends State<AddExpensePage>
       margin: const EdgeInsets.all(10.0),
       child: Column(
         children: [
-          InkWell(
-            onTap: () {
-              setState(() {
-                categorySelected = category;
-                indexSelected = index;
-              });
-            },
-            borderRadius: const BorderRadius.all(Radius.circular(40.0)),
-            splashColor: colorSchema.primary.withOpacity(.5),
-            hoverColor: colorSchema.primary.withOpacity(.3),
-            focusColor: colorSchema.primary.withOpacity(.3),
-            child: Ink(
-              width: 60,
-              height: 60,
-              decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(40.0)),
-                  border: Border.all(color: colorSchema.primary, width: 1.0),
-                  color: _categoryBackgroundColor(index)),
-              child: Icon(getIcon(category.name)),
-            ),
+          CustomButtonGlobal(
+            onTap: () => setState(() {
+              categorySelected = category;
+              indexSelected = index;
+            }),
+            width: 60.0,
+            height: 60.0,
+            borderRadiusCircular: 60,
+            borderWidth: 1,
+            borderColor: colorSchema.primary,
+            isBackground: indexSelected == index,
+            backgroundColor: _categoryBackgroundColor(index),
+            child: Icon(getIcon(category.name)),
           ),
           Text(
             getCategory(category.name),
@@ -447,18 +490,15 @@ class _AddExpenseScreenState extends State<AddExpensePage>
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          InkWell(
+          CustomButtonGlobal(
             onTap: () => _openChangeCurrency(),
-            borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-            child: Ink(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: Text(
-                currencySymbol,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 45.0,
-                  color: colorSchema.primary,
-                ),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Text(
+              currencySymbol,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 45,
+                color: colorSchema.primary,
               ),
             ),
           ),
@@ -470,32 +510,19 @@ class _AddExpenseScreenState extends State<AddExpensePage>
             ),
           ),
           Container(
-            margin: EdgeInsets.only(left: 10.0),
-            child: InkWell(
-              onTap: () {
-                setState(() {
-                  integerValue = '0';
-                  floatValue = '00';
-                });
-              },
-              borderRadius: const BorderRadius.all(Radius.circular(90.0)),
-              splashColor: colorSchema.primary.withOpacity(.5),
-              hoverColor: colorSchema.primary.withOpacity(.3),
-              focusColor: colorSchema.primary.withOpacity(.3),
-              child: Ink(
-                width: 45.0,
-                height: 45.0,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(90.0)),
-                  border: Border.all(width: 1.0, color: colorSchema.primary),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(getIcon('C')),
-                  ],
-                ),
-              ),
+            margin: const EdgeInsets.only(left: 10.0),
+            child: CustomButtonGlobal(
+              onTap: () => setState(() {
+                integerValue = '0';
+                floatValue = '00';
+                writeInFloat = false;
+              }),
+              borderRadiusCircular: 90,
+              borderWidth: 1,
+              borderColor: colorSchema.primary,
+              width: 50.0,
+              height: 50.0,
+              child: Icon(getIcon('C')),
             ),
           ),
         ],
@@ -507,11 +534,9 @@ class _AddExpenseScreenState extends State<AddExpensePage>
     return Container(
       constraints: const BoxConstraints(maxWidth: 615.0),
       padding: const EdgeInsets.all(10.0),
-      child: TextFormField(
-        controller: _descriptionController,
-        decoration: InputDecoration(
-          label: Text('description'),
-        ),
+      child: TextFieldGlobal(
+        textEditingController: _descriptionController,
+        label: S.current.description,
         maxLines: 3,
         maxLength: 200,
       ),
@@ -527,27 +552,17 @@ class _AddExpenseScreenState extends State<AddExpensePage>
           children: keyboardSymbol.map((symbol) {
             return Padding(
               padding: const EdgeInsets.all(2.0),
-              child: InkWell(
-                onTap: () {
-                  _actionKeyboard(symbol);
-                },
-                borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                splashColor: colorSchema.primary.withOpacity(.5),
-                hoverColor: colorSchema.primary.withOpacity(.3),
-                focusColor: colorSchema.primary.withOpacity(.3),
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.315,
-                  height: MediaQuery.of(context).size.height * 0.25 - 130,
-                  constraints: const BoxConstraints(maxWidth: 200),
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1.0, color: colorSchema.primary),
-                    borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                  ),
-                  child: Center(
-                    child: symbol == '.'
-                        ? Text(symbol, style: const TextStyle(fontSize: 45))
-                        : Icon(getIcon(symbol), size: 45),
-                  ),
+              child: CustomButtonGlobal(
+                onTap: () => _actionKeyboard(symbol),
+                width: MediaQuery.of(context).size.width * 0.315,
+                height: MediaQuery.of(context).size.height * 0.25 - 130,
+                maxWidth: 200,
+                borderWidth: 1,
+                borderColor: colorSchema.primary,
+                child: Center(
+                  child: symbol == '<'
+                      ? Icon(getIcon(symbol), size: 45.0)
+                      : Text(symbol, style: const TextStyle(fontSize: 45.0)),
                 ),
               ),
             );
@@ -555,5 +570,38 @@ class _AddExpenseScreenState extends State<AddExpensePage>
         ),
       ),
     );
+  }
+
+  Widget _button() {
+    if (_controller.value < 1) {
+      return Positioned(
+        top: widget.buttonRect.top,
+        width: MediaQuery.of(context).size.width,
+        height: 70.0,
+        child: Column(
+          children: [
+            Container(
+              width: buttonWidth,
+              height: 40.0 + (30.0 * _buttonAnimation.value),
+              decoration: BoxDecoration(
+                color: colorSchema.primary,
+                borderRadius: const BorderRadius.all(Radius.circular(30)),
+              ),
+              child: Icon(getIcon('add'), color: Colors.white),
+            ),
+          ],
+        ),
+      );
+    } else {
+      return Positioned(
+        top: widget.buttonRect.top,
+        child: ButtonGlobal(
+          callback: () => _verifyValuesToCreateTransaction(),
+          text: S.current.addTransaction,
+          textColor: Colors.white,
+          size: Size(MediaQuery.of(context).size.width, 70.0),
+        ),
+      );
+    }
   }
 }
