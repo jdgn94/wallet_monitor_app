@@ -120,6 +120,10 @@ IconData getIcon(String category) {
       return FontAwesomeIcons.pencil;
     case 'bin':
       return Icons.delete_forever;
+    case 'menu':
+      return Icons.menu_rounded;
+    case 'back':
+      return Icons.arrow_back_ios_new;
     default:
       return Icons.question_mark;
   }

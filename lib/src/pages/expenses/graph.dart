@@ -164,14 +164,14 @@ class _LineChart extends StatelessWidget {
       );
 }
 
-class HomeGraphWidget extends StatefulWidget {
-  const HomeGraphWidget({super.key});
+class ExpensesGraphWidget extends StatefulWidget {
+  const ExpensesGraphWidget({super.key});
 
   @override
-  State<HomeGraphWidget> createState() => _HomeGraphWidgetState();
+  State<ExpensesGraphWidget> createState() => _ExpensesGraphWidgetState();
 }
 
-class _HomeGraphWidgetState extends State<HomeGraphWidget> {
+class _ExpensesGraphWidgetState extends State<ExpensesGraphWidget> {
   late bool isShowingMainData;
   bool get isDesktopOrWeb => PlatformInfo().isDesktopOrWeb();
 

@@ -13,7 +13,7 @@ class AppDrawer extends StatelessWidget {
   final pref = SettingsLocalStorage.pref;
   AppDrawer({super.key, required this.routeSelect});
 
-  Future<void> redirect(BuildContext context, String route) async {
+  Future<void> _redirect(BuildContext context, String route) async {
     if (route != "/log_in") {
       Navigator.pop(context);
       Navigator.pushNamed(context, route);
@@ -51,7 +51,7 @@ class AppDrawer extends StatelessWidget {
                     children: [
                       listViewItem(
                         context,
-                        redirect,
+                        // _redirect,
                         '/expenses',
                         S.current.expenses,
                         getIcon('expenses'),
@@ -59,7 +59,7 @@ class AppDrawer extends StatelessWidget {
                       ),
                       listViewItem(
                         context,
-                        redirect,
+                        // _redirect,
                         '/currencies',
                         S.current.currencies,
                         getIcon('currency'),
@@ -67,7 +67,7 @@ class AppDrawer extends StatelessWidget {
                       ),
                       listViewItem(
                         context,
-                        redirect,
+                        // _redirect,
                         '/banks',
                         S.current.bank,
                         getIcon('bank'),
@@ -85,7 +85,7 @@ class AppDrawer extends StatelessWidget {
                         text: S.current.logOut,
                         icon: getIcon('logOut'),
                         size: const Size(160.0, 35.0),
-                        callback: () => redirect(context, "/log_in"),
+                        callback: () => _redirect(context, "/log_in"),
                       ),
                       TextButtonGlobal(
                         text: S.current.settings,
@@ -95,7 +95,7 @@ class AppDrawer extends StatelessWidget {
                         textColor: routeSelect == 'settings'
                             ? colorSchema.primary
                             : null,
-                        callback: () => redirect(context, "/settings"),
+                        callback: () => _redirect(context, "/settings"),
                       ),
                     ],
                   ),
@@ -108,8 +108,8 @@ class AppDrawer extends StatelessWidget {
     );
   }
 
-  Widget listViewItem(BuildContext context, Function redirect, String route,
-      String itemName, IconData icon, bool routeActive) {
+  Widget listViewItem(BuildContext context, String route, String itemName,
+      IconData icon, bool routeActive) {
     final colorSchema = ColorSchemaApp();
     return Container(
       margin: const EdgeInsets.only(top: 10.0, right: 10.0, left: 10.0),
@@ -119,7 +119,7 @@ class AppDrawer extends StatelessWidget {
         disabledButton: routeActive,
         textColor: routeActive ? colorSchema.primary : null,
         mainAxisAlignment: MainAxisAlignment.start,
-        callback: () => redirect(context, route),
+        callback: () => _redirect(context, route),
       ),
     );
   }

@@ -2,18 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:rect_getter/rect_getter.dart';
 
 import 'package:wallet_monitor/generated/l10n.dart';
 import 'package:wallet_monitor/src/db/index.dart';
+import 'package:wallet_monitor/src/pages/currencies/add_currency.dart';
+import 'package:wallet_monitor/src/pages/home_page.dart';
 import 'package:wallet_monitor/src/settings/color_schema.dart';
 import 'package:wallet_monitor/src/util/app_dialog.dart';
 import 'package:wallet_monitor/src/util/app_message.dart';
+import 'package:wallet_monitor/src/util/app_page_transition.dart';
 import 'package:wallet_monitor/src/util/icons.dart';
+import 'package:wallet_monitor/src/widgets/app_bar_global.dart';
+import 'package:wallet_monitor/src/widgets/bottom_navigation_bar_global.dart';
+import 'package:wallet_monitor/src/widgets/scaffold_global.dart';
 import 'package:wallet_monitor/src/widgets/text_button_global.dart';
 import 'package:wallet_monitor/src/widgets/text_field_global.dart';
 
 class CurrenciesPage extends StatefulWidget {
-  const CurrenciesPage({Key? key}) : super(key: key);
+  final GlobalKey<ScaffoldState> scaffoldKey;
+  final bool navigateAnimate;
+  const CurrenciesPage({
+    Key? key,
+    required this.scaffoldKey,
+    this.navigateAnimate = false,
+  }) : super(key: key);
 
   @override
   _CurrenciesPageState createState() => _CurrenciesPageState();
@@ -152,20 +165,31 @@ class _CurrenciesPageState extends State<CurrenciesPage>
     }
   }
 
-  void _openEditCurrency(int index) {
-    currencySelected = allCurrencies[index];
-    _nameCurrencyController.text = currencySelected.name;
-    _symbolCurrencyController.text = currencySelected.symbol;
+  void _openEditCurrency(int index, GlobalKey<RectGetterState> rectKey) {
+    final buttonRect = RectGetter.getRectFromKey(rectKey);
 
-    AppDialog.buildMessageDialog(
-      context,
-      _currencyForm(),
-      S.current.editCurrency,
-      S.current.dialogCancelTextBottom,
-      _clearInputs,
-      S.current.dialogConfirmTextBottom,
-      _editCurrency,
+    AppPageTransition page = AppPageTransition(
+      background: HomePage(initialPage: 2),
+      page: AddCurrency(
+        buttonRect: buttonRect!,
+        currency: allCurrencies[index],
+      ),
     );
+
+    Navigator.of(context).push(page);
+    // currencySelected = allCurrencies[index];
+    // _nameCurrencyController.text = currencySelected.name;
+    // _symbolCurrencyController.text = currencySelected.symbol;
+
+    // AppDialog.buildMessageDialog(
+    //   context,
+    //   _currencyForm(),
+    //   S.current.editCurrency,
+    //   S.current.dialogCancelTextBottom,
+    //   _clearInputs,
+    //   S.current.dialogConfirmTextBottom,
+    //   _editCurrency,
+    // );
   }
 
   @override
@@ -173,20 +197,35 @@ class _CurrenciesPageState extends State<CurrenciesPage>
     final h = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Transform.translate(
-        offset: Offset(-1, h * (1 - _pageAnimation.value)),
-        child: Ink(
-          height: double.infinity,
-          color: Theme.of(context).scaffoldBackgroundColor,
-          child: Column(
-            children: [
-              _header(),
-              _currenciesList(),
-            ],
-          ),
-        ),
+      appBar: AppBarGlobal(
+        scaffoldKey: widget.scaffoldKey,
+        title: S.current.currencies,
+        route: 'currencies',
       ),
+      body: widget.navigateAnimate
+          ? viewPageAnimation()
+          : viewPageWithoutAnimation(),
+    );
+  }
+
+  Widget viewPageAnimation() {
+    final w = MediaQuery.of(context).size.width;
+
+    return Transform.translate(
+      offset: Offset(w * (1 - _pageAnimation.value), 0),
+      child: Ink(
+        height: double.infinity,
+        color: Theme.of(context).scaffoldBackgroundColor,
+        child: Container(child: _currenciesList()),
+      ),
+    );
+  }
+
+  Widget viewPageWithoutAnimation() {
+    return Ink(
+      height: double.infinity,
+      color: Theme.of(context).scaffoldBackgroundColor,
+      child: Container(child: _currenciesList()),
     );
   }
 
@@ -261,32 +300,29 @@ class _CurrenciesPageState extends State<CurrenciesPage>
 
   Widget _currenciesList() {
     if (isReadyToDraw) {
-      return const Expanded(
-        child: Center(
-          child: CircularProgressIndicator(),
-        ),
+      return const Center(
+        child: CircularProgressIndicator(),
       );
     }
 
-    return Expanded(
-      child: ListView.builder(
-        itemCount: allCurrencies.length,
-        itemBuilder: (context, index) {
-          return _currencyCard(context, index);
-        },
-      ),
+    return ListView.builder(
+      itemCount: allCurrencies.length,
+      itemBuilder: (context, index) {
+        return _currencyCard(context, index);
+      },
     );
   }
 
   Widget _currencyCard(BuildContext context, int index) {
     final currency = allCurrencies[index];
+    final itemKey = RectGetter.createGlobalKey();
     return Slidable(
-      key: Key(currency.uuid),
+      key: itemKey,
       startActionPane: ActionPane(
         motion: const StretchMotion(),
         children: [
           SlidableAction(
-            onPressed: (_) => _openEditCurrency(index),
+            onPressed: (_) => _openEditCurrency(index, itemKey),
             backgroundColor: colorSchema.info,
             icon: getIcon('pencil'),
             label: S.current.edit,
@@ -308,12 +344,16 @@ class _CurrenciesPageState extends State<CurrenciesPage>
               Text(
                 currency.name,
                 style: const TextStyle(
-                    fontSize: 25.0, fontWeight: FontWeight.bold),
+                  fontSize: 25.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Text(
                 currency.symbol,
                 style: const TextStyle(
-                    fontSize: 25.0, fontWeight: FontWeight.bold),
+                  fontSize: 25.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),

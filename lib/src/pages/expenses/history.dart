@@ -4,14 +4,14 @@ import 'package:wallet_monitor/src/models/card_value.dart';
 import 'package:wallet_monitor/src/settings/color_schema.dart';
 import 'package:wallet_monitor/src/util/icons.dart';
 
-class HomeHistoryWidget extends StatefulWidget {
-  const HomeHistoryWidget({super.key});
+class ExpensesHistoryWidget extends StatefulWidget {
+  const ExpensesHistoryWidget({super.key});
 
   @override
-  State<HomeHistoryWidget> createState() => _HomeHistoryWidgetState();
+  State<ExpensesHistoryWidget> createState() => _ExpensesHistoryWidgetState();
 }
 
-class _HomeHistoryWidgetState extends State<HomeHistoryWidget> {
+class _ExpensesHistoryWidgetState extends State<ExpensesHistoryWidget> {
   final colorSchema = ColorSchemaApp();
   List<int> cardSelects = [];
   final List<CardValue> _cardValues = [

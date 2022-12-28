@@ -2,54 +2,55 @@ import 'package:flutter/material.dart';
 
 import 'package:wallet_monitor/generated/l10n.dart';
 import 'package:wallet_monitor/src/bloc/date/date_bloc.dart';
-import 'package:wallet_monitor/src/pages/home/home_graph.dart';
-import 'package:wallet_monitor/src/pages/home/home_history.dart';
+import 'package:wallet_monitor/src/pages/expenses/graph.dart';
+import 'package:wallet_monitor/src/pages/expenses/history.dart';
 import 'package:wallet_monitor/src/settings/color_schema.dart';
 import 'package:wallet_monitor/src/util/icons.dart';
+import 'package:wallet_monitor/src/widgets/app_bar_global.dart';
 import 'package:wallet_monitor/src/widgets/text_button_global.dart';
 
-class HomeCalendarWidget extends StatefulWidget {
-  HomeCalendarWidget({super.key});
+class ExpensesCalendarWidget extends StatefulWidget {
+  const ExpensesCalendarWidget({super.key});
 
   @override
-  State<HomeCalendarWidget> createState() => _HomeCalendarWidgetState();
+  State<ExpensesCalendarWidget> createState() => _ExpensesCalendarWidgetState();
 }
 
-class _HomeCalendarWidgetState extends State<HomeCalendarWidget> {
+class _ExpensesCalendarWidgetState extends State<ExpensesCalendarWidget> {
   final colorSchema = ColorSchemaApp();
-  late double _actualPage;
-  late PageController _controller;
+  late double _currentPage;
+  late PageController _pageController;
 
   @override
   void initState() {
     final month = DateBloc().state.month;
     super.initState();
-    _controller = PageController(initialPage: month - 1);
-    _controller.addListener(onChangePage);
-    _actualPage = month - 1;
+    _pageController = PageController(initialPage: month - 1);
+    _pageController.addListener(onChangePage);
+    _currentPage = month - 1;
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _pageController.dispose();
     super.dispose();
   }
 
   void onChangePage() {
     setState(() {
-      _actualPage = _controller.page!;
+      _currentPage = _pageController.page!;
     });
   }
 
   void previousPage() {
-    _controller.previousPage(
+    _pageController.previousPage(
       duration: const Duration(milliseconds: 500),
       curve: Curves.easeInOut,
     );
   }
 
   void nextPage() {
-    _controller.nextPage(
+    _pageController.nextPage(
       duration: const Duration(milliseconds: 500),
       curve: Curves.easeInOut,
     );
@@ -57,25 +58,22 @@ class _HomeCalendarWidgetState extends State<HomeCalendarWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height - 106.0,
-      child: Column(
-        children: [
-          Container(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            child: _selector(),
-          ),
-          Container(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            child: _expenses(),
-          ),
-          Container(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            child: _graph(),
-          ),
-          Expanded(child: _history()),
-        ],
-      ),
+    return Column(
+      children: [
+        Container(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          child: _selector(),
+        ),
+        Container(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          child: _expenses(),
+        ),
+        Container(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          child: _graph(),
+        ),
+        Expanded(child: _history()),
+      ],
     );
   }
 
@@ -87,7 +85,7 @@ class _HomeCalendarWidgetState extends State<HomeCalendarWidget> {
           PageView(
             pageSnapping: true,
             allowImplicitScrolling: true,
-            controller: _controller,
+            controller: _pageController,
             children: [
               monthSelector(S.current.jan),
               monthSelector(S.current.feb),
@@ -111,14 +109,14 @@ class _HomeCalendarWidgetState extends State<HomeCalendarWidget> {
                 size: const Size(40.0, 15.0),
                 callback: previousPage,
                 textColor: colorSchema.primary,
-                disabledButton: _actualPage <= 0,
+                disabledButton: _currentPage <= 0,
               ),
               TextButtonGlobal(
                 icon: getIcon('nextPage'),
                 size: const Size(40.0, 15.0),
                 callback: nextPage,
                 textColor: colorSchema.primary,
-                disabledButton: _actualPage >= 11,
+                disabledButton: _currentPage >= 11,
               ),
             ],
           )
@@ -166,11 +164,11 @@ class _HomeCalendarWidgetState extends State<HomeCalendarWidget> {
       height: 270.0,
       constraints: const BoxConstraints(maxWidth: 600),
       padding: const EdgeInsets.all(8.0),
-      child: const HomeGraphWidget(),
+      child: const ExpensesGraphWidget(),
     );
   }
 
   Widget _history() {
-    return HomeHistoryWidget();
+    return const ExpensesHistoryWidget();
   }
 }

@@ -258,7 +258,7 @@ class _AddExpenseScreenState extends State<AddExpensePage>
           child: Stack(
             children: [
               Transform.translate(
-                offset: Offset(-1, h * (1 - _pageAnimation.value)),
+                offset: Offset(0, h * (1 - _pageAnimation.value)),
                 child: _pageContent(),
               ),
               _button(),
