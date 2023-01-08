@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
@@ -9,14 +11,10 @@ import 'package:wallet_monitor/src/db/index.dart';
 import 'package:wallet_monitor/src/pages/currencies/add_currency.dart';
 import 'package:wallet_monitor/src/pages/home_page.dart';
 import 'package:wallet_monitor/src/settings/color_schema.dart';
-import 'package:wallet_monitor/src/util/app_dialog.dart';
 import 'package:wallet_monitor/src/util/app_message.dart';
 import 'package:wallet_monitor/src/util/app_page_transition.dart';
 import 'package:wallet_monitor/src/util/icons.dart';
 import 'package:wallet_monitor/src/widgets/app_bar_global.dart';
-import 'package:wallet_monitor/src/widgets/bottom_navigation_bar_global.dart';
-import 'package:wallet_monitor/src/widgets/scaffold_global.dart';
-import 'package:wallet_monitor/src/widgets/text_button_global.dart';
 import 'package:wallet_monitor/src/widgets/text_field_global.dart';
 
 class CurrenciesPage extends StatefulWidget {
@@ -40,7 +38,7 @@ class _CurrenciesPageState extends State<CurrenciesPage>
   late Animation _pageAnimation;
   late TextEditingController _nameCurrencyController;
   late TextEditingController _symbolCurrencyController;
-  late List<Currency> allCurrencies;
+  late List<Currency>? allCurrencies;
   late Currency currencySelected;
   bool isReadyToDraw = true;
 
@@ -91,111 +89,37 @@ class _CurrenciesPageState extends State<CurrenciesPage>
     _animationController.dispose();
   }
 
-  void _openCreateCurrency() {
-    AppDialog.buildMessageDialog(
-      context,
-      _currencyForm(),
-      S.current.createCurrency,
-      S.current.dialogCancelTextBottom,
-      _clearInputs,
-      S.current.dialogConfirmTextBottom,
-      _createCurrency,
-    );
-  }
-
-  void _clearInputs() {
-    _nameCurrencyController.clear();
-    _symbolCurrencyController.clear();
-  }
-
-  Future<void> _createCurrency() async {
-    final name = _nameCurrencyController.text;
-    final symbol = _symbolCurrencyController.text;
-    if (name.isEmpty || symbol.isEmpty) {
-      AppMessage.buildMessageSnackbar(
-        context,
-        S.current.createCurrencyError,
-        "error",
-      );
-      return;
-    }
-
-    await _db.setCurrency(name, symbol);
-    allCurrencies = await _db.getAllCurrencies();
-    _clearInputs();
-    // ignore: use_build_context_synchronously
-    AppMessage.buildMessageSnackbar(
-      context,
-      S.current.createCurrencySuccess,
-      "success",
-    );
-    setState(() {});
-  }
-
-  Future<void> _editCurrency() async {
-    final name = _nameCurrencyController.text;
-    final symbol = _symbolCurrencyController.text;
-    if (name.isEmpty || symbol.isEmpty) {
-      AppMessage.buildMessageSnackbar(
-        context,
-        S.current.editCurrencyError,
-        "error",
-      );
-      return;
-    }
-
-    final success = await _db.putCurrency(currencySelected.id, name, symbol);
-    if (success) {
-      allCurrencies = await _db.getAllCurrencies();
-      _clearInputs();
-      // ignore: use_build_context_synchronously
-      AppMessage.buildMessageSnackbar(
-        context,
-        S.current.editCurrencySuccess,
-        "success",
-      );
-      setState(() {});
-    } else {
-      // ignore: use_build_context_synchronously
-      AppMessage.buildMessageSnackbar(
-        context,
-        S.current.editCurrencyError,
-        "success",
-      );
-    }
-  }
-
-  void _openEditCurrency(int index, GlobalKey<RectGetterState> rectKey) {
+  Future<void> _openEditCurrency(
+    Currency currency,
+    GlobalKey<RectGetterState> rectKey,
+  ) async {
     final buttonRect = RectGetter.getRectFromKey(rectKey);
 
     AppPageTransition page = AppPageTransition(
-      background: HomePage(initialPage: 2),
+      background: const HomePage(initialPage: 2),
       page: AddCurrency(
         buttonRect: buttonRect!,
-        currency: allCurrencies[index],
+        currency: currency,
       ),
     );
 
-    Navigator.of(context).push(page);
-    // currencySelected = allCurrencies[index];
-    // _nameCurrencyController.text = currencySelected.name;
-    // _symbolCurrencyController.text = currencySelected.symbol;
+    final result = await Navigator.of(context).push(page);
 
-    // AppDialog.buildMessageDialog(
-    //   context,
-    //   _currencyForm(),
-    //   S.current.editCurrency,
-    //   S.current.dialogCancelTextBottom,
-    //   _clearInputs,
-    //   S.current.dialogConfirmTextBottom,
-    //   _editCurrency,
-    // );
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).removeCurrentSnackBar();
+    if (result != null) {
+      await Future.delayed(const Duration(milliseconds: 100));
+      // ignore: use_build_context_synchronously
+      AppMessage.buildMessageSnackbar(
+        context,
+        result["message"],
+        result["status"],
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final h = MediaQuery.of(context).size.height;
-
     return Scaffold(
       appBar: AppBarGlobal(
         scaffoldKey: widget.scaffoldKey,
@@ -229,75 +153,6 @@ class _CurrenciesPageState extends State<CurrenciesPage>
     );
   }
 
-  Widget _currencyForm() {
-    return Container(
-      height: 140.0,
-      constraints: const BoxConstraints(
-        maxWidth: 600.0,
-        minWidth: 140.0,
-      ),
-      child: Column(
-        children: [
-          TextFieldGlobal(
-            textEditingController: _nameCurrencyController,
-            label: S.current.currency,
-          ),
-          TextFieldGlobal(
-            textEditingController: _symbolCurrencyController,
-            label: S.current.symbol,
-            maxLength: 2,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _header() {
-    void returnNavigation() {
-      _animationController.reverse();
-    }
-
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      color: Theme.of(context).scaffoldBackgroundColor,
-      child: Padding(
-        padding: const EdgeInsets.only(left: 10.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                Hero(
-                  tag: 'currency',
-                  child: Icon(getIcon('currency')),
-                ),
-                const SizedBox(width: 10.0),
-                Text(
-                  S.current.currencies,
-                  style: const TextStyle(fontSize: 25.0),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                TextButtonGlobal(
-                  callback: () => _openCreateCurrency(),
-                  icon: getIcon('add'),
-                  size: const Size(40.0, 55.0),
-                ),
-                TextButtonGlobal(
-                  callback: () => returnNavigation(),
-                  icon: getIcon('clear'),
-                  size: const Size(40.0, 55.0),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget _currenciesList() {
     if (isReadyToDraw) {
       return const Center(
@@ -305,24 +160,46 @@ class _CurrenciesPageState extends State<CurrenciesPage>
       );
     }
 
-    return ListView.builder(
-      itemCount: allCurrencies.length,
-      itemBuilder: (context, index) {
-        return _currencyCard(context, index);
+    // return ListView.builder(
+    //   itemCount: allCurrencies.length,
+    //   itemBuilder: (context, index) {
+    //     return _currencyCard(context, index);
+    //   },
+    // );
+    return StreamBuilder<List<Currency>>(
+      stream: _db.getAllCurrenciesSync(),
+      builder: (context, snapshot) {
+        final currencies = snapshot.data ?? allCurrencies;
+        // _updateCurrenciesData(currencies);
+        if (currencies == null || currencies.isEmpty) {
+          return Center(
+            child: Text(S.current.noCurrencies),
+          );
+        }
+        return ListView.builder(
+          itemCount: currencies.length,
+          itemBuilder: (context, index) =>
+              _currencyCard(context, currencies[index], index),
+        );
       },
     );
   }
 
-  Widget _currencyCard(BuildContext context, int index) {
-    final currency = allCurrencies[index];
+  Widget _currencyCard(BuildContext context, Currency currency, int index) {
     final itemKey = RectGetter.createGlobalKey();
+
+    if (currency == null) {
+      return Center(
+        child: Text(S.current.noCurrencies),
+      );
+    }
     return Slidable(
       key: itemKey,
       startActionPane: ActionPane(
         motion: const StretchMotion(),
         children: [
           SlidableAction(
-            onPressed: (_) => _openEditCurrency(index, itemKey),
+            onPressed: (_) => _openEditCurrency(currency, itemKey),
             backgroundColor: colorSchema.info,
             icon: getIcon('pencil'),
             label: S.current.edit,

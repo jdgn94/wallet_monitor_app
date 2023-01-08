@@ -107,6 +107,7 @@
 	"currencyNoSelected": "Moneda no seleccionada.",
 	"categoryNoSelected": "Categoría no seleccionada.",
 	"amountNoFound": "Monto no ingresado.",
-	"noDescription": "Transacción sin descripción."
+	"noDescription": "Transacción sin descripción.",
+	"noCurrencies": "Sin monedas."
 
 }

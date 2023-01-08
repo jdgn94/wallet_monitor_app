@@ -1139,6 +1139,16 @@ class S {
       args: [],
     );
   }
+
+  /// `No currencies.`
+  String get noCurrencies {
+    return Intl.message(
+      'No currencies.',
+      name: 'noCurrencies',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

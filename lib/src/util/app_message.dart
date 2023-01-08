@@ -13,7 +13,8 @@ class AppMessage {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: _colorSelector(type),
-        duration: const Duration(seconds: 10),
+        duration: const Duration(seconds: 5),
+        behavior: SnackBarBehavior.floating,
         content: Container(
           constraints: const BoxConstraints(maxHeight: 50.0),
           child: Row(

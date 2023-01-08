@@ -110,6 +110,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "noAccount":
             MessageLookupByLibrary.simpleMessage("Use without account"),
+        "noCurrencies": MessageLookupByLibrary.simpleMessage("No currencies."),
         "noDescription": MessageLookupByLibrary.simpleMessage(
             "Transaction without description."),
         "nov": MessageLookupByLibrary.simpleMessage("November"),

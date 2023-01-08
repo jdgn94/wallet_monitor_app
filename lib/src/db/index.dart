@@ -108,4 +108,8 @@ class DB {
   Future<List<Currency>> getAllCurrencies() async {
     return await _db.currencys.where().findAll();
   }
+
+  Stream<List<Currency>> getAllCurrenciesSync() async* {
+    yield* _db.currencys.where().watch();
+  }
 }

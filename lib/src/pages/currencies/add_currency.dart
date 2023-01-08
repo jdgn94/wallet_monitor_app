@@ -5,6 +5,7 @@ import 'package:wallet_monitor/generated/l10n.dart';
 import 'package:wallet_monitor/src/db/index.dart';
 
 import 'package:wallet_monitor/src/settings/color_schema.dart';
+import 'package:wallet_monitor/src/util/app_message.dart';
 import 'package:wallet_monitor/src/util/icons.dart';
 import 'package:wallet_monitor/src/widgets/text_button_global.dart';
 import 'package:wallet_monitor/src/widgets/text_field_global.dart';
@@ -21,6 +22,7 @@ class AddCurrency extends StatefulWidget {
 
 class _AddCurrencyState extends State<AddCurrency>
     with SingleTickerProviderStateMixin {
+  final _db = DB();
   final colorSchema = ColorSchemaApp();
   late AnimationController _animationController;
   late Animation _buttonController;
@@ -28,6 +30,7 @@ class _AddCurrencyState extends State<AddCurrency>
   late TextEditingController _symbolNameController;
   late double buttonWidth;
   late double buttonHeight;
+  bool savedChanges = false;
   bool animationEnd = false;
   bool editCurrency = false;
 
@@ -69,7 +72,22 @@ class _AddCurrencyState extends State<AddCurrency>
     });
     _animationController.addStatusListener((status) {
       if (status == AnimationStatus.dismissed) {
-        Navigator.of(context).pop();
+        if (savedChanges) {
+          return Navigator.of(context).pop({
+            "message": widget.currency != null
+                ? S.current.editCurrencySuccess
+                : S.current.createCurrencySuccess,
+            "status": "success"
+          });
+        }
+        return Navigator.of(context).pop(null);
+        // if (savedChanges) {
+        //   AppMessage.buildMessageSnackbar(
+        //     context,
+        //     S.current.createCurrencySuccess,
+        //     "success",
+        //   );
+        // }
       }
 
       if (status == AnimationStatus.completed) {
@@ -89,6 +107,25 @@ class _AddCurrencyState extends State<AddCurrency>
     _currencyNameController.dispose();
     _symbolNameController.dispose();
     super.dispose();
+  }
+
+  Future<void> _saveChanges() async {
+    final currencyName = _currencyNameController.text;
+    final symbolName = _symbolNameController.text;
+
+    if (currencyName.isEmpty || symbolName.isEmpty) {
+      AppMessage.buildMessageSnackbar(
+          context, S.current.createCurrencyError, "error");
+      return;
+    }
+
+    if (editCurrency) {
+      await _db.putCurrency(widget.currency!.id, currencyName, symbolName);
+    } else {
+      await _db.setCurrency(currencyName, symbolName);
+    }
+    savedChanges = true;
+    _animationController.reverse();
   }
 
   Color _animatedColor() {
@@ -257,7 +294,7 @@ class _AddCurrencyState extends State<AddCurrency>
           size: const Size(100.0, 44.0),
         ),
         TextButtonGlobal(
-          callback: () => _animationController.reverse(),
+          callback: () => _saveChanges(),
           text: S.current.dialogConfirmTextBottom,
           textColor: colorSchema.success,
           backgroundColor: colorSchema.success,
