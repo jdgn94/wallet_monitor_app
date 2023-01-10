@@ -65,7 +65,16 @@ class _PageNoFound extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_rounded),
+          color: Colors.white,
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        backgroundColor: Colors.red,
+        foregroundColor: Colors.white,
+        title: const Text("Page not found"),
+      ),
       body: const Center(
         child: Text('Page not found'),
       ),

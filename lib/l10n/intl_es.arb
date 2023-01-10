@@ -108,6 +108,8 @@
 	"categoryNoSelected": "Categoría no seleccionada.",
 	"amountNoFound": "Monto no ingresado.",
 	"noDescription": "Transacción sin descripción.",
-	"noCurrencies": "Sin monedas."
+	"noCurrencies": "Sin monedas.",
+	"banks": "Bancos",
+	"noBanks": "Sin Bancos"
 
 }

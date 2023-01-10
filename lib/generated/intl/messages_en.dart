@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "apr": MessageLookupByLibrary.simpleMessage("April"),
         "aug": MessageLookupByLibrary.simpleMessage("August"),
         "bank": MessageLookupByLibrary.simpleMessage("Bank"),
+        "banks": MessageLookupByLibrary.simpleMessage("Banks"),
         "car": MessageLookupByLibrary.simpleMessage("Car Service"),
         "cash": MessageLookupByLibrary.simpleMessage("Cash"),
         "categories": MessageLookupByLibrary.simpleMessage("Categories"),
@@ -110,7 +111,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "noAccount":
             MessageLookupByLibrary.simpleMessage("Use without account"),
-        "noCurrencies": MessageLookupByLibrary.simpleMessage("No currencies."),
+        "noBanks": MessageLookupByLibrary.simpleMessage("No Banks"),
+        "noCurrencies": MessageLookupByLibrary.simpleMessage("No Currencies."),
         "noDescription": MessageLookupByLibrary.simpleMessage(
             "Transaction without description."),
         "nov": MessageLookupByLibrary.simpleMessage("November"),

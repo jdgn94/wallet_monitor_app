@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
@@ -15,15 +13,12 @@ import 'package:wallet_monitor/src/util/app_message.dart';
 import 'package:wallet_monitor/src/util/app_page_transition.dart';
 import 'package:wallet_monitor/src/util/icons.dart';
 import 'package:wallet_monitor/src/widgets/app_bar_global.dart';
-import 'package:wallet_monitor/src/widgets/text_field_global.dart';
 
 class CurrenciesPage extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
-  final bool navigateAnimate;
   const CurrenciesPage({
     Key? key,
     required this.scaffoldKey,
-    this.navigateAnimate = false,
   }) : super(key: key);
 
   @override
@@ -34,8 +29,6 @@ class _CurrenciesPageState extends State<CurrenciesPage>
     with SingleTickerProviderStateMixin {
   final _db = DB();
   final colorSchema = ColorSchemaApp();
-  late AnimationController _animationController;
-  late Animation _pageAnimation;
   late TextEditingController _nameCurrencyController;
   late TextEditingController _symbolCurrencyController;
   late List<Currency>? allCurrencies;
@@ -60,25 +53,6 @@ class _CurrenciesPageState extends State<CurrenciesPage>
 
     _nameCurrencyController = TextEditingController();
     _symbolCurrencyController = TextEditingController();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1000),
-    );
-    _pageAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: Curves.fastOutSlowIn,
-      ),
-    );
-    _animationController.addListener(() {
-      setState(() {});
-    });
-    _animationController.addStatusListener((status) {
-      if (status == AnimationStatus.dismissed) {
-        Navigator.of(context).pop();
-      }
-    });
-    _animationController.forward();
   }
 
   @override
@@ -86,7 +60,6 @@ class _CurrenciesPageState extends State<CurrenciesPage>
     super.dispose();
     _nameCurrencyController.dispose();
     _symbolCurrencyController.dispose();
-    _animationController.dispose();
   }
 
   Future<void> _openEditCurrency(
@@ -126,26 +99,11 @@ class _CurrenciesPageState extends State<CurrenciesPage>
         title: S.current.currencies,
         route: 'currencies',
       ),
-      body: widget.navigateAnimate
-          ? viewPageAnimation()
-          : viewPageWithoutAnimation(),
+      body: viewPage(),
     );
   }
 
-  Widget viewPageAnimation() {
-    final w = MediaQuery.of(context).size.width;
-
-    return Transform.translate(
-      offset: Offset(w * (1 - _pageAnimation.value), 0),
-      child: Ink(
-        height: double.infinity,
-        color: Theme.of(context).scaffoldBackgroundColor,
-        child: Container(child: _currenciesList()),
-      ),
-    );
-  }
-
-  Widget viewPageWithoutAnimation() {
+  Widget viewPage() {
     return Ink(
       height: double.infinity,
       color: Theme.of(context).scaffoldBackgroundColor,
@@ -159,22 +117,13 @@ class _CurrenciesPageState extends State<CurrenciesPage>
         child: CircularProgressIndicator(),
       );
     }
-
-    // return ListView.builder(
-    //   itemCount: allCurrencies.length,
-    //   itemBuilder: (context, index) {
-    //     return _currencyCard(context, index);
-    //   },
-    // );
     return StreamBuilder<List<Currency>>(
       stream: _db.getAllCurrenciesSync(),
       builder: (context, snapshot) {
         final currencies = snapshot.data ?? allCurrencies;
         // _updateCurrenciesData(currencies);
         if (currencies == null || currencies.isEmpty) {
-          return Center(
-            child: Text(S.current.noCurrencies),
-          );
+          return Center(child: Text(S.current.noCurrencies));
         }
         return ListView.builder(
           itemCount: currencies.length,
@@ -188,11 +137,6 @@ class _CurrenciesPageState extends State<CurrenciesPage>
   Widget _currencyCard(BuildContext context, Currency currency, int index) {
     final itemKey = RectGetter.createGlobalKey();
 
-    if (currency == null) {
-      return Center(
-        child: Text(S.current.noCurrencies),
-      );
-    }
     return Slidable(
       key: itemKey,
       startActionPane: ActionPane(

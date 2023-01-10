@@ -87,19 +87,17 @@ class DB {
       updatedAt: newDate,
     );
 
-    await isar.writeTxnSync(() => isar.currencys.putSync(newCurrency));
+    isar.writeTxnSync(() => isar.currencys.putSync(newCurrency));
   }
 
   Future<bool> putCurrency(int id, String name, String symbol) async {
     final isar = _db;
     final currencyToUpdate = await isar.currencys.get(id);
-    print(currencyToUpdate);
     if (currencyToUpdate != null) {
       currencyToUpdate.name = name;
       currencyToUpdate.symbol = symbol;
       currencyToUpdate.createdAt = DateTime.now();
-      await isar
-          .writeTxnSync(() => isar.currencys.putByUuidSync(currencyToUpdate));
+      isar.writeTxnSync(() => isar.currencys.putByUuidSync(currencyToUpdate));
       return true;
     }
     return false;
@@ -111,5 +109,38 @@ class DB {
 
   Stream<List<Currency>> getAllCurrenciesSync() async* {
     yield* _db.currencys.where().watch();
+  }
+
+  Future<void> setBank(String name) async {
+    final isar = _db;
+    final newDate = DateTime.now();
+    final newBank = Bank(
+      uuid: _generateUuid(),
+      name: name,
+      createdAt: newDate,
+      updatedAt: newDate,
+    );
+
+    await isar.writeTxnSync(() => isar.banks.putSync(newBank));
+  }
+
+  Future<bool> putBank(int id, String name) async {
+    final isar = _db;
+    final bankToUpdate = await isar.banks.get(id);
+    if (bankToUpdate != null) {
+      bankToUpdate.name = name;
+      bankToUpdate.updatedAt = DateTime.now();
+      await isar.writeTxnSync(() => isar.banks.putByUuid(bankToUpdate));
+      return true;
+    }
+    return false;
+  }
+
+  Future<List<Bank>> getAllBanks() async {
+    return await _db.banks.where().findAll();
+  }
+
+  Stream<List<Bank>> getAllBanksSync() async* {
+    yield* _db.banks.where().watch();
   }
 }

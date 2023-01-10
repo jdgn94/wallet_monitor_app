@@ -108,5 +108,7 @@
 	"categoryNoSelected": "Categories not selected.",
 	"amountNoFound": "Amount not found.",
 	"noDescription": "Transaction without description.",
-	"noCurrencies": "No currencies."
+	"noCurrencies": "No Currencies.",
+	"banks": "Banks",
+	"noBanks": "No Banks"
 }

@@ -1140,11 +1140,31 @@ class S {
     );
   }
 
-  /// `No currencies.`
+  /// `No Currencies.`
   String get noCurrencies {
     return Intl.message(
-      'No currencies.',
+      'No Currencies.',
       name: 'noCurrencies',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Banks`
+  String get banks {
+    return Intl.message(
+      'Banks',
+      name: 'banks',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Banks`
+  String get noBanks {
+    return Intl.message(
+      'No Banks',
+      name: 'noBanks',
       desc: '',
       args: [],
     );

@@ -4,6 +4,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:rect_getter/rect_getter.dart';
 
 import 'package:wallet_monitor/generated/l10n.dart';
+import 'package:wallet_monitor/src/pages/banks/index.dart';
 import 'package:wallet_monitor/src/pages/currencies/index.dart';
 import 'package:wallet_monitor/src/pages/expenses/index.dart';
 import 'package:wallet_monitor/src/settings/color_schema.dart';
@@ -75,11 +76,6 @@ class _HomePageState extends State<HomePage>
     try {
       print("hola vale $index");
       _pageController.jumpToPage(index);
-      // _pageController.animateToPage(
-      //   index,
-      //   duration: const Duration(seconds: 1),
-      //   curve: Curves.easeInBack,
-      // );
       print("llegue al final");
     } catch (e) {
       print("ocurrio un error");
@@ -123,7 +119,7 @@ class _HomePageState extends State<HomePage>
       ExpensesPage(scaffoldKey: scaffoldKey),
       const Center(child: Text('ganancias')),
       CurrenciesPage(scaffoldKey: scaffoldKey),
-      const Center(child: Text('bancos')),
+      BanksPage(scaffoldKey: scaffoldKey),
     ];
 
     return SizedBox(
