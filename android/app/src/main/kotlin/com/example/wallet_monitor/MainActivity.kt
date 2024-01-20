@@ -1,4 +1,4 @@
-package com.example.wallet_monitor
+package com.wallet_monitor.jdgn_app
 
 import io.flutter.embedding.android.FlutterActivity
 
