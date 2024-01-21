@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wallet_monitor/src/helper/fade_animation_helper.dart';
+import 'package:wallet_monitor/src/helper/fade_animation.helper.dart';
 
 class PersonalAppBar extends StatefulWidget {
   final String title;

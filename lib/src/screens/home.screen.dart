@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wallet_monitor/src/widgets/personal_app_bar.dart';
+import 'package:wallet_monitor/src/widgets/personal_app_bar.widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
