@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_monitor/src/helper/fade_animation.helper.dart';
 
-class PersonalAppBar extends StatefulWidget {
+class CustomAppBar extends StatefulWidget {
   final String title;
   final double? expandedHeight;
   final double? toolbarHeight;
   final BoxDecoration? boxDecoration;
+  final bool pinned;
+  final Widget child;
 
-  const PersonalAppBar({
+  const CustomAppBar({
     super.key,
     required this.title,
+    required this.child,
     this.expandedHeight,
     this.toolbarHeight,
     this.boxDecoration,
+    this.pinned = true,
   });
 
   @override
-  State<PersonalAppBar> createState() => _PersonalAppBarState();
+  State<CustomAppBar> createState() => _CustomAppBarState();
 }
 
-class _PersonalAppBarState extends State<PersonalAppBar> {
+class _CustomAppBarState extends State<CustomAppBar> {
   late double _expandedHeight;
   late double _toolbarHeight;
 
@@ -36,7 +40,7 @@ class _PersonalAppBarState extends State<PersonalAppBar> {
   Widget build(BuildContext context) {
     return NestedScrollView(
       headerSliverBuilder: headerSilverBuilder,
-      body: body(),
+      body: widget.child,
     );
   }
 
@@ -49,8 +53,8 @@ class _PersonalAppBarState extends State<PersonalAppBar> {
       SliverOverlapAbsorber(
         handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
         sliver: SliverAppBar(
-          // backgroundColor: Colors.red,
-          pinned: true,
+          backgroundColor: Theme.of(context).colorScheme.background,
+          pinned: widget.pinned,
           expandedHeight: _expandedHeight,
           toolbarHeight: _toolbarHeight,
           flexibleSpace: LayoutBuilder(
@@ -61,7 +65,7 @@ class _PersonalAppBarState extends State<PersonalAppBar> {
               return Stack(
                 children: [
                   // background color
-                  _background(animation, context),
+                  if (widget.pinned) _background(animation, context),
 
                   // Text from navbar
                   _text(),

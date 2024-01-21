@@ -91,10 +91,40 @@ class S {
   }
 
   /// `Settings & Customization`
-  String get settings_and_customization {
+  String get settingsAndCustomization {
     return Intl.message(
       'Settings & Customization',
-      name: 'settings_and_customization',
+      name: 'settingsAndCustomization',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Net Worth`
+  String get netWorth {
+    return Intl.message(
+      'Net Worth',
+      name: 'netWorth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Incomes`
+  String get incomes {
+    return Intl.message(
+      'Incomes',
+      name: 'incomes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expenses`
+  String get expenses {
+    return Intl.message(
+      'Expenses',
+      name: 'expenses',
       desc: '',
       args: [],
     );

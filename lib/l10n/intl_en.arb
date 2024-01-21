@@ -3,5 +3,8 @@
   "transactions": "Transactions",
   "budgets": "Budgets",
   "more": "More",
-  "settings_and_customization": "Settings & Customization"
+  "settingsAndCustomization": "Settings & Customization",
+  "netWorth": "Net Worth",
+  "incomes": "Incomes",
+  "expenses": "Expenses"
 }

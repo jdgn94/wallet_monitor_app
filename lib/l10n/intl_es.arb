@@ -3,5 +3,8 @@
   "transactions": "Transacciones",
   "budgets": "Gráficos",
   "more": "Más",
-  "settings_and_customization": "Configuraciones y Personalización"
+  "settingsAndCustomization": "Configuraciones y Personalización",
+  "netWorth": "Valor Neto",
+  "incomes": "Ingresos",
+  "expenses": "Gastos"
 }

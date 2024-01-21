@@ -6,7 +6,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 
 import 'package:wallet_monitor/src/bloc/global/global_bloc.dart';
-import 'package:wallet_monitor/src/settings/theme_light.settings.dart';
+import 'package:wallet_monitor/src/settings/dark_theme.settings.dart';
+import 'package:wallet_monitor/src/settings/light_theme.settings.dart';
 import 'package:wallet_monitor/src/routes/index.dart';
 import 'package:wallet_monitor/src/storage/shared_preferences.storage.dart';
 
@@ -38,16 +39,24 @@ class AppState extends StatelessWidget {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  ThemeMode _setThemeMode(String mode) {
+    if (mode == "light") return ThemeMode.light;
+    if (mode == "dark") return ThemeMode.dark;
+    return ThemeMode.system;
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GlobalBloc, GlobalState>(
       builder: (context, state) {
         return MaterialApp(
           title: 'Wallet Monitor',
-          // debugShowCheckedModeBanner: false,
+          debugShowCheckedModeBanner: false,
           routes: getApplicationRoutes(),
           initialRoute: "/",
           theme: lightTheme(),
+          darkTheme: darkTheme(),
+          themeMode: _setThemeMode(state.themeMode),
           localizationsDelegates: const [
             S.delegate,
             GlobalMaterialLocalizations.delegate,

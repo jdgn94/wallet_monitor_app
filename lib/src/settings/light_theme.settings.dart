@@ -4,8 +4,9 @@ ThemeData lightTheme() {
   return ThemeData(
     useMaterial3: true,
     colorScheme: ColorScheme.light(
-      primary: Colors.green[100]!,
+      primary: Colors.blue,
       onPrimary: Colors.black,
     ),
+    shadowColor: Colors.grey[800]!,
   );
 }
