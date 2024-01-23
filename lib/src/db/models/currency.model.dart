@@ -1,14 +1,14 @@
 import 'dart:convert';
 
 class CurrencyModel {
-  int id;
-  String name;
-  String code;
-  String abbr;
-  String symbol;
+  final int id;
+  final String name;
+  final String code;
+  final String abbr;
+  final String symbol;
   double exchangeRate;
-  int decimalDigits;
-  bool deleted;
+  final int decimalDigits;
+  final bool deleted;
 
   CurrencyModel(
     this.id,
