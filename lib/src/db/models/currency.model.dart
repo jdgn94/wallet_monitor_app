@@ -4,7 +4,6 @@ class CurrencyModel {
   final int id;
   final String name;
   final String code;
-  final String abbr;
   final String symbol;
   double exchangeRate;
   final int decimalDigits;
@@ -14,7 +13,6 @@ class CurrencyModel {
     this.id,
     this.name,
     this.code,
-    this.abbr,
     this.symbol,
     this.exchangeRate,
     this.decimalDigits,
@@ -25,7 +23,6 @@ class CurrencyModel {
     int? id,
     String? name,
     String? code,
-    String? abbr,
     String? symbol,
     double? exchangeRate,
     int? decimalDigits,
@@ -35,7 +32,6 @@ class CurrencyModel {
       id ?? this.id,
       name ?? this.name,
       code ?? this.code,
-      abbr ?? this.abbr,
       symbol ?? this.symbol,
       exchangeRate ?? this.exchangeRate,
       decimalDigits ?? this.decimalDigits,
@@ -48,10 +44,9 @@ class CurrencyModel {
       'id': id,
       'name': name,
       'code': code,
-      'abbr': abbr,
       'symbol': symbol,
-      'exchangeRate': exchangeRate,
-      'decimalDigits': decimalDigits,
+      'exchange_rate': exchangeRate,
+      'decimal_digits': decimalDigits,
       'deleted': deleted,
     };
   }
@@ -61,11 +56,10 @@ class CurrencyModel {
       map['id'] as int,
       map['name'] as String,
       map['code'] as String,
-      map['abbr'] as String,
       map['symbol'] as String,
-      map['exchangeRate'] as double,
-      map['decimalDigits'] as int,
-      map['deleted'] as bool,
+      map['exchange_rate'].toDouble() as double,
+      map['decimal_digits'] as int,
+      map['deleted'] == 1 ? true : false,
     );
   }
 
@@ -76,7 +70,7 @@ class CurrencyModel {
 
   @override
   String toString() {
-    return 'CurrencyModel(id: $id, name: $name, code: $code, abbr: $abbr, symbol: $symbol, exchangeRate: $exchangeRate, decimalDigits: $decimalDigits, deleted: $deleted)';
+    return 'CurrencyModel(id: $id, name: $name, code: $code, symbol: $symbol, exchangeRate: $exchangeRate, decimalDigits: $decimalDigits, deleted: $deleted)';
   }
 
   @override
@@ -86,7 +80,6 @@ class CurrencyModel {
     return other.id == id &&
         other.name == name &&
         other.code == code &&
-        other.abbr == abbr &&
         other.symbol == symbol &&
         other.exchangeRate == exchangeRate &&
         other.decimalDigits == decimalDigits &&
@@ -98,10 +91,12 @@ class CurrencyModel {
     return id.hashCode ^
         name.hashCode ^
         code.hashCode ^
-        abbr.hashCode ^
         symbol.hashCode ^
         exchangeRate.hashCode ^
         decimalDigits.hashCode ^
         deleted.hashCode;
   }
 }
+
+List<CurrencyModel> currencyModelFromList(List<Map<String, dynamic>> list) =>
+    list.map((item) => CurrencyModel.fromMap(item)).toList();

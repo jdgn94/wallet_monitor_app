@@ -65,9 +65,9 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
 assets:
-  - lib/src/assets/icons/app
-  - lib/src/assets/icons/categories
-  - lib/src/assets/logo
+  - assets/logo/logo.png
+  # - assets/icons/app/
+  # - assets/icons/categories/
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -93,11 +93,11 @@ assets:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
 icons_launcher:
-  image_path: 'lib/src/assets/logo/logo.png'
+  image_path: 'assets/logo/logo.png'
   platforms:
     android:
       enable: true
-      image_path: 'lib/src/assets/logo/logo.png'
+      image_path: 'assets/logo/logo.png'
       # adaptive_background_color: '#ffffff'
       # adaptive_background_image: 'assets/ic_background.png'
       # adaptive_foreground_image: 'assets/ic_foreground.png'
@@ -105,19 +105,19 @@ icons_launcher:
       # adaptive_monochrome_image: 'assets/ic_logo_monochrome.png'
     ios:
       enable: true
-      image_path: 'lib/src/assets/logo/logo.png'
+      image_path: 'assets/logo/logo.png'
     web:
       enable: true
-      image_path: 'lib/src/assets/logo/logo.png'
+      image_path: 'assets/logo/logo.png'
       # favicon_path: 'assets/ic_logo_round.png'
     macos:
       enable: true
-      image_path: 'lib/src/assets/logo/logo.png'
+      image_path: 'assets/logo/logo.png'
     windows:
       enable: true
-      image_path: 'lib/src/assets/logo/logo.png'
+      image_path: 'assets/logo/logo.png'
     linux:
       enable: true
-      image_path: 'lib/src/assets/logo/logo.png'
+      image_path: 'assets/logo/logo.png'
 flutter_intl:
   enabled: true

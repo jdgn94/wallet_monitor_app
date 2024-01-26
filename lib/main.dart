@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 
 import 'package:wallet_monitor/src/bloc/global/global_bloc.dart';
+import 'package:wallet_monitor/src/controller/fetch.controller.dart';
 import 'package:wallet_monitor/src/db/services/database.service.dart';
 import 'package:wallet_monitor/src/settings/dark_theme.settings.dart';
 import 'package:wallet_monitor/src/settings/light_theme.settings.dart';
@@ -16,8 +17,9 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SettingsLocalStorage.configureSettings();
   await DatabaseService.database();
+  await FetchController.getAllCurrencies();
 
-  final pref = SettingsLocalStorage.pref;
+  final pref = SettingsLocalStorage.configPref;
 
   runApp(AppState(pref: pref));
 }
@@ -55,7 +57,7 @@ class MyApp extends StatelessWidget {
           title: 'Wallet Monitor',
           debugShowCheckedModeBanner: false,
           routes: getApplicationRoutes(),
-          initialRoute: "/",
+          initialRoute: "/splash",
           theme: lightTheme(),
           darkTheme: darkTheme(),
           themeMode: _setThemeMode(state.themeMode),

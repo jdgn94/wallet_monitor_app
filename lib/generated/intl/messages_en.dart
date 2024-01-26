@@ -28,8 +28,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "incomes": MessageLookupByLibrary.simpleMessage("Incomes"),
         "more": MessageLookupByLibrary.simpleMessage("More"),
         "netWorth": MessageLookupByLibrary.simpleMessage("Net Worth"),
+        "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "previous": MessageLookupByLibrary.simpleMessage("Previous"),
         "settingsAndCustomization":
             MessageLookupByLibrary.simpleMessage("Settings & Customization"),
-        "transactions": MessageLookupByLibrary.simpleMessage("Transactions")
+        "skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "transactions": MessageLookupByLibrary.simpleMessage("Transactions"),
+        "welcome":
+            MessageLookupByLibrary.simpleMessage("Welcome to Wallet Monitor")
       };
 }

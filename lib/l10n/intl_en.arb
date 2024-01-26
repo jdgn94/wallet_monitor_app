@@ -6,5 +6,9 @@
   "settingsAndCustomization": "Settings & Customization",
   "netWorth": "Net Worth",
   "incomes": "Incomes",
-  "expenses": "Expenses"
+  "expenses": "Expenses",
+  "skip": "Skip",
+  "next": "Next",
+  "previous": "Previous",
+  "welcome": "Welcome to Wallet Monitor"
 }
