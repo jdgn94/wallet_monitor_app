@@ -10,5 +10,14 @@
   "skip": "Saltar",
   "next": "Siguiente",
   "previous": "Anterior",
-  "welcome": "Bienvenido a Wallet Monitor"
+  "welcome": "Bienvenido a Wallet Monitor",
+  "selectLanguage": "Selecciona un idioma",
+  "language": "Idioma",
+  "theme": "Tema",
+  "light": "Claro",
+  "dark": "Oscuro",
+  "system": "Sistema",
+  "currency": "Moneda",
+  "confirm": "Confirmar",
+  "cancel": "Cancelar"
 }

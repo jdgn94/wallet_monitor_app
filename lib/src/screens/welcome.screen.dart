@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:wallet_monitor/generated/l10n.dart';
+import 'package:wallet_monitor/src/storage/shared_preferences.storage.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -84,7 +85,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             onPressed: () {
               if (_carouselController.position ==
                   _carouselController.positions.last) {
-                print("Aqui debo cambiar de navegacion");
+                final pref = SettingsLocalStorage.configPref;
+                pref.setBool("visiteWelcomeScreen", false);
+                pref.setBool("visiteSelectLangScreen", true);
+
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  "/language_selector",
+                  (route) => false,
+                );
               }
               _carouselController.nextPage(
                   duration: const Duration(milliseconds: 300),

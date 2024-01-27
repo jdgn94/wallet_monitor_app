@@ -7,11 +7,23 @@ class SplashScreen extends StatelessWidget {
 
   Future<void> _verifyInitialPage(BuildContext context) async {
     final pref = SettingsLocalStorage.configPref;
+    if (pref.getBool('visiteWelcomeScreen') == null) {
+      pref.setBool("visiteWelcomeScreen", true);
+    }
+    if (pref.getBool("visiteSelectLangScreen") == null) {
+      pref.setBool("visiteSelectLangScreen", false);
+    }
+    if (pref.getBool("visitAccountInitScreen") == null) {
+      pref.setBool("visitAccountInitScreen", false);
+    }
 
-    if (pref.getBool('visiteWelcomeHome') == null ||
-        pref.getBool('visiteWelcomeHome') == false) {
+    if (pref.getBool("visiteWelcomeScreen")!) {
       Navigator.of(context)
-          .pushNamedAndRemoveUntil('/welcome', (route) => false);
+          .pushNamedAndRemoveUntil("/welcome", (route) => false);
+    }
+    if (pref.getBool("visiteSelectLangScreen")!) {
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil("/language_selector", (route) => false);
     }
   }
 

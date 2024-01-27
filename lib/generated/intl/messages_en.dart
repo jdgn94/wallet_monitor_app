@@ -24,15 +24,25 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "accounts": MessageLookupByLibrary.simpleMessage("Accounts"),
         "budgets": MessageLookupByLibrary.simpleMessage("Budgets"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "currency": MessageLookupByLibrary.simpleMessage("Currency"),
+        "dark": MessageLookupByLibrary.simpleMessage("Dark"),
         "expenses": MessageLookupByLibrary.simpleMessage("Expenses"),
         "incomes": MessageLookupByLibrary.simpleMessage("Incomes"),
+        "language": MessageLookupByLibrary.simpleMessage("Language"),
+        "light": MessageLookupByLibrary.simpleMessage("Light"),
         "more": MessageLookupByLibrary.simpleMessage("More"),
         "netWorth": MessageLookupByLibrary.simpleMessage("Net Worth"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "previous": MessageLookupByLibrary.simpleMessage("Previous"),
+        "selectLanguage":
+            MessageLookupByLibrary.simpleMessage("Select your language"),
         "settingsAndCustomization":
             MessageLookupByLibrary.simpleMessage("Settings & Customization"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "system": MessageLookupByLibrary.simpleMessage("System"),
+        "theme": MessageLookupByLibrary.simpleMessage("Theme"),
         "transactions": MessageLookupByLibrary.simpleMessage("Transactions"),
         "welcome":
             MessageLookupByLibrary.simpleMessage("Welcome to Wallet Monitor")

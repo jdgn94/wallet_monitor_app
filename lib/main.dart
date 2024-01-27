@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,18 +37,39 @@ class AppState extends StatelessWidget {
       providers: [
         BlocProvider<GlobalBloc>(create: (_) => GlobalBloc(pref: pref)),
       ],
-      child: const MyApp(),
+      child: MyApp(),
     );
   }
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final List<LocalizationsDelegate<Object>> _localizationsDelegates = [
+    S.delegate,
+    GlobalMaterialLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+    LocaleNamesLocalizationsDelegate(),
+  ];
 
   ThemeMode _setThemeMode(String mode) {
     if (mode == "light") return ThemeMode.light;
     if (mode == "dark") return ThemeMode.dark;
     return ThemeMode.system;
+  }
+
+  String _getLanguageSupported() {
+    final String systemLang = Platform.localeName.split('_')[0];
+    final List<Locale> supported = S.delegate.supportedLocales;
+
+    for (var locale in supported) {
+      if (locale.languageCode == systemLang) {
+        return systemLang;
+      }
+    }
+
+    return supported.first.languageCode;
   }
 
   @override
@@ -61,16 +84,11 @@ class MyApp extends StatelessWidget {
           theme: lightTheme(),
           darkTheme: darkTheme(),
           themeMode: _setThemeMode(state.themeMode),
-          localizationsDelegates: const [
-            S.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-            LocaleNamesLocalizationsDelegate(),
-          ],
+          localizationsDelegates: _localizationsDelegates,
           supportedLocales: S.delegate.supportedLocales,
           locale: Locale.fromSubtags(
-            languageCode: state.lang,
+            languageCode:
+                state.lang == "und" ? _getLanguageSupported() : state.lang,
           ),
         );
       },
