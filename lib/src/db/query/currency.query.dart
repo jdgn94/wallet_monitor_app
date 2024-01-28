@@ -3,7 +3,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:wallet_monitor/src/db/models/currency.model.dart';
 import 'package:wallet_monitor/src/db/services/database.service.dart';
 
-abstract class CurrencyHelper {
+abstract class CurrencyQuery {
   static final _db = DatabaseService().db;
 
   static Future<List<CurrencyModel>> getAll() async {

@@ -1,77 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_monitor/src/helper/styles.helper.dart';
 
-class BoxWidget extends StatelessWidget {
-  final Function()? onTap;
-  final String title;
-  final String subtitle;
-  final String note;
+class CustomContainerWidget extends StatelessWidget {
+  final Widget child;
+  final Color? color;
+  final Color? shadowColor;
+  final EdgeInsets? margin;
+  final EdgeInsets? padding;
   final double? width;
-  final WrapCrossAlignment wrapCrossAlignment;
-  final Color? subtitleColor;
+  final double? height;
+  final Function()? onTap;
 
-  const BoxWidget({
+  const CustomContainerWidget({
     super.key,
-    this.onTap,
-    this.title = "",
-    this.subtitle = "",
-    this.note = "",
+    required this.child,
+    this.color,
+    this.shadowColor,
+    this.margin,
+    this.padding,
     this.width,
-    this.wrapCrossAlignment = WrapCrossAlignment.center,
-    this.subtitleColor,
+    this.height,
+    this.onTap,
   });
 
   @override
-  Container build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Container(
+      margin: margin,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(20.0),
         child: Ink(
-          width: width,
-          padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.background,
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(20.0),
             boxShadow: [
-              BoxShadow(
-                color: Theme.of(context).shadowColor,
-                blurRadius: 10.0,
-              ),
+              StylesHelper.boxShadow(context, shadowColor: shadowColor),
             ],
           ),
-          child: Wrap(
-            direction: Axis.vertical,
-            crossAxisAlignment: wrapCrossAlignment,
-            runAlignment: WrapAlignment.center,
-            children: [
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              Text(
-                subtitle,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: subtitleColor,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              Text(
-                note,
-                style: TextStyle(
-                  color: Theme.of(context)
-                      .colorScheme
-                      .onBackground
-                      .withOpacity(0.5),
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ],
+          child: Ink(
+            padding: padding,
+            width: width,
+            height: height,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20.0),
+              color: color,
+            ),
+            child: child,
           ),
         ),
       ),

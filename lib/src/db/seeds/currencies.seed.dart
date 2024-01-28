@@ -1,4 +1,4 @@
-import 'package:wallet_monitor/src/db/helpers/currency.helper.dart';
+import 'package:wallet_monitor/src/db/query/currency.query.dart';
 
 final List<Map<String, String>> currencies = [
   {
@@ -747,7 +747,7 @@ final List<Map<String, String>> currencies = [
 
 Future<void> insertCurrencies() async {
   for (final currency in currencies) {
-    await CurrencyHelper.insertOrUpdate(
+    await CurrencyQuery.insertOrUpdate(
       id: int.parse(currency["id"]!),
       code: currency["code"]!,
       name: currency["name"]!,

@@ -2,7 +2,7 @@
 
 // import 'package:http/http.dart' as http;
 
-import 'package:wallet_monitor/src/db/helpers/currency.helper.dart';
+import 'package:wallet_monitor/src/db/query/currency.query.dart';
 import 'package:wallet_monitor/src/db/seeds/currencies.seed.dart';
 
 // import 'package:wallet_monitor/db/models/currencies_response.model.dart';
@@ -43,7 +43,7 @@ abstract class FetchController {
     } catch (e) {
       // aquí tengo que correr la semilla
       print(e);
-      final currencies = await CurrencyHelper.getAll();
+      final currencies = await CurrencyQuery.getAll();
       if (currencies.isEmpty) {
         insertCurrencies();
       }

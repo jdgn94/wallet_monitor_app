@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:wallet_monitor/src/db/models/bank.model.dart';
 import 'package:wallet_monitor/src/db/models/currency.model.dart';
 
-class Account {
+class AccountModel {
   int id;
   String name;
   String icon;
@@ -19,7 +19,7 @@ class Account {
   int totalTransactions;
   CurrencyModel currency;
   BankModel? bank;
-  Account({
+  AccountModel({
     required this.id,
     required this.name,
     required this.icon,
@@ -37,7 +37,7 @@ class Account {
     this.bank,
   });
 
-  Account copyWith({
+  AccountModel copyWith({
     int? id,
     String? name,
     String? icon,
@@ -54,7 +54,7 @@ class Account {
     CurrencyModel? currency,
     BankModel? bank,
   }) {
-    return Account(
+    return AccountModel(
       id: id ?? this.id,
       name: name ?? this.name,
       icon: icon ?? this.icon,
@@ -93,8 +93,8 @@ class Account {
     };
   }
 
-  factory Account.fromMap(Map<String, dynamic> map) {
-    return Account(
+  factory AccountModel.fromMap(Map<String, dynamic> map) {
+    return AccountModel(
       id: map['id'] as int,
       name: map['name'] as String,
       icon: map['icon'] as String,
@@ -119,16 +119,16 @@ class Account {
 
   String toJson() => json.encode(toMap());
 
-  factory Account.fromJson(String source) =>
-      Account.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory AccountModel.fromJson(String source) =>
+      AccountModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'Account(id: $id, name: $name, icon: $icon, description: $description, colorIndex: $colorIndex, amount: $amount, minAmount: $minAmount, currencyId: $currencyId, bankId: $bankId, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, totalTransactions: $totalTransactions, currency: $currency, bank: $bank)';
+    return 'AccountModel(id: $id, name: $name, icon: $icon, description: $description, colorIndex: $colorIndex, amount: $amount, minAmount: $minAmount, currencyId: $currencyId, bankId: $bankId, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, totalTransactions: $totalTransactions, currency: $currency, bank: $bank)';
   }
 
   @override
-  bool operator ==(covariant Account other) {
+  bool operator ==(covariant AccountModel other) {
     if (identical(this, other)) return true;
 
     return other.id == id &&

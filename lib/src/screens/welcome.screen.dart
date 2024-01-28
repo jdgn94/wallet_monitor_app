@@ -25,6 +25,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     super.dispose();
   }
 
+  void _redirect() {
+    final pref = SettingsLocalStorage.configPref;
+    pref.setBool("visiteWelcomeScreen", false);
+    pref.setBool("visiteSelectLangScreen", true);
+
+    Navigator.of(context).pushNamedAndRemoveUntil(
+      "/language_selector",
+      (route) => false,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +68,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   }
 
   TextButton _skipWelcome() {
-    return TextButton(onPressed: () {}, child: Text(S.current.skip));
+    return TextButton(
+      onPressed: _redirect,
+      child: Text(S.current.skip),
+    );
   }
 
   Column _carouselPageOne() {
@@ -84,16 +98,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           child: TextButton(
             onPressed: () {
               if (_carouselController.position ==
-                  _carouselController.positions.last) {
-                final pref = SettingsLocalStorage.configPref;
-                pref.setBool("visiteWelcomeScreen", false);
-                pref.setBool("visiteSelectLangScreen", true);
-
-                Navigator.of(context).pushNamedAndRemoveUntil(
-                  "/language_selector",
-                  (route) => false,
-                );
-              }
+                  _carouselController.positions.last) _redirect();
               _carouselController.nextPage(
                   duration: const Duration(milliseconds: 300),
                   curve: Curves.bounceIn);

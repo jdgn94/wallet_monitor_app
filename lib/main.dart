@@ -10,9 +10,9 @@ import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 import 'package:wallet_monitor/src/bloc/global/global_bloc.dart';
 import 'package:wallet_monitor/src/controller/fetch.controller.dart';
 import 'package:wallet_monitor/src/db/services/database.service.dart';
+import 'package:wallet_monitor/src/routes/generate.routes.dart';
 import 'package:wallet_monitor/src/settings/dark_theme.settings.dart';
 import 'package:wallet_monitor/src/settings/light_theme.settings.dart';
-import 'package:wallet_monitor/src/routes/index.dart';
 import 'package:wallet_monitor/src/storage/shared_preferences.storage.dart';
 
 Future<void> main() async {
@@ -79,7 +79,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Wallet Monitor',
           debugShowCheckedModeBanner: false,
-          routes: getApplicationRoutes(),
+          onGenerateRoute: generateApplicationRoutes,
           initialRoute: "/splash",
           theme: lightTheme(),
           darkTheme: darkTheme(),

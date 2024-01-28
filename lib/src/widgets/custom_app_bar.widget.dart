@@ -40,7 +40,11 @@ class _CustomAppBarState extends State<CustomAppBar> {
   Widget build(BuildContext context) {
     return NestedScrollView(
       headerSliverBuilder: headerSilverBuilder,
-      body: widget.child,
+      body: Padding(
+        padding:
+            EdgeInsets.only(top: (widget.toolbarHeight ?? kToolbarHeight) + 25),
+        child: widget.child,
+      ),
     );
   }
 

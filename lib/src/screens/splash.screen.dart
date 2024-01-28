@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_monitor/src/helper/argument.helper.dart';
 import 'package:wallet_monitor/src/helper/constants/image.constants.dart';
 import 'package:wallet_monitor/src/storage/shared_preferences.storage.dart';
 
@@ -24,6 +25,13 @@ class SplashScreen extends StatelessWidget {
     if (pref.getBool("visiteSelectLangScreen")!) {
       Navigator.of(context)
           .pushNamedAndRemoveUntil("/language_selector", (route) => false);
+    }
+    if (pref.getBool("visitAccountInitScreen")!) {
+      Navigator.of(context).pushNamedAndRemoveUntil(
+        "/account",
+        (route) => false,
+        arguments: const AccountArguments(initApp: true),
+      );
     }
   }
 

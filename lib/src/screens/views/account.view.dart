@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wallet_monitor/generated/l10n.dart';
 import 'package:wallet_monitor/src/settings/app_color.settings.dart';
 import 'package:wallet_monitor/src/widgets/custom_app_bar.widget.dart';
-import 'package:wallet_monitor/src/widgets/custom_container.widget.dart';
+import 'package:wallet_monitor/src/widgets/box.widget.dart';
 import 'package:wallet_monitor/src/widgets/custom_text.widget.dart';
 
 class AccountView extends StatelessWidget {

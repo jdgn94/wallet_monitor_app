@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class StylesHelper {
-  static BoxShadow boxShadow(BuildContext context) {
+  static BoxShadow boxShadow(BuildContext context, {Color? shadowColor}) {
     return BoxShadow(
-      color: Theme.of(context).shadowColor,
+      color: shadowColor ?? Theme.of(context).shadowColor,
       blurRadius: 10.0,
     );
   }
