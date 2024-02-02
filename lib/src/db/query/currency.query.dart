@@ -6,7 +6,7 @@ import 'package:wallet_monitor/src/db/services/database.service.dart';
 abstract class CurrencyQuery {
   static final _db = DatabaseService().db;
 
-  static Future<List<CurrencyModel>> getAll() async {
+  static Future<List<CurrencyModel>> getAll({bool translate = true}) async {
     final result = await _db.rawQuery("""
       SELECT * FROM currencies WHERE deleted = 0
     """);
@@ -14,7 +14,7 @@ abstract class CurrencyQuery {
     print("Este es el resultado de la busqueda de todas las modenas");
     print(result);
 
-    final currencies = currencyModelFromList(result);
+    final currencies = currencyModelFromList(result, translate: translate);
 
     return currencies;
   }

@@ -43,7 +43,7 @@ abstract class FetchController {
     } catch (e) {
       // aquí tengo que correr la semilla
       print(e);
-      final currencies = await CurrencyQuery.getAll();
+      final currencies = await CurrencyQuery.getAll(translate: false);
       if (currencies.isEmpty) {
         insertCurrencies();
       }

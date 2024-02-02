@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:wallet_monitor/src/helper/fade_animation.helper.dart';
+import 'package:wallet_monitor/src/helper/animation.helper.dart';
 
 class CustomAppBar extends StatefulWidget {
   final String title;
   final double? expandedHeight;
   final double? toolbarHeight;
   final BoxDecoration? boxDecoration;
+  final Color? backgroundColor;
   final bool pinned;
   final Widget child;
 
@@ -13,6 +14,7 @@ class CustomAppBar extends StatefulWidget {
     super.key,
     required this.title,
     required this.child,
+    this.backgroundColor,
     this.expandedHeight,
     this.toolbarHeight,
     this.boxDecoration,
@@ -57,7 +59,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
       SliverOverlapAbsorber(
         handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
         sliver: SliverAppBar(
-          backgroundColor: Theme.of(context).colorScheme.background,
+          backgroundColor:
+              Theme.of(context).colorScheme.background.withOpacity(0),
           pinned: widget.pinned,
           expandedHeight: _expandedHeight,
           toolbarHeight: _toolbarHeight,
@@ -69,7 +72,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
               return Stack(
                 children: [
                   // background color
-                  if (widget.pinned) _background(animation, context),
+                  if (widget.pinned) _background(animation),
 
                   // Text from navbar
                   _text(),
@@ -83,22 +86,28 @@ class _CustomAppBarState extends State<CustomAppBar> {
   }
 
   FadeAnimationOpacityHelper _background(
-      AlwaysStoppedAnimation<double> animation, BuildContext context) {
+      AlwaysStoppedAnimation<double> animation) {
     return FadeAnimationOpacityHelper(
       animation: animation,
       isExpandedWidget: true,
       begin: 1.0,
       end: 0.0,
-      child: Container(
+      child: Ink(
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.primary,
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black,
-              blurRadius: 10.0,
-              spreadRadius: 1.0,
-            ),
-          ],
+          color:
+              (widget.backgroundColor ?? Theme.of(context).colorScheme.primary)
+                  .withOpacity(0.5),
+          borderRadius: const BorderRadius.only(
+            bottomLeft: Radius.circular(20),
+            bottomRight: Radius.circular(20),
+          ),
+          // boxShadow: const [
+          //   BoxShadow(
+          //     color: Colors.black,
+          //     blurRadius: 10.0,
+          //     spreadRadius: 1.0,
+          //   ),
+          // ],
         ),
         // child: widget.expandedWidget!,
       ),

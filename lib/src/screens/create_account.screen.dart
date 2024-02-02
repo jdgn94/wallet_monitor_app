@@ -7,6 +7,7 @@ import 'package:wallet_monitor/src/db/models/currency.model.dart';
 import 'package:wallet_monitor/src/helper/argument.helper.dart';
 import 'package:wallet_monitor/src/helper/constants/icon.constants.dart';
 import 'package:wallet_monitor/src/helper/currency.helper.dart';
+import 'package:wallet_monitor/src/widgets/application_body.widget.dart';
 import 'package:wallet_monitor/src/widgets/custom_app_bar.widget.dart';
 import 'package:wallet_monitor/src/widgets/custom_container.widget.dart';
 import 'package:wallet_monitor/src/widgets/custom_text_form_field.dart';
@@ -53,20 +54,32 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomAppBar(
-        title: S.current.newAccount,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _inputName(),
-            _descriptionContainer(),
-            _currencySelector(),
-          ],
-        ),
+    return ApplicationBodyWidget(
+      title: S.current.newAccount,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _inputName(),
+          _descriptionContainer(),
+          _currencySelector(),
+        ],
       ),
     );
+    // return Scaffold(
+    //   body: CustomAppBar(
+    //     title: S.current.newAccount,
+    //     child: Column(
+    //       mainAxisAlignment: MainAxisAlignment.start,
+    //       crossAxisAlignment: CrossAxisAlignment.start,
+    //       children: [
+    //         _inputName(),
+    //         _descriptionContainer(),
+    //         _currencySelector(),
+    //       ],
+    //     ),
+    //   ),
+    // );
   }
 
   CustomTextFormField _inputName() {
@@ -140,7 +153,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         children: [
           Text(_currencySelected?.symbol ?? ""),
           const SizedBox(width: 10),
-          Text(CurrencyHelper.name(_currencySelected?.name)),
+          Text(_currencySelected!.name),
           const Expanded(child: SizedBox()),
           const Icon(Icons.arrow_drop_down_rounded)
         ],

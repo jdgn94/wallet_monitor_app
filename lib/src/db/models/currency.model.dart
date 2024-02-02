@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:wallet_monitor/src/helper/currency.helper.dart';
+
 class CurrencyModel {
   final int id;
   final String name;
@@ -51,10 +53,11 @@ class CurrencyModel {
     };
   }
 
-  factory CurrencyModel.fromMap(Map<String, dynamic> map) {
+  factory CurrencyModel.fromMap(Map<String, dynamic> map,
+      {bool translate = true}) {
     return CurrencyModel(
       map['id'] as int,
-      map['name'] as String,
+      translate ? CurrencyHelper.name(map['name']) : (map['name'] as String),
       map['code'] as String,
       map['symbol'] as String,
       map['exchange_rate'].toDouble() as double,
@@ -98,5 +101,8 @@ class CurrencyModel {
   }
 }
 
-List<CurrencyModel> currencyModelFromList(List<Map<String, dynamic>> list) =>
-    list.map((item) => CurrencyModel.fromMap(item)).toList();
+List<CurrencyModel> currencyModelFromList(List<Map<String, dynamic>> list,
+        {bool translate = true}) =>
+    list
+        .map((item) => CurrencyModel.fromMap(item, translate: translate))
+        .toList();
