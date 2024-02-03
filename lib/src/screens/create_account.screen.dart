@@ -4,6 +4,7 @@ import 'package:wallet_monitor/generated/l10n.dart';
 
 import 'package:wallet_monitor/src/db/query/currency.query.dart';
 import 'package:wallet_monitor/src/db/models/currency.model.dart';
+import 'package:wallet_monitor/src/dialogs/currency.dialog.dart';
 import 'package:wallet_monitor/src/helper/argument.helper.dart';
 import 'package:wallet_monitor/src/helper/constants/icon.constants.dart';
 import 'package:wallet_monitor/src/widgets/application_body.widget.dart';
@@ -23,7 +24,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   late TextEditingController _nameController;
   late TextEditingController _descriptionController;
   late TextEditingController _currencyController;
-  late List<CurrencyModel?> _allCurrencies = [];
   late CurrencyModel? _currencySelected;
   late FocusNode _nameFocus;
   late FocusNode _currencyFocus;
@@ -39,10 +39,10 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     _currencyFocus = FocusNode();
     _currencyFocus.addListener(() => setState(() {}));
     _currencySelected = widget.args.account?.currency;
-    if (widget.args.account != null) {
+    if (_currencySelected != null) {
       _changeCurrencyValue(widget.args.account!.currency);
-    }
-    _getAllCurrencies();
+    } else
+      _getDefaultCurrency();
   }
 
   @override
@@ -55,18 +55,19 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     super.dispose();
   }
 
-  Future<void> _getAllCurrencies() async {
-    _allCurrencies = await CurrencyQuery.getAll();
-    if (_currencySelected == null && _allCurrencies.isNotEmpty) {
-      _changeCurrencyValue(
-          _allCurrencies.where((currency) => currency!.id == 103).first!);
-    }
+  Future<void> _getDefaultCurrency() async {
+    final currency = await CurrencyQuery.getById(103);
+    _changeCurrencyValue(currency);
   }
 
   void _changeCurrencyValue(CurrencyModel currency) {
     _currencyController.text = "${currency.symbol} ${currency.name}";
     _currencySelected = currency;
     setState(() {});
+  }
+
+  Future<void> _openCurrencyDialog() async {
+    await showDialogCurrencies(context, currencySelect: _currencySelected!.id);
   }
 
   @override
@@ -132,6 +133,11 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         IconButton(
           onPressed: () {},
           icon: Icon(IconConstants.picker),
+          style: ButtonStyle(
+            backgroundColor: MaterialStatePropertyAll(
+              Theme.of(context).colorScheme.background,
+            ),
+          ),
         ),
       ],
     );
@@ -154,6 +160,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
       controller: _currencyController,
       focusNode: _currencyFocus,
       suffixIcon: Icons.arrow_drop_down_rounded,
+      onTap: _openCurrencyDialog,
       readOnly: true,
     );
   }

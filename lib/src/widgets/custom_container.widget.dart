@@ -25,28 +25,31 @@ class CustomContainerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: margin,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(20.0),
-        child: Ink(
-          decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.background,
-            borderRadius: BorderRadius.circular(20.0),
-            boxShadow: [
-              StylesHelper.boxShadow(context, shadowColor: shadowColor),
-            ],
-          ),
+    return Material(
+      color: Colors.transparent,
+      child: Container(
+        margin: margin,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(20.0),
           child: Ink(
-            padding: padding,
-            width: width,
-            height: height,
             decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.background,
               borderRadius: BorderRadius.circular(20.0),
-              color: color,
+              boxShadow: [
+                StylesHelper.boxShadow(context, shadowColor: shadowColor),
+              ],
             ),
-            child: child,
+            child: Ink(
+              padding: padding,
+              width: width,
+              height: height,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.0),
+                color: color,
+              ),
+              child: child,
+            ),
           ),
         ),
       ),

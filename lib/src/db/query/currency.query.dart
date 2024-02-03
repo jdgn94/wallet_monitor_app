@@ -3,6 +3,8 @@ import 'package:sqflite/sqflite.dart';
 import 'package:wallet_monitor/src/db/models/currency.model.dart';
 import 'package:wallet_monitor/src/db/services/database.service.dart';
 
+export 'package:wallet_monitor/src/db/models/currency.model.dart';
+
 abstract class CurrencyQuery {
   static final _db = DatabaseService().db;
 

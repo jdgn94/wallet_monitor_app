@@ -12,6 +12,7 @@ class CustomTextFormField extends StatelessWidget {
   final bool readOnly;
   final FocusNode? focusNode;
   final IconData? suffixIcon;
+  final Function()? onTap;
 
   const CustomTextFormField({
     super.key,
@@ -24,6 +25,7 @@ class CustomTextFormField extends StatelessWidget {
     this.readOnly = false,
     this.focusNode,
     this.suffixIcon,
+    this.onTap,
   });
 
   Color? _shadowColor(BuildContext context) {
@@ -56,6 +58,7 @@ class CustomTextFormField extends StatelessWidget {
         maxLines: maxLines,
         focusNode: focusNode,
         readOnly: readOnly,
+        onTap: onTap,
         decoration: InputDecoration(
           hintText: label,
           border: InputBorder.none,

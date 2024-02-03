@@ -19,11 +19,14 @@ class ApplicationBodyWidget extends StatelessWidget {
         FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Ink(
           color: Theme.of(context).colorScheme.primary.withOpacity(.1),
           child: CustomAppBar(
             title: title,
-            child: child,
+            child: SingleChildScrollView(
+              child: child,
+            ),
           ),
         ),
       ),
