@@ -6,9 +6,7 @@ import 'package:wallet_monitor/src/db/query/currency.query.dart';
 import 'package:wallet_monitor/src/db/models/currency.model.dart';
 import 'package:wallet_monitor/src/helper/argument.helper.dart';
 import 'package:wallet_monitor/src/helper/constants/icon.constants.dart';
-import 'package:wallet_monitor/src/helper/currency.helper.dart';
 import 'package:wallet_monitor/src/widgets/application_body.widget.dart';
-import 'package:wallet_monitor/src/widgets/custom_app_bar.widget.dart';
 import 'package:wallet_monitor/src/widgets/custom_container.widget.dart';
 import 'package:wallet_monitor/src/widgets/custom_text_form_field.dart';
 
@@ -24,32 +22,51 @@ class CreateAccountScreen extends StatefulWidget {
 class _CreateAccountScreenState extends State<CreateAccountScreen> {
   late TextEditingController _nameController;
   late TextEditingController _descriptionController;
+  late TextEditingController _currencyController;
   late List<CurrencyModel?> _allCurrencies = [];
   late CurrencyModel? _currencySelected;
+  late FocusNode _nameFocus;
+  late FocusNode _currencyFocus;
 
   @override
   void initState() {
     super.initState();
     _nameController = TextEditingController(text: S.current.cash);
     _descriptionController = TextEditingController();
+    _currencyController = TextEditingController();
+    _nameFocus = FocusNode();
+    _nameFocus.addListener(() => setState(() {}));
+    _currencyFocus = FocusNode();
+    _currencyFocus.addListener(() => setState(() {}));
     _currencySelected = widget.args.account?.currency;
+    if (widget.args.account != null) {
+      _changeCurrencyValue(widget.args.account!.currency);
+    }
     _getAllCurrencies();
   }
 
   @override
   void dispose() {
     _nameController.dispose();
+    _currencyController.dispose();
     _descriptionController.dispose();
+    _nameFocus.dispose();
+    _currencyFocus.dispose();
     super.dispose();
   }
 
   Future<void> _getAllCurrencies() async {
     _allCurrencies = await CurrencyQuery.getAll();
-    if (_currencySelected == null) {
-      _currencySelected =
-          _allCurrencies.where((currency) => currency!.id == 103).first;
-      setState(() {});
+    if (_currencySelected == null && _allCurrencies.isNotEmpty) {
+      _changeCurrencyValue(
+          _allCurrencies.where((currency) => currency!.id == 103).first!);
     }
+  }
+
+  void _changeCurrencyValue(CurrencyModel currency) {
+    _currencyController.text = "${currency.symbol} ${currency.name}";
+    _currencySelected = currency;
+    setState(() {});
   }
 
   @override
@@ -66,27 +83,13 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         ],
       ),
     );
-    // return Scaffold(
-    //   body: CustomAppBar(
-    //     title: S.current.newAccount,
-    //     child: Column(
-    //       mainAxisAlignment: MainAxisAlignment.start,
-    //       crossAxisAlignment: CrossAxisAlignment.start,
-    //       children: [
-    //         _inputName(),
-    //         _descriptionContainer(),
-    //         _currencySelector(),
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 
   CustomTextFormField _inputName() {
     return CustomTextFormField(
       controller: _nameController,
+      focusNode: _nameFocus,
       label: S.current.accountName,
-      margin: const EdgeInsets.all(10.0),
     );
   }
 
@@ -139,25 +142,19 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
       child: CustomTextFormField(
         controller: _descriptionController,
         label: S.current.description,
+        margin: EdgeInsets.zero,
         maxLines: 5,
         shadowColor: Colors.transparent,
       ),
     );
   }
 
-  Widget _currencySelector() {
-    return CustomContainerWidget(
-      margin: const EdgeInsets.all(10.0),
-      padding: const EdgeInsets.all(10.0),
-      child: Row(
-        children: [
-          Text(_currencySelected?.symbol ?? ""),
-          const SizedBox(width: 10),
-          Text(_currencySelected!.name),
-          const Expanded(child: SizedBox()),
-          const Icon(Icons.arrow_drop_down_rounded)
-        ],
-      ),
+  CustomTextFormField _currencySelector() {
+    return CustomTextFormField(
+      controller: _currencyController,
+      focusNode: _currencyFocus,
+      suffixIcon: Icons.arrow_drop_down_rounded,
+      readOnly: true,
     );
   }
 }

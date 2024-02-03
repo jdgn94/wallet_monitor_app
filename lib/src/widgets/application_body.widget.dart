@@ -13,12 +13,18 @@ class ApplicationBodyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Ink(
-        color: Theme.of(context).colorScheme.primary.withOpacity(.1),
-        child: CustomAppBar(
-          title: title,
-          child: child,
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onPanDown: (_) {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Scaffold(
+        body: Ink(
+          color: Theme.of(context).colorScheme.primary.withOpacity(.1),
+          child: CustomAppBar(
+            title: title,
+            child: child,
+          ),
         ),
       ),
     );

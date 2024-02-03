@@ -74,8 +74,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   // background color
                   if (widget.pinned) _background(animation),
 
-                  // Text from navbar
-                  _text(),
+                  // Container nav bar
+                  _headerContainer(animation, constraints),
                 ],
               );
             },
@@ -114,29 +114,55 @@ class _CustomAppBarState extends State<CustomAppBar> {
     );
   }
 
-  Column _text() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.center,
+  Stack _headerContainer(
+    AlwaysStoppedAnimation<double> animation,
+    BoxConstraints constraints,
+  ) {
+    return Stack(
       children: [
-        SizedBox(
-          width: double.infinity,
-          child: Text(
-            widget.title,
-            style: TextStyle(
-              fontSize: 25,
-              overflow: TextOverflow.ellipsis,
-              color: Theme.of(context).colorScheme.onPrimary,
-              fontWeight: FontWeight.w900,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ),
+        _text(animation, constraints),
       ],
     );
   }
 
-  Widget body() {
-    return Container();
+  PositionedAnimationHelper _text(
+    AlwaysStoppedAnimation<double> animation,
+    BoxConstraints constraints,
+  ) {
+    final textColor = Theme.of(context).colorScheme.onBackground;
+    final size = constraints.biggest;
+    final initPosition = RelativeRect.fromSize(
+      Rect.fromLTWH(12, size.height - 40, size.width, 40),
+      size,
+    );
+    final endPosition = RelativeRect.fromSize(
+      Rect.fromLTWH((size.width / 2) - (widget.title.length / 2) * 15,
+          size.height - 50, size.width, 50),
+      size,
+    );
+    final initStyle = TextStyle(
+      fontSize: 20,
+      color: textColor,
+      fontWeight: FontWeight.bold,
+    );
+    final endStyle = TextStyle(
+      fontSize: 30,
+      color: textColor,
+      fontWeight: FontWeight.bold,
+    );
+
+    return PositionedAnimationHelper(
+      animation: animation,
+      isExpandedWidget: true,
+      initPosition: initPosition,
+      endPosition: endPosition,
+      child: TextStyleAnimationHelper(
+        animation: animation,
+        isExpandedWidget: true,
+        initStyle: initStyle,
+        endStyle: endStyle,
+        text: widget.title,
+      ),
+    );
   }
 }
