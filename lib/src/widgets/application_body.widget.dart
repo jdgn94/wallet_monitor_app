@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_monitor/src/settings/app_color.settings.dart';
 import 'package:wallet_monitor/src/widgets/custom_app_bar.widget.dart';
 
 class ApplicationBodyWidget extends StatelessWidget {
   final String title;
   final Widget child;
+  final Color? color;
 
   const ApplicationBodyWidget({
     super.key,
     required this.title,
     required this.child,
+    this.color,
   });
 
   @override
@@ -21,9 +24,13 @@ class ApplicationBodyWidget extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Ink(
-          color: Theme.of(context).colorScheme.primary.withOpacity(.1),
+          color: backgroundTone(
+            context,
+            color ?? Theme.of(context).colorScheme.primary,
+          ),
           child: CustomAppBar(
             title: title,
+            backgroundColor: color ?? Theme.of(context).colorScheme.primary,
             child: SingleChildScrollView(
               child: child,
             ),

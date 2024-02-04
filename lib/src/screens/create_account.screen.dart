@@ -4,6 +4,7 @@ import 'package:wallet_monitor/generated/l10n.dart';
 
 import 'package:wallet_monitor/src/db/query/currency.query.dart';
 import 'package:wallet_monitor/src/db/models/currency.model.dart';
+import 'package:wallet_monitor/src/dialogs/color_selector.dialog.dart';
 import 'package:wallet_monitor/src/dialogs/currency.dialog.dart';
 import 'package:wallet_monitor/src/helper/argument.helper.dart';
 import 'package:wallet_monitor/src/helper/constants/icon.constants.dart';
@@ -27,6 +28,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   late CurrencyModel? _currencySelected;
   late FocusNode _nameFocus;
   late FocusNode _currencyFocus;
+  late Color? _colorAccount;
 
   @override
   void initState() {
@@ -41,8 +43,9 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     _currencySelected = widget.args.account?.currency;
     if (_currencySelected != null) {
       _changeCurrencyValue(widget.args.account!.currency);
-    } else
+    } else {
       _getDefaultCurrency();
+    }
   }
 
   @override
@@ -66,6 +69,12 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     setState(() {});
   }
 
+  void _changeAccountColor(Color color) {
+    setState(() {
+      _colorAccount = color;
+    });
+  }
+
   void _openCurrencyDialog() {
     showDialogCurrencies(
       context,
@@ -74,10 +83,17 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     );
   }
 
+  void _openColorDialog() {
+    showDialogColorSelector(context, _changeAccountColor, _colorAccount!);
+  }
+
   @override
   Widget build(BuildContext context) {
+    _colorAccount = _colorAccount ?? Theme.of(context).colorScheme.primary;
+
     return ApplicationBodyWidget(
       title: S.current.newAccount,
+      color: _colorAccount,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,7 +118,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     return CustomContainerWidget(
       margin: const EdgeInsets.all(10.0),
       padding: const EdgeInsets.all(10.0),
-      color: Theme.of(context).colorScheme.primary,
+      color: _colorAccount,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -135,7 +151,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         ),
         const SizedBox(height: 16),
         IconButton(
-          onPressed: () {},
+          onPressed: _openColorDialog,
           icon: Icon(IconConstants.picker),
           style: ButtonStyle(
             backgroundColor: MaterialStatePropertyAll(

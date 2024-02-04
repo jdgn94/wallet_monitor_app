@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:wallet_monitor/generated/l10n.dart';
 
 import 'package:wallet_monitor/src/db/query/currency.query.dart';
+import 'package:wallet_monitor/src/settings/app_color.settings.dart';
 import 'package:wallet_monitor/src/widgets/custom_button.widget.dart';
 import 'package:wallet_monitor/src/widgets/custom_container.widget.dart';
 import 'package:wallet_monitor/src/widgets/custom_text_form_field.dart';
@@ -60,7 +61,13 @@ Future<void> showDialogCurrencies(
           content: Container(
             width: 500,
             height: 700,
-            color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              color: backgroundTone(
+                context,
+                Theme.of(context).colorScheme.primary,
+              ),
+            ),
             child: Column(
               children: [
                 if (MediaQuery.of(context).size.height > 500)
