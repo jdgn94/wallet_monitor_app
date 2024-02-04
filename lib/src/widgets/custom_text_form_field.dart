@@ -11,7 +11,9 @@ class CustomTextFormField extends StatelessWidget {
   final bool error;
   final bool readOnly;
   final FocusNode? focusNode;
+  final IconData? prefixIcon;
   final IconData? suffixIcon;
+  final TextInputType textInputType;
   final Function()? onTap;
 
   const CustomTextFormField({
@@ -24,7 +26,9 @@ class CustomTextFormField extends StatelessWidget {
     this.error = false,
     this.readOnly = false,
     this.focusNode,
+    this.prefixIcon,
     this.suffixIcon,
+    this.textInputType = TextInputType.text,
     this.onTap,
   });
 
@@ -59,10 +63,13 @@ class CustomTextFormField extends StatelessWidget {
         focusNode: focusNode,
         readOnly: readOnly,
         onTap: onTap,
+        keyboardType: textInputType,
+        textCapitalization: TextCapitalization.sentences,
         decoration: InputDecoration(
           hintText: label,
           border: InputBorder.none,
           suffixIcon: suffixIcon != null ? Icon(suffixIcon) : null,
+          prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
         ),
       ),
     );

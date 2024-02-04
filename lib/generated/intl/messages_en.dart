@@ -214,6 +214,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "nov": MessageLookupByLibrary.simpleMessage("November"),
         "oct": MessageLookupByLibrary.simpleMessage("October"),
         "previous": MessageLookupByLibrary.simpleMessage("Previous"),
+        "search": MessageLookupByLibrary.simpleMessage("Search"),
         "selectLanguage":
             MessageLookupByLibrary.simpleMessage("Select your language"),
         "sep": MessageLookupByLibrary.simpleMessage("September"),

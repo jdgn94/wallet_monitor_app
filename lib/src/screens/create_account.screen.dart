@@ -66,8 +66,12 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     setState(() {});
   }
 
-  Future<void> _openCurrencyDialog() async {
-    await showDialogCurrencies(context, currencySelect: _currencySelected!.id);
+  void _openCurrencyDialog() {
+    showDialogCurrencies(
+      context,
+      _changeCurrencyValue,
+      currencySelect: _currencySelected!.id,
+    );
   }
 
   @override
@@ -122,7 +126,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
           shadowColor: Colors.transparent,
           color: Theme.of(context).colorScheme.background,
           child: const Center(
-            // TODO: change the next component
+            // REMEMBER: change the next component
             child: Icon(
               Icons.question_mark_outlined,
               size: 40,
@@ -151,6 +155,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         margin: EdgeInsets.zero,
         maxLines: 5,
         shadowColor: Colors.transparent,
+        textInputType: TextInputType.multiline,
       ),
     );
   }

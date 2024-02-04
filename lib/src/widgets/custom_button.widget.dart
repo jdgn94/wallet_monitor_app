@@ -13,6 +13,7 @@ class CustomButtonWidget extends StatelessWidget {
   final IconData? appendIcon;
   final String? text;
   final double size;
+  final Color? color;
 
   CustomButtonWidget({
     super.key,
@@ -25,6 +26,7 @@ class CustomButtonWidget extends StatelessWidget {
     this.prependIcon,
     this.appendIcon,
     this.text,
+    this.color,
     this.size = 24,
   });
 
@@ -37,19 +39,15 @@ class CustomButtonWidget extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         borderRadius: borderRadius,
-        child: Ink(
-          decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.background,
-            borderRadius: borderRadius,
-          ),
-          child: _buttonStyle(context),
-        ),
+        child: _buttonStyle(context),
       ),
     );
   }
 
   Widget _buttonStyle(BuildContext context) {
     switch (type) {
+      case CustomButtonType.text:
+        return _textButton(context);
       default:
         return _normalButton(context);
     }
@@ -60,14 +58,30 @@ class CustomButtonWidget extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primary.withOpacity(0.7),
+        color: color ?? Theme.of(context).colorScheme.primary.withOpacity(0.7),
         borderRadius: borderRadius,
       ),
       child: _buttonContent(context),
     );
   }
 
-  Padding _buttonContent(BuildContext context) {
+  Ink _textButton(context) {
+    return Ink(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        color: Colors.transparent,
+        borderRadius: borderRadius,
+      ),
+      child: _buttonContent(
+        context,
+        colorText: color ?? Theme.of(context).colorScheme.primary,
+      ),
+    );
+  }
+
+  Padding _buttonContent(BuildContext context, {Color? colorText}) {
+    colorText = colorText ?? Theme.of(context).colorScheme.onBackground;
     return Padding(
       padding:
           padding ?? const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
@@ -77,18 +91,20 @@ class CustomButtonWidget extends StatelessWidget {
             Icon(
               prependIcon,
               size: size,
+              color: colorText,
             ),
           if (prependIcon != null) const SizedBox(width: 10),
           if (text != null)
             Text(
               text!,
-              style: TextStyle(fontSize: size),
+              style: TextStyle(fontSize: size, color: colorText),
             ),
           if (appendIcon != null) const SizedBox(width: 10),
           if (appendIcon != null)
             Icon(
               appendIcon,
               size: size,
+              color: colorText,
             ),
         ],
       ),
