@@ -27,10 +27,10 @@ class AccountView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            BoxWidget(
+            const BoxWidget(
               title: "Net Worth",
               subtitle: "\$ 600.00",
-              note: "11 transacctions",
+              note: "11 transactions",
               width: double.infinity,
             ),
             const SizedBox(height: 16.0),
@@ -39,7 +39,7 @@ class AccountView extends StatelessWidget {
                 BoxWidget(
                   title: "Expenses",
                   subtitle: "\$ 350.00",
-                  note: "11 transacctions",
+                  note: "11 transactions",
                   width: MediaQuery.of(context).size.width / 2 - 24,
                   subtitleColor: AlertColors.error,
                 ),
@@ -47,7 +47,7 @@ class AccountView extends StatelessWidget {
                 BoxWidget(
                   title: "Incomes",
                   subtitle: "\$ 950.00",
-                  note: "11 transacctions",
+                  note: "11 transactions",
                   width: MediaQuery.of(context).size.width / 2 - 24,
                   subtitleColor: AlertColors.success,
                 ),

@@ -29,7 +29,6 @@ class _LanguageSelectorWidgetState extends State<LanguageSelectorWidget> {
   @override
   void initState() {
     super.initState();
-    print(pref.getString("lang"));
   }
 
   void _openLanguageSelector() {

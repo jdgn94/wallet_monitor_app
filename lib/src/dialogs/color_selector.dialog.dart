@@ -109,7 +109,7 @@ Padding _colorListSelector(
           ),
         ),
         child: Center(
-          child: color == colorSelected ? Icon(Icons.check) : null,
+          child: color == colorSelected ? const Icon(Icons.check) : null,
         ),
       ),
     ),

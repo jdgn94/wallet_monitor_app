@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:wallet_monitor/generated/l10n.dart';
 
 import 'package:wallet_monitor/src/db/query/currency.query.dart';
-import 'package:wallet_monitor/src/db/models/currency.model.dart';
 import 'package:wallet_monitor/src/dialogs/color_selector.dialog.dart';
 import 'package:wallet_monitor/src/dialogs/currency.dialog.dart';
 import 'package:wallet_monitor/src/helper/argument.helper.dart';

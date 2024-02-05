@@ -13,9 +13,6 @@ abstract class CurrencyQuery {
       SELECT * FROM currencies WHERE deleted = 0
     """);
 
-    print("Este es el resultado de la busqueda de todas las modenas");
-    print(result);
-
     final currencies = currencyModelFromList(result, translate: translate);
 
     return currencies;

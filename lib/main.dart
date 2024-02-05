@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -50,7 +52,7 @@ class MyApp extends StatelessWidget {
     GlobalMaterialLocalizations.delegate,
     GlobalWidgetsLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
-    LocaleNamesLocalizationsDelegate(),
+    const LocaleNamesLocalizationsDelegate(),
   ];
 
   ThemeMode _setThemeMode(String mode) {

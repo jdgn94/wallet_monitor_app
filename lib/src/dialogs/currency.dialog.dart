@@ -1,7 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:wallet_monitor/generated/l10n.dart';
 
 import 'package:wallet_monitor/src/db/query/currency.query.dart';

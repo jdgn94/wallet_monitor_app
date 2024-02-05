@@ -8,7 +8,6 @@ import 'package:wallet_monitor/src/screens/splash.screen.dart';
 import 'package:wallet_monitor/src/screens/welcome.screen.dart';
 
 MaterialPageRoute generateApplicationRoutes(RouteSettings settings) {
-  print('build route for ${settings.name}');
   var routes = <String, WidgetBuilder>{
     "/": (BuildContext context) => const HomeScreen(),
     "/splash": (BuildContext context) => const SplashScreen(),
