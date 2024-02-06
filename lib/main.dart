@@ -78,13 +78,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<GlobalBloc, GlobalState>(
       builder: (context, state) {
+        const accentColor = Colors.blue;
+
         return MaterialApp(
           title: 'Wallet Monitor',
           debugShowCheckedModeBanner: false,
           onGenerateRoute: generateApplicationRoutes,
           initialRoute: "/splash",
-          theme: lightTheme(),
-          darkTheme: darkTheme(),
+          theme: lightTheme(color: accentColor),
+          darkTheme: darkTheme(color: accentColor),
           themeMode: _setThemeMode(state.themeMode),
           localizationsDelegates: _localizationsDelegates,
           supportedLocales: S.delegate.supportedLocales,

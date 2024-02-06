@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:wallet_monitor/generated/l10n.dart';
+import 'package:wallet_monitor/src/bottom_sheets/keyboard.bottom_sheet.dart';
 
 import 'package:wallet_monitor/src/db/query/currency.query.dart';
 import 'package:wallet_monitor/src/dialogs/color_selector.dialog.dart';
@@ -23,20 +24,26 @@ class CreateAccountScreen extends StatefulWidget {
 class _CreateAccountScreenState extends State<CreateAccountScreen> {
   late TextEditingController _nameController;
   late TextEditingController _descriptionController;
+  late TextEditingController _amountController;
   late TextEditingController _currencyController;
   late CurrencyModel? _currencySelected;
   late FocusNode _nameFocus;
+  late FocusNode _amountFocus;
   late FocusNode _currencyFocus;
   late Color? _colorAccount;
 
   @override
   void initState() {
     super.initState();
+    _colorAccount = null;
     _nameController = TextEditingController(text: S.current.cash);
     _descriptionController = TextEditingController();
+    _amountController = TextEditingController();
     _currencyController = TextEditingController();
     _nameFocus = FocusNode();
     _nameFocus.addListener(() => setState(() {}));
+    _amountFocus = FocusNode();
+    _amountFocus.addListener(() => setState(() {}));
     _currencyFocus = FocusNode();
     _currencyFocus.addListener(() => setState(() {}));
     _currencySelected = widget.args.account?.currency;
@@ -74,6 +81,12 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     });
   }
 
+  void _openPersonalKeyboard() {
+    const KeyboardBottomSheet();
+  }
+
+  void _changeAmmount(double value) {}
+
   void _openCurrencyDialog() {
     showDialogCurrencies(
       context,
@@ -99,6 +112,10 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         children: [
           _inputName(),
           _descriptionContainer(),
+          _inputAmount(),
+          // TODO: component to show update account amount
+          // if (widget.args.initApp == false && widget.args.account != null)
+          //   _correctionVisibility(),
           _currencySelector(),
         ],
       ),
@@ -172,6 +189,17 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         shadowColor: Colors.transparent,
         textInputType: TextInputType.multiline,
       ),
+    );
+  }
+
+  CustomTextFormField _inputAmount() {
+    return CustomTextFormField(
+      controller: _amountController,
+      focusNode: _amountFocus,
+      textAlign: TextAlign.end,
+      prefix: _currencySelected?.symbol ?? "",
+      onTap: _openPersonalKeyboard,
+      readOnly: true,
     );
   }
 

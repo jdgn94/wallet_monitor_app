@@ -41,6 +41,7 @@ dependencies:
   intl: ^0.18.1
   flutter_i18n: ^0.35.0
   flutter_localized_locales: ^2.0.5
+  google_nav_bar: ^5.0.6
 
 dev_dependencies:
   flutter_test:
@@ -64,8 +65,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
-assets:
-  - assets/images/logo/
+  assets:
+    - assets/images/logo/logo.png
   # - assets/icons/app/
   # - assets/icons/categories/
   #   - images/a_dot_ham.jpeg
@@ -105,19 +106,19 @@ icons_launcher:
       # adaptive_monochrome_image: 'assets/ic_logo_monochrome.png'
     ios:
       enable: true
-      image_path: 'assets/logo/logo.png'
+      image_path: 'assets/images/logo/logo.png'
     web:
       enable: true
-      image_path: 'assets/logo/logo.png'
+      image_path: 'assets/images/logo/logo.png'
       # favicon_path: 'assets/ic_logo_round.png'
     macos:
       enable: true
-      image_path: 'assets/logo/logo.png'
+      image_path: 'assets/images/logo/logo.png'
     windows:
       enable: true
-      image_path: 'assets/logo/logo.png'
+      image_path: 'assets/images/logo/logo.png'
     linux:
       enable: true
-      image_path: 'assets/logo/logo.png'
+      image_path: 'assets/images/logo/logo.png'
 flutter_intl:
   enabled: true

@@ -14,6 +14,9 @@ class CustomTextFormField extends StatelessWidget {
   final IconData? prefixIcon;
   final IconData? suffixIcon;
   final TextInputType textInputType;
+  final TextAlign textAlign;
+  final String? prefix;
+  final String? suffix;
   final Function()? onTap;
 
   const CustomTextFormField({
@@ -29,6 +32,9 @@ class CustomTextFormField extends StatelessWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.textInputType = TextInputType.text,
+    this.textAlign = TextAlign.start,
+    this.prefix,
+    this.suffix,
     this.onTap,
   });
 
@@ -40,6 +46,22 @@ class CustomTextFormField extends StatelessWidget {
       return Theme.of(context).colorScheme.primary;
     }
     return shadowColor;
+  }
+
+  SizedBox? _title(String? text) {
+    if (text != null) {
+      return SizedBox(
+        width: 30,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 12.0),
+          child: Text(
+            text,
+            style: const TextStyle(fontSize: 17),
+          ),
+        ),
+      );
+    }
+    return null;
   }
 
   @override
@@ -65,11 +87,12 @@ class CustomTextFormField extends StatelessWidget {
         onTap: onTap,
         keyboardType: textInputType,
         textCapitalization: TextCapitalization.sentences,
+        textAlign: textAlign,
         decoration: InputDecoration(
           hintText: label,
           border: InputBorder.none,
-          suffixIcon: suffixIcon != null ? Icon(suffixIcon) : null,
-          prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
+          suffixIcon: suffixIcon != null ? Icon(suffixIcon) : _title(suffix),
+          prefixIcon: prefixIcon != null ? Icon(prefixIcon) : _title(prefix),
         ),
       ),
     );
