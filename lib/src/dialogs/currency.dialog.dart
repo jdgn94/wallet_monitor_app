@@ -63,8 +63,7 @@ Future<void> showDialogCurrencies(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
               color: backgroundTone(
-                context,
-                Theme.of(context).colorScheme.primary,
+                context: context,
               ),
             ),
             child: Column(

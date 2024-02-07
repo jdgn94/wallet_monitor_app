@@ -82,10 +82,14 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   }
 
   void _openPersonalKeyboard() {
-    const KeyboardBottomSheet();
+    showKeyboard(
+      context,
+      _saveValue,
+      defaultCurrency: _currencySelected,
+    );
   }
 
-  void _changeAmmount(double value) {}
+  void _saveValue({required double value}) {}
 
   void _openCurrencyDialog() {
     showDialogCurrencies(

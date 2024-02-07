@@ -187,6 +187,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Zimbabue Dólar"),
         "accountName": MessageLookupByLibrary.simpleMessage("Nombre de Cuenta"),
         "accounts": MessageLookupByLibrary.simpleMessage("Cuentas"),
+        "addAmount":
+            MessageLookupByLibrary.simpleMessage("Añadir Monto a la Cuenta"),
         "apr": MessageLookupByLibrary.simpleMessage("Abril"),
         "aug": MessageLookupByLibrary.simpleMessage("Agosto"),
         "budgets": MessageLookupByLibrary.simpleMessage("Gráficos"),
@@ -197,6 +199,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "dark": MessageLookupByLibrary.simpleMessage("Oscuro"),
         "dec": MessageLookupByLibrary.simpleMessage("Diciembre"),
         "description": MessageLookupByLibrary.simpleMessage("Descripción"),
+        "editAmount":
+            MessageLookupByLibrary.simpleMessage("Editar Monde de la Cuenta"),
         "expenses": MessageLookupByLibrary.simpleMessage("Gastos"),
         "feb": MessageLookupByLibrary.simpleMessage("Febrero"),
         "incomes": MessageLookupByLibrary.simpleMessage("Ingresos"),

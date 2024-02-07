@@ -25,8 +25,8 @@ class ApplicationBodyWidget extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         body: Ink(
           color: backgroundTone(
-            context,
-            color ?? Theme.of(context).colorScheme.primary,
+            context: context,
+            color: color,
           ),
           child: CustomAppBar(
             title: title,

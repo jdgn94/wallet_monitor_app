@@ -146,5 +146,7 @@
   "oct": "Octubre",
   "nov": "Noviembre",
   "dec": "Diciembre",
-  "search": "Buscar"
+  "search": "Buscar",
+  "addAmount": "Añadir Monto a la Cuenta",
+  "editAmount": "Editar Monde de la Cuenta"
 }

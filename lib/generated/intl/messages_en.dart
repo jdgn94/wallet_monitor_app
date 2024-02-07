@@ -185,6 +185,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Zimbabwe Dollar"),
         "accountName": MessageLookupByLibrary.simpleMessage("Account Name"),
         "accounts": MessageLookupByLibrary.simpleMessage("Accounts"),
+        "addAmount":
+            MessageLookupByLibrary.simpleMessage("Add Amount in Account"),
         "apr": MessageLookupByLibrary.simpleMessage("April"),
         "aug": MessageLookupByLibrary.simpleMessage("August"),
         "budgets": MessageLookupByLibrary.simpleMessage("Budgets"),
@@ -195,6 +197,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "dark": MessageLookupByLibrary.simpleMessage("Dark"),
         "dec": MessageLookupByLibrary.simpleMessage("December"),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
+        "editAmount":
+            MessageLookupByLibrary.simpleMessage("Edit Amount in Account"),
         "expenses": MessageLookupByLibrary.simpleMessage("Expenses"),
         "feb": MessageLookupByLibrary.simpleMessage("February"),
         "incomes": MessageLookupByLibrary.simpleMessage("Incomes"),

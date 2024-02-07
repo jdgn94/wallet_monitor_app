@@ -30,11 +30,11 @@ class DefaultColors {
   static Color grey = Colors.grey;
 }
 
-Color backgroundTone(BuildContext context, Color color) {
+Color backgroundTone({required BuildContext context, Color? color}) {
   double opacity = 0.1;
   if (Theme.of(context).colorScheme.brightness == Brightness.light) {
     opacity = 0.2;
   }
 
-  return color.withOpacity(opacity);
+  return (color ?? Theme.of(context).colorScheme.primary).withOpacity(opacity);
 }

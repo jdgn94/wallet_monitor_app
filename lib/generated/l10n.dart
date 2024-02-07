@@ -1529,6 +1529,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Add Amount in Account`
+  String get addAmount {
+    return Intl.message(
+      'Add Amount in Account',
+      name: 'addAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Amount in Account`
+  String get editAmount {
+    return Intl.message(
+      'Edit Amount in Account',
+      name: 'editAmount',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

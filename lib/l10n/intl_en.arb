@@ -146,5 +146,7 @@
   "oct": "October",
   "nov": "November",
   "dec": "December",
-  "search": "Search"
+  "search": "Search",
+  "addAmount": "Add Amount in Account",
+  "editAmount": "Edit Amount in Account"
 }
