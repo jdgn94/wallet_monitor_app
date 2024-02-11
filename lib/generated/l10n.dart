@@ -1549,6 +1549,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Confirm Amount`
+  String get confirmAmount {
+    return Intl.message(
+      'Confirm Amount',
+      name: 'confirmAmount',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

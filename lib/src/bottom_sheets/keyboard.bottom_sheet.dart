@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_monitor/generated/l10n.dart';
 import 'package:wallet_monitor/src/db/models/currency.model.dart';
-import 'package:wallet_monitor/src/helper/styles.helper.dart';
 import 'package:wallet_monitor/src/settings/app_color.settings.dart';
+import 'package:wallet_monitor/src/widgets/custom_button.widget.dart';
 import 'package:wallet_monitor/src/widgets/custom_container.widget.dart';
 
 showKeyboard(
@@ -16,17 +16,88 @@ showKeyboard(
 }) {
   showModalBottomSheet(
     context: context,
+    isScrollControlled: true,
     builder: (context) {
       final defaultValueString = defaultValue.toString();
       String currentIntValue =
           defaultValueString.substring(0, defaultValueString.indexOf("."));
       String currentDecimalValue =
           defaultValueString.substring(defaultValueString.indexOf(".") + 1);
-
+      bool decimalWrite = false;
       List<String> operations = [];
+
       return StatefulBuilder(
         builder: (context, setState) {
-          void onChange(String value) {}
+          void onChange(String value) {
+            if (value == ".") {
+              decimalWrite = true;
+            } else if (value == "del") {
+              if (decimalWrite) {
+                currentDecimalValue = currentDecimalValue.length > 1
+                    ? currentDecimalValue.substring(
+                        0,
+                        currentDecimalValue.length - 1,
+                      )
+                    : "0";
+                if (currentDecimalValue == "0") decimalWrite = false;
+              } else {
+                currentIntValue = currentIntValue.length > 1
+                    ? currentIntValue.substring(0, currentIntValue.length - 1)
+                    : "0";
+              }
+            } else if (value == "+" ||
+                value == "-" ||
+                value == "*" ||
+                value == "/") {
+              if (operations.isEmpty) {
+                operations.add('$currentIntValue.$currentDecimalValue');
+                operations.add(value);
+                currentIntValue = "0";
+                currentDecimalValue = "0";
+                decimalWrite = false;
+              } else {
+                var lastOperation = operations[operations.length - 1];
+                if (lastOperation == "*" ||
+                    lastOperation == "/" ||
+                    lastOperation == "+" ||
+                    lastOperation == "-") {
+                  if (currentIntValue == "0" && currentDecimalValue == "0") {
+                    operations[operations.length - 1] = value;
+                  } else {
+                    operations.add('$currentIntValue.$currentDecimalValue');
+                    operations.add(value);
+                    currentIntValue = "0";
+                    currentDecimalValue = "0";
+                    decimalWrite = false;
+                  }
+                }
+              }
+            } else {
+              if (decimalWrite) {
+                if (currentDecimalValue == "0") {
+                  currentDecimalValue = value;
+                } else {
+                  currentDecimalValue = currentDecimalValue + value;
+                }
+              } else {
+                if (currentIntValue == "0") {
+                  currentIntValue = value;
+                } else {
+                  currentIntValue = currentIntValue + value;
+                }
+              }
+            }
+            setState(() {});
+          }
+
+          void clear() {
+            setState(() {
+              operations = [];
+              currentIntValue = "0";
+              currentDecimalValue = "0";
+              decimalWrite = false;
+            });
+          }
 
           return Ink(
             decoration: BoxDecoration(
@@ -42,11 +113,14 @@ showKeyboard(
                 _title(defaultValue != null),
                 _input(
                   context,
+                  defaultCurrency,
                   double.parse("$currentIntValue.$currentDecimalValue"),
                   operations,
                 ),
                 // TODO: here is selected account and currency
-                _keyboard(context, onChange),
+                _keyboard(context, onChange, clear),
+                _confirmAmount(context),
+                SizedBox(height: 10),
               ],
             ),
           );
@@ -68,6 +142,7 @@ Widget _title(bool editValue) {
 
 Widget _input(
   BuildContext context,
+  CurrencyModel? currency,
   double actualAmount,
   List<String> operations,
 ) {
@@ -77,13 +152,32 @@ Widget _input(
     constraints: const BoxConstraints(
       maxWidth: 600,
     ),
-    child: Column(
-      children: [],
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+      child: Column(
+        children: [
+          SizedBox(
+            width: double.infinity,
+            child: Text(
+              "${currency?.symbol}\t$actualAmount",
+              style: const TextStyle(
+                fontSize: 22.0,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.end,
+            ),
+          ),
+        ],
+      ),
     ),
   );
 }
 
-Container _keyboard(BuildContext context, Function(String value) onChange) {
+Container _keyboard(
+  BuildContext context,
+  Function(String value) onChange,
+  Function() clear,
+) {
   final List<String> keyboard = [
     '7',
     '8',
@@ -121,14 +215,21 @@ Container _keyboard(BuildContext context, Function(String value) onChange) {
           alignment: WrapAlignment.spaceAround,
           crossAxisAlignment: WrapCrossAlignment.center,
           runAlignment: WrapAlignment.spaceAround,
-          children: keyboard.map((key) => _key(context, key)).toList(),
+          children: keyboard
+              .map((key) => _key(context, key, onChange, clear))
+              .toList(),
         ),
       ),
     ),
   );
 }
 
-Widget _key(BuildContext context, String key) {
+Widget _key(
+  BuildContext context,
+  String key,
+  Function(String) onChange,
+  Function() clear,
+) {
   final color = _getShadowColor(context, key);
 
   return CustomContainerWidget(
@@ -139,7 +240,8 @@ Widget _key(BuildContext context, String key) {
     color: color.withOpacity(0.1),
     splashColor: color,
     shadowColor: color,
-    onTap: () {},
+    onTap: () => onChange(key),
+    onLongPress: key == "del" ? clear : null,
     child: Center(child: Text(key)),
   );
 }
@@ -153,4 +255,14 @@ Color _getShadowColor(BuildContext context, String key) {
   }
 
   return Theme.of(context).colorScheme.primary;
+}
+
+Widget _confirmAmount(BuildContext context) {
+  return CustomButtonWidget(
+    text: S.current.confirmAmount,
+    width: MediaQuery.of(context).size.width - 20,
+    margin: const EdgeInsets.symmetric(horizontal: 10),
+    fontSize: 20,
+    centerText: true,
+  );
 }

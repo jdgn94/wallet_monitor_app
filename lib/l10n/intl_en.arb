@@ -148,5 +148,6 @@
   "dec": "December",
   "search": "Search",
   "addAmount": "Add Amount in Account",
-  "editAmount": "Edit Amount in Account"
+  "editAmount": "Edit Amount in Account",
+  "confirmAmount": "Confirm Amount"
 }

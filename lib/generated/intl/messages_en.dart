@@ -193,6 +193,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "cash": MessageLookupByLibrary.simpleMessage("Cash"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "confirmAmount": MessageLookupByLibrary.simpleMessage("Confirm Amount"),
         "currency": MessageLookupByLibrary.simpleMessage("Currency"),
         "dark": MessageLookupByLibrary.simpleMessage("Dark"),
         "dec": MessageLookupByLibrary.simpleMessage("December"),
