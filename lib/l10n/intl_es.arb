@@ -148,5 +148,6 @@
   "dec": "Diciembre",
   "search": "Buscar",
   "addAmount": "Añadir Monto a la Cuenta",
-  "editAmount": "Editar Monde de la Cuenta"
+  "editAmount": "Editar Monde de la Cuenta",
+  "confirmAmount": "Confirmar Monto"
 }

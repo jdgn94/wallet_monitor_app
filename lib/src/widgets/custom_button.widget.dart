@@ -12,8 +12,9 @@ class CustomButtonWidget extends StatelessWidget {
   final IconData? prependIcon;
   final IconData? appendIcon;
   final String? text;
-  final double size;
+  final double fontSize;
   final Color? color;
+  final bool centerText;
 
   CustomButtonWidget({
     super.key,
@@ -27,7 +28,8 @@ class CustomButtonWidget extends StatelessWidget {
     this.appendIcon,
     this.text,
     this.color,
-    this.size = 24,
+    this.fontSize = 24,
+    this.centerText = false,
   });
 
   final BorderRadius borderRadius = BorderRadius.circular(20);
@@ -90,24 +92,38 @@ class CustomButtonWidget extends StatelessWidget {
           if (prependIcon != null)
             Icon(
               prependIcon,
-              size: size,
+              size: fontSize,
               color: colorText,
             ),
           if (prependIcon != null) const SizedBox(width: 10),
-          if (text != null)
-            Text(
-              text!,
-              style: TextStyle(fontSize: size, color: colorText),
-            ),
+          if (text != null) _buttonText(colorText),
           if (appendIcon != null) const SizedBox(width: 10),
           if (appendIcon != null)
             Icon(
               appendIcon,
-              size: size,
+              size: fontSize,
               color: colorText,
             ),
         ],
       ),
     );
+  }
+
+  Widget _buttonText(Color colorText) {
+    if (centerText) {
+      return SizedBox(
+        width: double.infinity,
+        child: Text(
+          text!,
+          style: TextStyle(fontSize: fontSize, color: colorText),
+          textAlign: TextAlign.center,
+        ),
+      );
+    } else {
+      return Text(
+        text!,
+        style: TextStyle(fontSize: fontSize, color: colorText),
+      );
+    }
   }
 }

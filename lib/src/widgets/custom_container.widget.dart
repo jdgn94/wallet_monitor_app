@@ -13,6 +13,7 @@ class CustomContainerWidget extends StatelessWidget {
   final BoxConstraints? boxConstraints;
   final Border? border;
   final Function()? onTap;
+  final Function()? onLongPress;
 
   const CustomContainerWidget({
     super.key,
@@ -27,6 +28,7 @@ class CustomContainerWidget extends StatelessWidget {
     this.boxConstraints,
     this.border,
     this.onTap,
+    this.onLongPress,
   });
 
   @override
@@ -38,6 +40,7 @@ class CustomContainerWidget extends StatelessWidget {
         constraints: boxConstraints,
         child: InkWell(
           onTap: onTap,
+          onLongPress: onLongPress,
           borderRadius: BorderRadius.circular(20.0),
           focusColor: splashColor?.withOpacity(0.3),
           hoverColor: splashColor?.withOpacity(0.3),
