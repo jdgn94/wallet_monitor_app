@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_monitor/generated/l10n.dart';
 import 'package:wallet_monitor/src/db/models/currency.model.dart';
-import 'package:wallet_monitor/src/helper/styles.helper.dart';
 import 'package:wallet_monitor/src/settings/app_color.settings.dart';
 import 'package:wallet_monitor/src/widgets/custom_container.widget.dart';
 
@@ -16,6 +15,7 @@ showKeyboard(
 }) {
   showModalBottomSheet(
     context: context,
+    isScrollControlled: true,
     builder: (context) {
       final defaultValueString = defaultValue.toString();
       String currentIntValue =
@@ -32,22 +32,33 @@ showKeyboard(
             decoration: BoxDecoration(
               color: backgroundTone(context: context, color: color),
               borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(20.0),
-                topRight: Radius.circular(20.0),
+                topLeft: Radius.circular(27.0),
+                topRight: Radius.circular(27.0),
               ),
             ),
-            child: Wrap(
-              direction: Axis.vertical,
-              children: [
-                _title(defaultValue != null),
-                _input(
-                  context,
-                  double.parse("$currentIntValue.$currentDecimalValue"),
-                  operations,
-                ),
-                // TODO: here is selected account and currency
-                _keyboard(context, onChange),
-              ],
+            child: SingleChildScrollView(
+              child: Wrap(
+                direction: Axis.horizontal,
+                alignment: WrapAlignment.center,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                runAlignment: WrapAlignment.center,
+                children: [
+                  _title(defaultValue != null),
+                  _input(
+                    context,
+                    double.parse("$currentIntValue.$currentDecimalValue"),
+                    operations,
+                  ),
+                  // TODO: here is selected account and currency
+                  Divider(
+                    color: Theme.of(context)
+                        .colorScheme
+                        .onBackground
+                        .withOpacity(.1),
+                  ),
+                  _keyboard(context, onChange),
+                ],
+              ),
             ),
           );
         },
@@ -111,18 +122,11 @@ Container _keyboard(BuildContext context, Function(String value) onChange) {
     ),
     child: Padding(
       padding: const EdgeInsets.all(12.0),
-      child: CustomContainerWidget(
-        shadowColor: Colors.transparent,
-        border: Border.all(
-          width: 1,
-          color: Theme.of(context).colorScheme.onBackground.withOpacity(.3),
-        ),
-        child: Wrap(
-          alignment: WrapAlignment.spaceAround,
-          crossAxisAlignment: WrapCrossAlignment.center,
-          runAlignment: WrapAlignment.spaceAround,
-          children: keyboard.map((key) => _key(context, key)).toList(),
-        ),
+      child: Wrap(
+        alignment: WrapAlignment.spaceAround,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        runAlignment: WrapAlignment.spaceAround,
+        children: keyboard.map((key) => _key(context, key)).toList(),
       ),
     ),
   );
@@ -133,9 +137,9 @@ Widget _key(BuildContext context, String key) {
 
   return CustomContainerWidget(
     height: 66,
-    width: MediaQuery.of(context).size.width * .25 - 30,
-    margin: const EdgeInsets.all(5.0),
-    boxConstraints: const BoxConstraints(maxWidth: 150 - 30),
+    width: MediaQuery.of(context).size.width * .25 - 25,
+    margin: const EdgeInsets.all(7.0),
+    boxConstraints: const BoxConstraints(maxWidth: 150 - 25),
     color: color.withOpacity(0.1),
     splashColor: color,
     shadowColor: color,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_monitor/generated/l10n.dart';
+import 'package:wallet_monitor/src/helper/argument.helper.dart';
 import 'package:wallet_monitor/src/helper/constants/icon.constants.dart';
 import 'package:wallet_monitor/src/storage/shared_preferences.storage.dart';
 import 'package:wallet_monitor/src/widgets/custom_button.widget.dart';
@@ -67,8 +68,12 @@ class LanguageSelectorScreen extends StatelessWidget {
         final pref = SettingsLocalStorage.configPref;
         pref.setBool("visiteSelectLangScreen", false);
         pref.setBool("visitAccountInitScreen", true);
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil("/account_init", (route) => false);
+        print(pref);
+        Navigator.of(context).pushNamedAndRemoveUntil(
+          "/account",
+          (route) => false,
+          arguments: const AccountArguments(initApp: true),
+        );
       },
       text: S.current.next,
     );

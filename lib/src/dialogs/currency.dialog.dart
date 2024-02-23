@@ -5,6 +5,7 @@ import 'package:wallet_monitor/generated/l10n.dart';
 
 import 'package:wallet_monitor/src/db/query/currency.query.dart';
 import 'package:wallet_monitor/src/settings/app_color.settings.dart';
+import 'package:wallet_monitor/src/settings/app_size.settings.dart';
 import 'package:wallet_monitor/src/widgets/custom_button.widget.dart';
 import 'package:wallet_monitor/src/widgets/custom_container.widget.dart';
 import 'package:wallet_monitor/src/widgets/custom_text_form_field.dart';
@@ -61,7 +62,7 @@ Future<void> showDialogCurrencies(
             width: 500,
             height: 700,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(27.0),
               color: backgroundTone(
                 context: context,
               ),
@@ -117,7 +118,7 @@ CustomContainerWidget _currencyItem(
         ? Theme.of(context).colorScheme.primary.withOpacity(0.5)
         : Theme.of(context).colorScheme.background,
     width: 90,
-    height: 105,
+    height: 104,
     padding: const EdgeInsets.all(5.0),
     onTap: () => selectCurrency(currency),
     child: Column(
@@ -127,18 +128,23 @@ CustomContainerWidget _currencyItem(
         Text(
           currency.code,
           style: TextStyle(
-              color:
-                  Theme.of(context).colorScheme.onBackground.withOpacity(0.7)),
+            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.7),
+            fontSize: AppSizeSettings.fontSizeExtraSmall,
+          ),
         ),
         Text(
           currency.symbol,
-          style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: AppSizeSettings.fontSizeLarge,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         Text(
           currency.name,
           style: TextStyle(
-              color:
-                  Theme.of(context).colorScheme.onBackground.withOpacity(0.7)),
+            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.7),
+            fontSize: AppSizeSettings.fontSizeSmall,
+          ),
           overflow: TextOverflow.ellipsis,
           maxLines: 2,
           textAlign: TextAlign.center,

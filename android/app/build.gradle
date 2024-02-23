@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.jdgn_app.wallet_monitor"
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdk flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
     compileOptions {
