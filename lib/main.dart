@@ -83,8 +83,9 @@ class MyApp extends StatelessWidget {
         const accentColor = Colors.blue;
 
         SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-          systemNavigationBarDividerColor: Colors.transparent,
+          systemStatusBarContrastEnforced: true,
           systemNavigationBarColor: Colors.transparent,
+          systemNavigationBarDividerColor: Colors.transparent,
         ));
 
         return MaterialApp(
