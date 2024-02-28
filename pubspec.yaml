@@ -2,7 +2,7 @@ name: wallet_monitor
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.2.5 <4.0.0'
+  sdk: ">=3.2.5 <4.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -42,6 +42,7 @@ dependencies:
   flutter_i18n: ^0.35.0
   flutter_localized_locales: ^2.0.5
   google_nav_bar: ^5.0.6
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:
@@ -59,7 +60,6 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -67,6 +67,23 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/logo/logo.png
+    - assets/icons/entertainment/
+    - assets/icons/family/
+    - assets/icons/finance/
+    - assets/icons/food_and_drink/
+    - assets/icons/health/
+    - assets/icons/home/
+    - assets/icons/nature/
+    - assets/icons/pastime/
+    - assets/icons/personal_care/
+    - assets/icons/pets/
+    - assets/icons/service/
+    - assets/icons/shopping/
+    - assets/icons/sports/
+    - assets/icons/study_work/
+    - assets/icons/technology/
+    - assets/icons/transport/
+    - assets/icons/travel/
   # - assets/icons/app/
   # - assets/icons/categories/
   #   - images/a_dot_ham.jpeg
@@ -94,11 +111,11 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
 icons_launcher:
-  image_path: 'assets/images/logo/logo.png'
+  image_path: "assets/images/logo/logo.png"
   platforms:
     android:
       enable: true
-      image_path: 'assets/images/logo/logo.png'
+      image_path: "assets/images/logo/logo.png"
       # adaptive_background_color: '#ffffff'
       # adaptive_background_image: 'assets/ic_background.png'
       # adaptive_foreground_image: 'assets/ic_foreground.png'
@@ -106,19 +123,19 @@ icons_launcher:
       # adaptive_monochrome_image: 'assets/ic_logo_monochrome.png'
     ios:
       enable: true
-      image_path: 'assets/images/logo/logo.png'
+      image_path: "assets/images/logo/logo.png"
     web:
       enable: true
-      image_path: 'assets/images/logo/logo.png'
+      image_path: "assets/images/logo/logo.png"
       # favicon_path: 'assets/ic_logo_round.png'
     macos:
       enable: true
-      image_path: 'assets/images/logo/logo.png'
+      image_path: "assets/images/logo/logo.png"
     windows:
       enable: true
-      image_path: 'assets/images/logo/logo.png'
+      image_path: "assets/images/logo/logo.png"
     linux:
       enable: true
-      image_path: 'assets/images/logo/logo.png'
+      image_path: "assets/images/logo/logo.png"
 flutter_intl:
   enabled: true

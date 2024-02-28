@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="Capa_1"
+   enable-background="new 0 0 512 512"
+   height="512"
+   viewBox="0 0 512 512"
+   width="512"
+   version="1.1"
+   sodipodi:docname="plate-color.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs27" />
+  <sodipodi:namedview
+     id="namedview25"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="1.2304688"
+     inkscape:cx="255.59365"
+     inkscape:cy="255.59365"
+     inkscape:window-width="1920"
+     inkscape:window-height="1012"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Capa_1" />
+  <g
+     id="g22"
+     transform="matrix(1.0277792,0,0,1.0277792,-7.1114632,-7.1201724)">
+    <g
+       id="g14">
+      <circle
+         cx="323.50699"
+         cy="254.97"
+         fill="#d5e3f4"
+         r="180.993"
+         id="circle2" />
+      <circle
+         cx="323.50699"
+         cy="254.97"
+         fill="#7bacdf"
+         r="85.734001"
+         id="circle4" />
+      <path
+         d="m 323.507,169.237 c -4.829,0 -9.56,0.422 -14.173,1.193 40.55,6.777 71.561,42.096 71.561,84.541 0,42.445 -31.011,77.763 -71.561,84.541 4.614,0.771 9.344,1.193 14.173,1.193 47.273,0 85.734,-38.46 85.734,-85.734 0,-47.274 -38.461,-85.734 -85.734,-85.734 z"
+         fill="#5f99d7"
+         id="path6" />
+      <circle
+         cx="148.50999"
+         cy="297.64001"
+         fill="#98bce5"
+         r="141.00999"
+         id="circle8" />
+      <circle
+         cx="148.50999"
+         cy="297.64001"
+         fill="#7bacdf"
+         r="66.793999"
+         id="circle10" />
+      <path
+         d="m 148.51,230.846 c -4.864,0 -9.602,0.536 -14.173,1.528 30.043,6.519 52.621,33.299 52.621,65.266 0,31.967 -22.578,58.747 -52.621,65.266 4.571,0.992 9.31,1.528 14.173,1.528 36.83,0 66.794,-29.964 66.794,-66.794 0,-36.83 -29.964,-66.794 -66.794,-66.794 z"
+         fill="#5f99d7"
+         id="path12" />
+    </g>
+    <g
+       id="g20" />
+  </g>
+</svg>

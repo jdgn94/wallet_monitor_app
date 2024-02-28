@@ -1559,6 +1559,176 @@ class S {
       args: [],
     );
   }
+
+  /// `Entertainment`
+  String get entertainment {
+    return Intl.message(
+      'Entertainment',
+      name: 'entertainment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Family`
+  String get family {
+    return Intl.message(
+      'Family',
+      name: 'family',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Finance`
+  String get finance {
+    return Intl.message(
+      'Finance',
+      name: 'finance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Food & Drink`
+  String get food_and_drink {
+    return Intl.message(
+      'Food & Drink',
+      name: 'food_and_drink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Health`
+  String get health {
+    return Intl.message(
+      'Health',
+      name: 'health',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get home {
+    return Intl.message(
+      'Home',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nature`
+  String get nature {
+    return Intl.message(
+      'Nature',
+      name: 'nature',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pastime`
+  String get pastime {
+    return Intl.message(
+      'Pastime',
+      name: 'pastime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Personal Care`
+  String get personal_care {
+    return Intl.message(
+      'Personal Care',
+      name: 'personal_care',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pets`
+  String get pets {
+    return Intl.message(
+      'Pets',
+      name: 'pets',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Service`
+  String get service {
+    return Intl.message(
+      'Service',
+      name: 'service',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shopping`
+  String get shopping {
+    return Intl.message(
+      'Shopping',
+      name: 'shopping',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sports`
+  String get sports {
+    return Intl.message(
+      'Sports',
+      name: 'sports',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Study & Work`
+  String get study_work {
+    return Intl.message(
+      'Study & Work',
+      name: 'study_work',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Technology`
+  String get technology {
+    return Intl.message(
+      'Technology',
+      name: 'technology',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transport`
+  String get transport {
+    return Intl.message(
+      'Transport',
+      name: 'transport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Travel`
+  String get travel {
+    return Intl.message(
+      'Travel',
+      name: 'travel',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

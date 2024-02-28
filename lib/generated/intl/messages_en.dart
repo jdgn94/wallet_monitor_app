@@ -200,8 +200,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "editAmount":
             MessageLookupByLibrary.simpleMessage("Edit Amount in Account"),
+        "entertainment": MessageLookupByLibrary.simpleMessage("Entertainment"),
         "expenses": MessageLookupByLibrary.simpleMessage("Expenses"),
+        "family": MessageLookupByLibrary.simpleMessage("Family"),
         "feb": MessageLookupByLibrary.simpleMessage("February"),
+        "finance": MessageLookupByLibrary.simpleMessage("Finance"),
+        "food_and_drink": MessageLookupByLibrary.simpleMessage("Food & Drink"),
+        "health": MessageLookupByLibrary.simpleMessage("Health"),
+        "home": MessageLookupByLibrary.simpleMessage("Home"),
         "incomes": MessageLookupByLibrary.simpleMessage("Incomes"),
         "jan": MessageLookupByLibrary.simpleMessage("January"),
         "jul": MessageLookupByLibrary.simpleMessage("July"),
@@ -211,6 +217,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mar": MessageLookupByLibrary.simpleMessage("March"),
         "may": MessageLookupByLibrary.simpleMessage("May"),
         "more": MessageLookupByLibrary.simpleMessage("More"),
+        "nature": MessageLookupByLibrary.simpleMessage("Nature"),
         "netWorth": MessageLookupByLibrary.simpleMessage("Net Worth"),
         "newAccount":
             MessageLookupByLibrary.simpleMessage("Create New Account"),
@@ -218,17 +225,27 @@ class MessageLookup extends MessageLookupByLibrary {
         "none": MessageLookupByLibrary.simpleMessage("None"),
         "nov": MessageLookupByLibrary.simpleMessage("November"),
         "oct": MessageLookupByLibrary.simpleMessage("October"),
+        "pastime": MessageLookupByLibrary.simpleMessage("Pastime"),
+        "personal_care": MessageLookupByLibrary.simpleMessage("Personal Care"),
+        "pets": MessageLookupByLibrary.simpleMessage("Pets"),
         "previous": MessageLookupByLibrary.simpleMessage("Previous"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "selectLanguage":
             MessageLookupByLibrary.simpleMessage("Select your language"),
         "sep": MessageLookupByLibrary.simpleMessage("September"),
+        "service": MessageLookupByLibrary.simpleMessage("Service"),
         "settingsAndCustomization":
             MessageLookupByLibrary.simpleMessage("Settings & Customization"),
+        "shopping": MessageLookupByLibrary.simpleMessage("Shopping"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "sports": MessageLookupByLibrary.simpleMessage("Sports"),
+        "study_work": MessageLookupByLibrary.simpleMessage("Study & Work"),
         "system": MessageLookupByLibrary.simpleMessage("System"),
+        "technology": MessageLookupByLibrary.simpleMessage("Technology"),
         "theme": MessageLookupByLibrary.simpleMessage("Theme"),
         "transactions": MessageLookupByLibrary.simpleMessage("Transactions"),
+        "transport": MessageLookupByLibrary.simpleMessage("Transport"),
+        "travel": MessageLookupByLibrary.simpleMessage("Travel"),
         "welcome":
             MessageLookupByLibrary.simpleMessage("Welcome to Wallet Monitor")
       };

@@ -149,5 +149,22 @@
   "search": "Search",
   "addAmount": "Add Amount in Account",
   "editAmount": "Edit Amount in Account",
-  "confirmAmount": "Confirm Amount"
+  "confirmAmount": "Confirm Amount",
+  "entertainment": "Entertainment",
+  "family": "Family",
+  "finance": "Finance",
+  "food_and_drink": "Food & Drink",
+  "health": "Health",
+  "home": "Home",
+  "nature": "Nature",
+  "pastime": "Pastime",
+  "personal_care": "Personal Care",
+  "pets": "Pets",
+  "service": "Service",
+  "shopping": "Shopping",
+  "sports": "Sports",
+  "study_work": "Study & Work",
+  "technology": "Technology",
+  "transport": "Transport",
+  "travel": "Travel"
 }

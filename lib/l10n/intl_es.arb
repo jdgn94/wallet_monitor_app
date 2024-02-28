@@ -149,5 +149,22 @@
   "search": "Buscar",
   "addAmount": "Añadir Monto a la Cuenta",
   "editAmount": "Editar Monde de la Cuenta",
-  "confirmAmount": "Confirmar Monto"
+  "confirmAmount": "Confirmar Monto",
+  "entertainment": "Entretenimiento",
+  "family": "Familia",
+  "finance": "Finanzas",
+  "food_and_drink": "Comida y Bebida",
+  "health": "Salud",
+  "home": "Hogar",
+  "nature": "Naturaleza",
+  "pastime": "Pasatiempo",
+  "personal_care": "Cuidado Personal",
+  "pets": "Mascotas",
+  "service": "Servicios",
+  "shopping": "Compras",
+  "sports": "Deportes",
+  "study_work": "Estudio y Trabajo",
+  "technology": "Tecnología",
+  "transport": "Transporte",
+  "travel": "Viaje"
 }

@@ -6,10 +6,13 @@ import 'package:wallet_monitor/src/bottom_sheets/keyboard.bottom_sheet.dart';
 import 'package:wallet_monitor/src/db/query/currency.query.dart';
 import 'package:wallet_monitor/src/dialogs/color_selector.dialog.dart';
 import 'package:wallet_monitor/src/dialogs/currency.dialog.dart';
+import 'package:wallet_monitor/src/dialogs/icon_selector.dialog.dart';
 import 'package:wallet_monitor/src/helper/argument.helper.dart';
+import 'package:wallet_monitor/src/helper/constants/custom_icons.dart';
 import 'package:wallet_monitor/src/helper/constants/icon.constants.dart';
 import 'package:wallet_monitor/src/widgets/application_body.widget.dart';
 import 'package:wallet_monitor/src/widgets/custom_container.widget.dart';
+import 'package:wallet_monitor/src/widgets/custom_icon.widget.dart';
 import 'package:wallet_monitor/src/widgets/custom_text_form_field.dart';
 
 class CreateAccountScreen extends StatefulWidget {
@@ -31,6 +34,9 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   late FocusNode _amountFocus;
   late FocusNode _currencyFocus;
   late Color? _colorAccount;
+  late String _iconSelected;
+  late String _iconCategory;
+  late CategoryIcon _categoryIconSelected;
 
   @override
   void initState() {
@@ -49,6 +55,12 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     _currencySelected = widget.args.account?.currency;
     if (_currencySelected != null) {
       _changeCurrencyValue(widget.args.account!.currency);
+      _iconSelected = widget.args.account!.icon;
+      _iconCategory = widget.args.account!.icon;
+      _categoryIconSelected = CategoryIcon(
+        name: _iconSelected,
+        url: getCustomIconUrl(_iconSelected, _iconCategory),
+      );
     } else {
       _getDefaultCurrency();
     }
@@ -65,6 +77,12 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   }
 
   Future<void> _getDefaultCurrency() async {
+    _iconSelected = "cash";
+    _iconCategory = "finance";
+    _categoryIconSelected = CategoryIcon(
+      name: _iconSelected,
+      url: getCustomIconUrl(_iconSelected, _iconCategory),
+    );
     final currency = await CurrencyQuery.getById(103);
     _changeCurrencyValue(currency);
   }
@@ -101,6 +119,22 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
   void _openColorDialog() {
     showDialogColorSelector(context, _changeAccountColor, _colorAccount!);
+  }
+
+  void _changeIcon(String icon, String category) {
+    _categoryIconSelected = CategoryIcon(
+      name: icon,
+      url: getCustomIconUrl(icon, category),
+    );
+    setState(() {
+      _iconSelected = icon;
+      _iconCategory = category;
+    });
+  }
+
+  void _showIconsCategories() {
+    print("Llegue a esta fincion");
+    showDialogIconSelector(context, _changeIcon, _iconSelected, 'finance');
   }
 
   @override
@@ -156,16 +190,15 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         CustomContainerWidget(
-          onTap: () {},
+          onTap: _showIconsCategories,
           width: 80,
           height: 80,
           shadowColor: Colors.transparent,
           color: Theme.of(context).colorScheme.background,
-          child: const Center(
-            // REMEMBER: change the next component
-            child: Icon(
-              Icons.question_mark_outlined,
-              size: 40,
+          child: Center(
+            child: CustomIconWidget(
+              categoryIcon: _categoryIconSelected,
+              size: 60,
             ),
           ),
         ),
