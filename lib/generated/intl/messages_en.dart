@@ -230,6 +230,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "pets": MessageLookupByLibrary.simpleMessage("Pets"),
         "previous": MessageLookupByLibrary.simpleMessage("Previous"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
+        "selectIcon": MessageLookupByLibrary.simpleMessage("Select your style"),
         "selectLanguage":
             MessageLookupByLibrary.simpleMessage("Select your language"),
         "sep": MessageLookupByLibrary.simpleMessage("September"),

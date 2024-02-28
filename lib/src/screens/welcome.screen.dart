@@ -28,10 +28,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   void _redirect() {
     final pref = SettingsLocalStorage.configPref;
     pref.setBool("visiteWelcomeScreen", false);
-    pref.setBool("visiteSelectLangScreen", true);
+    pref.setBool("visiteInitialConfigScreen", true);
 
     Navigator.of(context).pushNamedAndRemoveUntil(
-      "/language_selector",
+      "/initial_config",
       (route) => false,
     );
   }

@@ -35,35 +35,38 @@ class CustomContainerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
-      child: Container(
-        padding: margin,
-        constraints: boxConstraints,
-        child: InkWell(
-          onTap: onTap,
-          onLongPress: onLongPress,
-          borderRadius: BorderRadius.circular(20.0),
-          focusColor: splashColor?.withOpacity(0.3),
-          hoverColor: splashColor?.withOpacity(0.3),
-          splashColor: splashColor?.withOpacity(0.3),
-          highlightColor: splashColor?.withOpacity(0.3),
-          child: Ink(
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.background,
-              border: border,
-              borderRadius: BorderRadius.circular(20.0),
-              boxShadow: [
-                StylesHelper.boxShadow(context, shadowColor: shadowColor),
-              ],
-            ),
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Container(
+          padding: margin,
+          constraints: boxConstraints,
+          child: InkWell(
+            onTap: onTap,
+            onLongPress: onLongPress,
+            borderRadius: BorderRadius.circular(20.0),
+            focusColor: splashColor?.withOpacity(0.3),
+            hoverColor: splashColor?.withOpacity(0.3),
+            splashColor: splashColor?.withOpacity(0.3),
+            highlightColor: splashColor?.withOpacity(0.3),
             child: Ink(
-              padding: padding,
-              width: width,
-              height: height,
               decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.background,
+                border: border,
                 borderRadius: BorderRadius.circular(20.0),
-                color: color,
+                boxShadow: [
+                  StylesHelper.boxShadow(context, shadowColor: shadowColor),
+                ],
               ),
-              child: child,
+              child: Ink(
+                padding: padding,
+                width: width,
+                height: height,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20.0),
+                  color: color,
+                ),
+                child: child,
+              ),
             ),
           ),
         ),

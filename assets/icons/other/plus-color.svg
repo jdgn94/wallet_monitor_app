@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="Capa_1"
+   enable-background="new 0 0 512 512"
+   height="512"
+   viewBox="0 0 512 512"
+   width="512"
+   version="1.1"
+   sodipodi:docname="plus-color.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs31" />
+  <sodipodi:namedview
+     id="namedview29"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:snap-nodes="true"
+     inkscape:snap-global="true"
+     inkscape:snap-bbox="false"
+     inkscape:bbox-paths="true"
+     inkscape:snap-grids="true"
+     inkscape:snap-page="true"
+     inkscape:zoom="1.1252211"
+     inkscape:cx="209.2922"
+     inkscape:cy="231.51006"
+     inkscape:window-width="1920"
+     inkscape:window-height="1012"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Capa_1" />
+  <path
+     d="M 504,209.47813 H 308.76359 c -2.2895,0 -4.14387,-1.84619 -4.14387,-4.12558 V 10.977941 c 0,-5.6953645 -4.63905,-10.3139394 -10.35968,-10.3139394 h -72.51771 c -5.72062,0 -10.35971,4.6185749 -10.35971,10.3139394 V 205.35255 c 0,2.27939 -1.85436,4.12558 -4.14385,4.12558 H 12.002366 c -5.720615,0 -10.359666,4.61859 -10.359666,10.31394 v 72.19767 c 0,5.69537 4.639051,10.31394 10.359666,10.31394 H 207.23877 c 2.28949,0 4.14385,1.8462 4.14385,4.12558 v 194.37469 c 0,5.69535 4.63909,10.31397 10.35971,10.31397 h 72.51771 c 5.72063,0 10.35968,-4.61862 10.35968,-10.31397 V 306.42926 c 0,-2.27938 1.85437,-4.12558 4.14387,-4.12558 H 504 c 5.72061,0 10.35969,-4.61857 10.35969,-10.31394 v -72.19767 c 0,-5.69535 -4.637,-10.31394 -10.35969,-10.31394 z"
+     fill="#f7f9fa"
+     id="path14"
+     style="fill:#37c871;fill-opacity:1;stroke-width:2.06735" />
+</svg>

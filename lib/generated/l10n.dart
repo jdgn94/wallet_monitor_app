@@ -190,6 +190,16 @@ class S {
     );
   }
 
+  /// `Select your style`
+  String get selectIcon {
+    return Intl.message(
+      'Select your style',
+      name: 'selectIcon',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Theme`
   String get theme {
     return Intl.message(

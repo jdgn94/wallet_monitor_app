@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="Layer_1"
+   enable-background="new 0 0 512 512"
+   height="512"
+   viewBox="0 0 512 512"
+   width="512"
+   version="1.1"
+   sodipodi:docname="4-color.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs17" />
+  <sodipodi:namedview
+     id="namedview15"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="1.2304688"
+     inkscape:cx="256.40634"
+     inkscape:cy="255.59364"
+     inkscape:window-width="1920"
+     inkscape:window-height="1012"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Layer_1" />
+  <g
+     id="g12"
+     transform="matrix(1.0392772,0,0,1.0392772,-10.054959,-10.054999)">
+    <path
+       clip-rule="evenodd"
+       d="m 436.837,359.336 c 0,12.853 -1.286,22.621 -3.984,29.304 -2.571,6.684 -6.169,10.025 -10.668,10.025 H 379 v 88.298 c 0,2.442 -0.771,4.627 -2.313,6.555 -1.414,1.928 -4.113,3.471 -7.84,4.756 -3.856,1.156 -8.74,2.185 -14.781,2.828 -6.041,0.642 -13.881,0.9 -23.392,0.9 -9.125,0 -16.708,-0.257 -22.878,-0.9 -6.169,-0.643 -11.182,-1.671 -14.781,-2.828 -3.598,-1.285 -6.169,-2.828 -7.583,-4.756 -1.414,-1.928 -2.056,-4.113 -2.056,-6.555 V 398.665 H 97.012 c -3.47,0 -6.683,-0.385 -9.382,-1.285 -2.828,-0.899 -5.141,-2.956 -7.069,-6.041 -1.799,-3.213 -3.213,-7.711 -4.113,-13.624 -0.9,-5.912 -1.285,-13.753 -1.285,-23.649 0,-8.097 0.128,-15.038 0.514,-20.95 0.385,-5.912 1.028,-11.31 1.928,-16.066 0.9,-4.755 2.185,-9.254 3.727,-13.624 1.671,-4.242 3.727,-8.74 6.298,-13.496 L 238.906,23.11 c 1.285,-2.185 3.47,-4.113 6.426,-5.784 3.085,-1.671 7.198,-2.956 12.596,-4.113 5.398,-1.157 12.339,-1.928 20.564,-2.442 8.226,-0.514 18.38,-0.771 30.075,-0.771 12.853,0 23.906,0.257 32.903,0.899 9.126,0.643 16.451,1.671 21.85,3.085 5.398,1.285 9.382,3.085 11.953,5.013 2.442,2.056 3.727,4.37 3.727,7.198 v 293.04 h 43.185 c 3.984,0 7.454,3.085 10.282,9.254 2.956,6.17 4.37,16.452 4.37,30.847 z M 283.376,95.599 h -0.771 L 154.592,319.235 h 128.784 z"
+       fill="#ff764e"
+       fill-rule="evenodd"
+       id="path2"
+       style="fill:#2a7fff" />
+    <g
+       id="g10" />
+  </g>
+</svg>

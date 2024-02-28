@@ -1,4 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:wallet_monitor/src/db/models/bank.model.dart';
 import 'package:wallet_monitor/src/db/models/currency.model.dart';
@@ -7,8 +9,9 @@ class AccountModel {
   int id;
   String name;
   String icon;
+  String iconCategory;
   String description;
-  int colorIndex;
+  Color color;
   double amount;
   double minAmount;
   int currencyId;
@@ -23,8 +26,9 @@ class AccountModel {
     required this.id,
     required this.name,
     required this.icon,
+    required this.iconCategory,
     required this.description,
-    required this.colorIndex,
+    required this.color,
     required this.amount,
     required this.minAmount,
     required this.currencyId,
@@ -41,8 +45,9 @@ class AccountModel {
     int? id,
     String? name,
     String? icon,
+    String? iconCategory,
     String? description,
-    int? colorIndex,
+    Color? color,
     double? amount,
     double? minAmount,
     int? currencyId,
@@ -58,8 +63,9 @@ class AccountModel {
       id: id ?? this.id,
       name: name ?? this.name,
       icon: icon ?? this.icon,
+      iconCategory: iconCategory ?? this.iconCategory,
       description: description ?? this.description,
-      colorIndex: colorIndex ?? this.colorIndex,
+      color: color ?? this.color,
       amount: amount ?? this.amount,
       minAmount: minAmount ?? this.minAmount,
       currencyId: currencyId ?? this.currencyId,
@@ -78,8 +84,9 @@ class AccountModel {
       'id': id,
       'name': name,
       'icon': icon,
+      'iconCategory': iconCategory,
       'description': description,
-      'colorIndex': colorIndex,
+      'color': color.value,
       'amount': amount,
       'minAmount': minAmount,
       'currencyId': currencyId,
@@ -98,8 +105,9 @@ class AccountModel {
       id: map['id'] as int,
       name: map['name'] as String,
       icon: map['icon'] as String,
+      iconCategory: map['iconCategory'] as String,
       description: map['description'] as String,
-      colorIndex: map['colorIndex'] as int,
+      color: Color(map['color'] as int),
       amount: map['amount'] as double,
       minAmount: map['minAmount'] as double,
       currencyId: map['currencyId'] as int,
@@ -124,7 +132,7 @@ class AccountModel {
 
   @override
   String toString() {
-    return 'AccountModel(id: $id, name: $name, icon: $icon, description: $description, colorIndex: $colorIndex, amount: $amount, minAmount: $minAmount, currencyId: $currencyId, bankId: $bankId, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, totalTransactions: $totalTransactions, currency: $currency, bank: $bank)';
+    return 'AccountModel(id: $id, name: $name, icon: $icon, iconCategory: $iconCategory, description: $description, color: $color, amount: $amount, minAmount: $minAmount, currencyId: $currencyId, bankId: $bankId, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, totalTransactions: $totalTransactions, currency: $currency, bank: $bank)';
   }
 
   @override
@@ -134,8 +142,9 @@ class AccountModel {
     return other.id == id &&
         other.name == name &&
         other.icon == icon &&
+        other.iconCategory == iconCategory &&
         other.description == description &&
-        other.colorIndex == colorIndex &&
+        other.color == color &&
         other.amount == amount &&
         other.minAmount == minAmount &&
         other.currencyId == currencyId &&
@@ -153,8 +162,9 @@ class AccountModel {
     return id.hashCode ^
         name.hashCode ^
         icon.hashCode ^
+        iconCategory.hashCode ^
         description.hashCode ^
-        colorIndex.hashCode ^
+        color.hashCode ^
         amount.hashCode ^
         minAmount.hashCode ^
         currencyId.hashCode ^

@@ -3,9 +3,9 @@ import 'package:wallet_monitor/src/storage/shared_preferences.storage.dart';
 const String _baseUrl = "assets/icons";
 const String _finance = "$_baseUrl/finance";
 
-String getCustomIconUrl(String name, String category) {
+String getCustomIconUrl(String name, String category, {String? forceIconType}) {
   final pref = SettingsLocalStorage.configPref;
-  String iconType = pref.getString('categoryIcon') ?? '';
+  String iconType = forceIconType ?? pref.getString('categoryIcon') ?? '';
   switch (category) {
     case 'finance':
       return "$_baseUrl/finance/$name$iconType.svg";
@@ -41,6 +41,8 @@ String getCustomIconUrl(String name, String category) {
       return "$_baseUrl/transport/$name$iconType.svg";
     case 'travel':
       return "$_baseUrl/travel/$name$iconType.svg";
+    case 'other':
+      return "$_baseUrl/other/$name$iconType.svg";
     default:
       return "$_baseUrl/travel/zeppelin.svg";
   }

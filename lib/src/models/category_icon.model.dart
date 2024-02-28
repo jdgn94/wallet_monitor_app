@@ -54,9 +54,19 @@ class CategoryIcon {
   int get hashCode => name.hashCode ^ url.hashCode;
 }
 
-List<CategoryIcon> CategoryIconFromStringList(
-        List<String> icons, String iconCategory) =>
-    icons
-        .map((icon) =>
-            CategoryIcon(name: icon, url: getCustomIconUrl(icon, iconCategory)))
-        .toList();
+List<CategoryIcon> categoryIconFromStringList(
+    List<String> icons, String iconCategory,
+    {String? forceIconType}) {
+  return icons
+      .map(
+        (icon) => CategoryIcon(
+          name: icon,
+          url: getCustomIconUrl(
+            icon,
+            iconCategory,
+            forceIconType: forceIconType,
+          ),
+        ),
+      )
+      .toList();
+}

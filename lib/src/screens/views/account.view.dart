@@ -13,7 +13,7 @@ class AccountView extends StatelessWidget {
     return Scaffold(
       body: CustomAppBar(
         title: S.current.accounts,
-        pinned: false,
+        // pinned: false,
         child: _body(context),
       ),
     );
@@ -35,20 +35,20 @@ class AccountView extends StatelessWidget {
             ),
             const SizedBox(height: 16.0),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 BoxWidget(
                   title: "Expenses",
                   subtitle: "\$ 350.00",
                   note: "11 transactions",
-                  width: MediaQuery.of(context).size.width / 2 - 24,
+                  width: MediaQuery.of(context).size.width / 2 - 30,
                   subtitleColor: AlertColors.error,
                 ),
-                const SizedBox(width: 16.0),
                 BoxWidget(
                   title: "Incomes",
                   subtitle: "\$ 950.00",
                   note: "11 transactions",
-                  width: MediaQuery.of(context).size.width / 2 - 24,
+                  width: MediaQuery.of(context).size.width / 2 - 30,
                   subtitleColor: AlertColors.success,
                 ),
               ],

@@ -1,10 +1,12 @@
 import 'dart:convert';
+import 'dart:ui';
 
 class BankModel {
   int id;
   String name;
   String icon;
-  int colorIndex;
+  String iconCategory;
+  Color color;
   DateTime createdAt;
   DateTime updatedAt;
   DateTime? deletedAt;
@@ -13,7 +15,8 @@ class BankModel {
     required this.id,
     required this.name,
     required this.icon,
-    required this.colorIndex,
+    required this.iconCategory,
+    required this.color,
     required this.createdAt,
     required this.updatedAt,
     this.deletedAt,
@@ -24,7 +27,8 @@ class BankModel {
     int? id,
     String? name,
     String? icon,
-    int? colorIndex,
+    String? iconCategory,
+    Color? color,
     DateTime? createdAt,
     DateTime? updatedAt,
     DateTime? deletedAt,
@@ -34,7 +38,8 @@ class BankModel {
       id: id ?? this.id,
       name: name ?? this.name,
       icon: icon ?? this.icon,
-      colorIndex: colorIndex ?? this.colorIndex,
+      iconCategory: iconCategory ?? this.iconCategory,
+      color: color ?? this.color,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
       deletedAt: deletedAt ?? this.deletedAt,
@@ -47,7 +52,8 @@ class BankModel {
       'id': id,
       'name': name,
       'icon': icon,
-      'colorIndex': colorIndex,
+      'iconCategory': iconCategory,
+      'color': color.value,
       'createdAt': createdAt.millisecondsSinceEpoch,
       'updatedAt': updatedAt.millisecondsSinceEpoch,
       'deletedAt': deletedAt?.millisecondsSinceEpoch,
@@ -60,7 +66,8 @@ class BankModel {
       id: map['id'] as int,
       name: map['name'] as String,
       icon: map['icon'] as String,
-      colorIndex: map['colorIndex'] as int,
+      iconCategory: map['iconCategory'] as String,
+      color: Color(map['color'] as int),
       createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
       updatedAt: DateTime.fromMillisecondsSinceEpoch(map['updatedAt'] as int),
       deletedAt: map['deletedAt'] != null
@@ -77,7 +84,7 @@ class BankModel {
 
   @override
   String toString() {
-    return 'BankModel(id: $id, name: $name, icon: $icon, colorIndex: $colorIndex, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, totalAccounts: $totalAccounts)';
+    return 'BankModel(id: $id, name: $name, icon: $icon, iconCategory: $iconCategory, color: $color, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, totalAccounts: $totalAccounts)';
   }
 
   @override
@@ -87,7 +94,8 @@ class BankModel {
     return other.id == id &&
         other.name == name &&
         other.icon == icon &&
-        other.colorIndex == colorIndex &&
+        other.iconCategory == iconCategory &&
+        other.color == color &&
         other.createdAt == createdAt &&
         other.updatedAt == updatedAt &&
         other.deletedAt == deletedAt &&
@@ -99,7 +107,8 @@ class BankModel {
     return id.hashCode ^
         name.hashCode ^
         icon.hashCode ^
-        colorIndex.hashCode ^
+        iconCategory.hashCode ^
+        color.hashCode ^
         createdAt.hashCode ^
         updatedAt.hashCode ^
         deletedAt.hashCode ^

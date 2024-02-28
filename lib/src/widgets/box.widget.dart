@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_monitor/src/widgets/custom_container.widget.dart';
 
 class BoxWidget extends StatelessWidget {
   final Function()? onTap;
@@ -21,55 +22,41 @@ class BoxWidget extends StatelessWidget {
   });
 
   @override
-  InkWell build(BuildContext context) {
-    return InkWell(
+  CustomContainerWidget build(BuildContext context) {
+    return CustomContainerWidget(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(10.0),
-      child: Ink(
-        width: width,
-        padding: const EdgeInsets.all(8.0),
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.background,
-          borderRadius: BorderRadius.circular(10.0),
-          boxShadow: [
-            BoxShadow(
-              color: Theme.of(context).shadowColor,
-              blurRadius: 10.0,
+      width: width,
+      child: Wrap(
+        direction: Axis.vertical,
+        crossAxisAlignment: wrapCrossAlignment,
+        runAlignment: WrapAlignment.center,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
             ),
-          ],
-        ),
-        child: Wrap(
-          direction: Axis.vertical,
-          crossAxisAlignment: wrapCrossAlignment,
-          runAlignment: WrapAlignment.center,
-          children: [
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
+            textAlign: TextAlign.center,
+          ),
+          Text(
+            subtitle,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: subtitleColor,
             ),
-            Text(
-              subtitle,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: subtitleColor,
-              ),
-              textAlign: TextAlign.center,
+            textAlign: TextAlign.center,
+          ),
+          Text(
+            note,
+            style: TextStyle(
+              color:
+                  Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
             ),
-            Text(
-              note,
-              style: TextStyle(
-                color:
-                    Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
     );
   }

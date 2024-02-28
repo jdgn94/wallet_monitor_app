@@ -53,23 +53,29 @@ class _LanguageSelectorWidgetState extends State<LanguageSelectorWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: widget.margin ?? const EdgeInsets.all(0),
-      padding: widget.padding ?? const EdgeInsets.all(0),
-      width: widget.width,
-      child: InkWell(
-        onTap: _openLanguageSelector,
-        borderRadius: BorderRadius.circular(40),
-        child: Ink(
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
+    return Material(
+      color: Colors.transparent,
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Container(
+          margin: widget.margin ?? const EdgeInsets.all(0),
+          padding: widget.padding ?? const EdgeInsets.all(0),
+          width: widget.width,
+          child: InkWell(
+            onTap: _openLanguageSelector,
             borderRadius: BorderRadius.circular(40),
-            color: Theme.of(context).colorScheme.background,
-            boxShadow: [
-              StylesHelper.boxShadow(context),
-            ],
+            child: Ink(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(40),
+                color: Theme.of(context).colorScheme.background,
+                boxShadow: [
+                  StylesHelper.boxShadow(context),
+                ],
+              ),
+              child: inputBody(context),
+            ),
           ),
-          child: inputBody(context),
         ),
       ),
     );

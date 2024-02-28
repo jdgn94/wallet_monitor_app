@@ -6,6 +6,7 @@ import 'package:wallet_monitor/src/db/models/currency.model.dart';
 import 'package:wallet_monitor/src/settings/app_color.settings.dart';
 import 'package:wallet_monitor/src/widgets/custom_button.widget.dart';
 import 'package:wallet_monitor/src/widgets/custom_container.widget.dart';
+import 'package:wallet_monitor/src/widgets/custom_icon.widget.dart';
 
 showKeyboard(
   BuildContext context,
@@ -129,6 +130,7 @@ showKeyboard(
                         .withOpacity(.1),
                   ),
                   _keyboard(context, onChange, clear),
+                  _confirmAmount(context),
                 ],
               ),
             ),
@@ -207,7 +209,7 @@ Container _keyboard(
   ];
 
   return Container(
-    height: 360,
+    height: 300,
     width: MediaQuery.of(context).size.width,
     constraints: const BoxConstraints(
       maxWidth: 600,
@@ -231,10 +233,16 @@ Widget _key(
   Function(String) onChange,
   Function() clear,
 ) {
-  final color = _getShadowColor(context, key);
+  final color = _getShadowColor(key);
+  final urlKeyboard = _getUrlIcon(key);
+  final iconKey = categoryIconFromStringList(
+    [urlKeyboard],
+    'other',
+    // forceIconType: '-color',
+  )[0];
 
   return CustomContainerWidget(
-    height: 66,
+    height: 55,
     width: MediaQuery.of(context).size.width * .25 - 25,
     margin: const EdgeInsets.all(7.0),
     boxConstraints: const BoxConstraints(maxWidth: 150 - 25),
@@ -243,11 +251,16 @@ Widget _key(
     shadowColor: color,
     onTap: () => onChange(key),
     onLongPress: key == "del" ? clear : null,
-    child: Center(child: Text(key)),
+    child: Center(
+      child: CustomIconWidget(
+        categoryIcon: iconKey,
+        size: key == '.' || key == ',' ? 12 : 33,
+      ),
+    ),
   );
 }
 
-Color _getShadowColor(BuildContext context, String key) {
+Color _getShadowColor(String key) {
   if (key == '+' || key == '-' || key == '*' || key == '/' || key == '.') {
     return DefaultColors.green;
   }
@@ -255,14 +268,35 @@ Color _getShadowColor(BuildContext context, String key) {
     return DefaultColors.red;
   }
 
-  return Theme.of(context).colorScheme.primary;
+  return DefaultColors.blue;
+}
+
+String _getUrlIcon(String key) {
+  switch (key) {
+    case '+':
+      return 'plus';
+    case '-':
+      return 'minus';
+    case '/':
+      return 'division';
+    case '*':
+      return 'multiplication';
+    case 'del':
+      return 'backspace';
+    case '.':
+      return 'point';
+    case ',':
+      return 'comma';
+    default:
+      return key;
+  }
 }
 
 Widget _confirmAmount(BuildContext context) {
   return CustomButtonWidget(
     text: S.current.confirmAmount,
     width: MediaQuery.of(context).size.width - 20,
-    margin: const EdgeInsets.symmetric(horizontal: 10),
+    margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5.0),
     fontSize: 20,
     centerText: true,
   );

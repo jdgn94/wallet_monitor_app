@@ -1,6 +1,6 @@
 {
-    "name": "wallet_monitor",
-    "short_name": "wallet_monitor",
+    "name": "Wallet Monitor",
+    "short_name": "Wallet Monitor",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_monitor/generated/l10n.dart';
 import 'package:wallet_monitor/src/helper/constants/icons/entertainment.icons.dart';
+import 'package:wallet_monitor/src/helper/constants/icons/family.icons.dart';
 import 'package:wallet_monitor/src/helper/constants/icons/finance.icons.dart';
+import 'package:wallet_monitor/src/helper/constants/icons/food_and_drink.icons.dart';
 import 'package:wallet_monitor/src/helper/constants/icons/home.icons.dart';
 import 'package:wallet_monitor/src/helper/styles.helper.dart';
 import 'package:wallet_monitor/src/settings/app_size.settings.dart';
@@ -19,79 +21,22 @@ showDialogIconSelector(
   List<String> finance = financeList;
   List<String> home = homeList;
   List<String> entertainment = entertainmentList;
-  List<String> foodAndDrink = [
-    "affogato",
-    "bread-1",
-    "bread",
-    "bubble-tea",
-    "cake-slice",
-    "cake",
-    "candy-1",
-    "candy",
-    "canned-food",
-    "cereals",
-    "chocolate",
-    "cocktail-shaker",
-    "coffee-cup-2",
-    "coffee-cup",
-    "coffee-mug",
-    "cookie",
-    "diet",
-    "doughnut",
-    "drink",
-    "food",
-    "fried-rice",
-    "glass",
-    "healthy-food",
-    "hot",
-    "ice-cream-1",
-    "ice-cream",
-    "juice",
-    "korean",
-    "liquor",
-    "lollipop-1",
-    "lollipop",
-    "mashed-potato",
-    "milk",
-    "muffin",
-    "muffins",
-    "nachos",
-    "omelette",
-    "pancakes",
-    "pasta",
-    "pizza-slice",
-    "popsicle",
-    "porridge",
-    "rice-1",
-    "rice",
-    "samosa",
-    "sandwich-1",
-    "sandwich",
-    "satay",
-    "sausage",
-    "shaved-ice",
-    "soup",
-    "steak",
-    "sushi",
-    "taco",
-    "tea-cup-1",
-    "tea-cup",
-    "water-bottle",
-    "watermelon",
-    "wine",
-  ];
+  List<String> foodAndDrink = foodAndDrinkList;
+  List<String> family = familyList;
 
   showDialog(
     context: context,
     builder: (context) {
       return StatefulBuilder(builder: (context, setState) {
         List<CategoryIcon> financeIcons =
-            CategoryIconFromStringList(finance, 'finance');
-        List<CategoryIcon> homeIcons = CategoryIconFromStringList(home, 'home');
+            categoryIconFromStringList(finance, 'finance');
+        List<CategoryIcon> homeIcons = categoryIconFromStringList(home, 'home');
         List<CategoryIcon> entertainmentIcons =
-            CategoryIconFromStringList(entertainment, 'entertainment');
+            categoryIconFromStringList(entertainment, 'entertainment');
         List<CategoryIcon> foodAndDrinkIcons =
-            CategoryIconFromStringList(foodAndDrink, 'food_and_drink');
+            categoryIconFromStringList(foodAndDrink, 'food_and_drink');
+        List<CategoryIcon> familyIcons =
+            categoryIconFromStringList(family, 'family');
 
         void _selectIcon(String name, String type) {
           setState(() {
@@ -144,6 +89,15 @@ showDialogIconSelector(
                     'food_and_drink',
                     iconSelected,
                     'food_and_drink' == categorySelected,
+                    _selectIcon,
+                  ),
+                  _subtitleCategory(context, S.current.family),
+                  _iconCategory(
+                    context,
+                    familyIcons,
+                    'family',
+                    iconSelected,
+                    'family' == categorySelected,
                     _selectIcon,
                   ),
                 ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_monitor/src/helper/animation.helper.dart';
+import 'package:wallet_monitor/src/helper/styles.helper.dart';
 
 class CustomAppBar extends StatefulWidget {
   final String title;
@@ -43,8 +44,10 @@ class _CustomAppBarState extends State<CustomAppBar> {
     return NestedScrollView(
       headerSliverBuilder: headerSilverBuilder,
       body: Padding(
-        padding:
-            EdgeInsets.only(top: (widget.toolbarHeight ?? kToolbarHeight) + 25),
+        padding: EdgeInsets.only(
+            top:
+                (widget.pinned ? (widget.toolbarHeight ?? kToolbarHeight) : 0) +
+                    30),
         child: widget.child,
       ),
     );
@@ -92,24 +95,32 @@ class _CustomAppBarState extends State<CustomAppBar> {
       isExpandedWidget: true,
       begin: 1.0,
       end: 0.0,
-      child: Ink(
-        decoration: BoxDecoration(
-          color:
-              (widget.backgroundColor ?? Theme.of(context).colorScheme.primary)
-                  .withOpacity(0.5),
-          borderRadius: const BorderRadius.only(
-            bottomLeft: Radius.circular(20),
-            bottomRight: Radius.circular(20),
+      child: Container(
+        padding: const EdgeInsets.only(bottom: 10.0),
+        child: Ink(
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.background,
+            boxShadow: [
+              StylesHelper.boxShadow(context),
+            ],
+            borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20),
+            ),
           ),
-          // boxShadow: const [
-          //   BoxShadow(
-          //     color: Colors.black,
-          //     blurRadius: 10.0,
-          //     spreadRadius: 1.0,
-          //   ),
-          // ],
+          child: Ink(
+            decoration: BoxDecoration(
+              color: (widget.backgroundColor ??
+                      Theme.of(context).colorScheme.primary)
+                  .withOpacity(0.7),
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
+              ),
+            ),
+            // child: widget.expandedWidget!,
+          ),
         ),
-        // child: widget.expandedWidget!,
       ),
     );
   }

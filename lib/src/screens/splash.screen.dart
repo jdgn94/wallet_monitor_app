@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:wallet_monitor/src/helper/argument.helper.dart';
 import 'package:wallet_monitor/src/helper/constants/image.constants.dart';
 import 'package:wallet_monitor/src/storage/shared_preferences.storage.dart';
 
@@ -11,29 +10,28 @@ class SplashScreen extends StatelessWidget {
     final pref = SettingsLocalStorage.configPref;
     if (pref.getBool('visiteWelcomeScreen') == null) {
       pref.setBool("visiteWelcomeScreen", true);
+      return;
     }
-    if (pref.getBool("visiteSelectLangScreen") == null) {
-      pref.setBool("visiteSelectLangScreen", false);
-    }
-    if (pref.getBool("visitAccountInitScreen") == null) {
-      pref.setBool("visitAccountInitScreen", false);
+    if (pref.getBool("visiteInitialConfigScreen") == null) {
+      pref.setBool("visiteInitialConfigScreen", false);
+      return;
     }
 
     if (pref.getBool("visiteWelcomeScreen")!) {
       Navigator.of(context)
           .pushNamedAndRemoveUntil("/welcome", (route) => false);
+      return;
     }
-    if (pref.getBool("visiteSelectLangScreen")!) {
+    if (pref.getBool("visiteInitialConfigScreen")!) {
       Navigator.of(context)
-          .pushNamedAndRemoveUntil("/language_selector", (route) => false);
+          .pushNamedAndRemoveUntil("/initial_config", (route) => false);
+      return;
     }
-    if (pref.getBool("visitAccountInitScreen")!) {
-      Navigator.of(context).pushNamedAndRemoveUntil(
-        "/account",
-        (route) => false,
-        arguments: const AccountArguments(initApp: true),
-      );
-    }
+
+    Navigator.of(context).pushNamedAndRemoveUntil(
+      "/",
+      (route) => false,
+    );
   }
 
   @override
@@ -43,7 +41,11 @@ class SplashScreen extends StatelessWidget {
 
     return Scaffold(
       body: Center(
-        child: Image.asset(ImageConstants.logo),
+        child: Image.asset(
+          ImageConstants.logo,
+          width: 160,
+          height: 160,
+        ),
       ),
     );
   }

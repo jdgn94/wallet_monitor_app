@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:wallet_monitor/generated/l10n.dart';
 import 'package:wallet_monitor/src/screens/views/account.view.dart';
 import 'package:wallet_monitor/src/settings/app_icons.settings.dart';
@@ -58,29 +59,31 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  BottomNavigationBar _bottomNavigationBar() {
-    return BottomNavigationBar(
-      unselectedItemColor: Theme.of(context).colorScheme.onBackground,
-      selectedItemColor: Theme.of(context).colorScheme.primary,
-      currentIndex: _navBarIndex,
-      onTap: _changePage,
-      items: [
-        BottomNavigationBarItem(
-          icon: Icon(getIcon("account")),
-          label: S.current.accounts,
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(getIcon("transaction")),
-          label: S.current.transactions,
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(getIcon("budgets")),
-          label: S.current.budgets,
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(getIcon("more")),
-          label: S.current.more,
-        ),
+  GNav _bottomNavigationBar() {
+    return GNav(
+      haptic: true,
+      selectedIndex: _navBarIndex,
+      onTabChange: _changePage,
+      // tabActiveBorder: Border.all(
+      //   color: Theme.of(context).colorScheme.primary,
+      //   width: 1,
+      // ),
+      // curve: Curves.easeOutExpo,
+      duration: const Duration(milliseconds: 900),
+      tabBackgroundColor:
+          Theme.of(context).colorScheme.primary.withOpacity(0.3),
+      // tabShadow: [
+      //   BoxShadow(color: Colors.grey.withOpacity(0.5), blurRadius: 8)
+      // ],
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      tabMargin: const EdgeInsets.symmetric(vertical: 10.0),
+      iconSize: 24,
+      gap: 8,
+      tabs: [
+        GButton(icon: getIcon("account"), text: S.current.accounts),
+        GButton(icon: getIcon("transaction"), text: S.current.transactions),
+        GButton(icon: getIcon("budgets"), text: S.current.budgets),
+        GButton(icon: getIcon("more"), text: S.current.more),
       ],
     );
   }
