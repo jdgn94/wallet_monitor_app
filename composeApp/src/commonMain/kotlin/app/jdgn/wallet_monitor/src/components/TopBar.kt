@@ -8,20 +8,27 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import org.jetbrains.compose.resources.StringResource
 import walletmonitor.composeapp.generated.resources.Res
 import walletmonitor.composeapp.generated.resources.arrow_left
-import walletmonitor.composeapp.generated.resources.line_horizontal_3_filled
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(
-    title: String,
+    title: String = "No title",
+    resourceTitle: StringResource? = null,
     goBack: Boolean = false,
     navController: NavHostController = rememberNavController()
 ) {
     TopAppBar(
-        title = { Text(title) },
+        title = { Text(
+            if (resourceTitle == null)
+                title
+            else
+                stringResource(resourceTitle)
+        ) },
         navigationIcon = {
             if (goBack) {
                 IconButton(onClick = { navController.popBackStack() }) {

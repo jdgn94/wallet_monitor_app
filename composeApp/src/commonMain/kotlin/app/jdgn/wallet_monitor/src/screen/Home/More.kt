@@ -15,17 +15,28 @@ import app.jdgn.expense_monitor.currentPlatform
 import app.jdgn.expense_monitor.src.components.CustomListItem
 import app.jdgn.expense_monitor.src.components.CustomListSubTitle
 import walletmonitor.composeapp.generated.resources.Res
+import walletmonitor.composeapp.generated.resources.about
+import walletmonitor.composeapp.generated.resources.accounts
 import walletmonitor.composeapp.generated.resources.arrows_up_down
 import walletmonitor.composeapp.generated.resources.bank
+import walletmonitor.composeapp.generated.resources.biometric
 import walletmonitor.composeapp.generated.resources.calendar
 import walletmonitor.composeapp.generated.resources.card
+import walletmonitor.composeapp.generated.resources.expenses_income
 import walletmonitor.composeapp.generated.resources.face_id
+import walletmonitor.composeapp.generated.resources.feedback
 import walletmonitor.composeapp.generated.resources.fingerprint
+import walletmonitor.composeapp.generated.resources.goal
 import walletmonitor.composeapp.generated.resources.info
 import walletmonitor.composeapp.generated.resources.message
+import walletmonitor.composeapp.generated.resources.more
+import walletmonitor.composeapp.generated.resources.movements
 import walletmonitor.composeapp.generated.resources.password
 import walletmonitor.composeapp.generated.resources.person
+import walletmonitor.composeapp.generated.resources.persons
 import walletmonitor.composeapp.generated.resources.piggy
+import walletmonitor.composeapp.generated.resources.pin
+import walletmonitor.composeapp.generated.resources.security
 import walletmonitor.composeapp.generated.resources.settings
 
 object More {
@@ -40,33 +51,33 @@ object More {
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.Start
         ) {
-            CustomListSubTitle("Movements")
+            CustomListSubTitle(textResource = Res.string.movements)
             CustomListItem(
                 icon = Res.drawable.calendar,
-                title = "Calendar",
+                titleResource = Res.string.calendar,
             )
             CustomListItem(
                 icon = Res.drawable.piggy,
-                title = "Goal",
+                titleResource = Res.string.goal,
             )
             CustomListItem(
                 icon = Res.drawable.arrows_up_down,
-                title = "Expenses and Income",
+                titleResource = Res.string.expenses_income,
             )
-            CustomListSubTitle("Accounts")
+            CustomListSubTitle(textResource = Res.string.accounts)
             CustomListItem(
                 icon = Res.drawable.bank,
-                title = "Accounts",
+                titleResource = Res.string.accounts,
                 onClick = { navController.navigate("accounts") }
             )
             CustomListItem(
                 icon = Res.drawable.person,
-                title = "Persons",
+                titleResource = Res.string.persons,
             )
-            CustomListSubTitle("Security")
+            CustomListSubTitle(textResource = Res.string.security)
             CustomListItem(
                 icon = Res.drawable.password,
-                title = "Pin",
+                titleResource = Res.string.pin,
             )
             CustomListItem(
                 icon =
@@ -74,24 +85,24 @@ object More {
                         Res.drawable.fingerprint
                     else
                         Res.drawable.face_id,
-                title =
+                titleResource =
                     if (currentPlatform == CurrentPlatform.ANDROID)
-                        "Biometric"
+                        Res.string.biometric
                     else
-                        "Face id",
+                        Res.string.face_id,
             )
-            CustomListSubTitle("More")
+            CustomListSubTitle(textResource = Res.string.more)
             CustomListItem(
                 icon = Res.drawable.settings,
-                title = "Settings",
+                titleResource = Res.string.settings,
             )
             CustomListItem(
                 icon = Res.drawable.info,
-                title = "Info",
+                titleResource = Res.string.about,
             )
             CustomListItem(
                 icon = Res.drawable.message,
-                title = "Feedback",
+                titleResource = Res.string.feedback,
             )
         }
     }

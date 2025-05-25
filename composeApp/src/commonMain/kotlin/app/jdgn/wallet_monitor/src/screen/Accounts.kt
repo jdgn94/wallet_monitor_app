@@ -10,13 +10,19 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import app.jdgn.expense_monitor.src.components.TopBar
+import walletmonitor.composeapp.generated.resources.Res
+import walletmonitor.composeapp.generated.resources.accounts
 
 @Composable
 fun Accounts(navController: NavHostController = rememberNavController()) {
     val scrollState = rememberScrollState()
 
     Scaffold(
-        topBar = { TopBar("Accounts", goBack = true, navController = navController) }
+        topBar = { TopBar(
+            goBack = true,
+            resourceTitle = Res.string.accounts,
+            navController = navController
+        ) }
     ) {
         Column(
             modifier = Modifier

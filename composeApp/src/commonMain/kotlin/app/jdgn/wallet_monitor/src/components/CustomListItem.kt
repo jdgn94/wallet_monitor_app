@@ -22,7 +22,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 
 enum class CustomListItemOption {
     NONE,
@@ -34,8 +36,10 @@ enum class CustomListItemOption {
 @Composable
 fun CustomListItem(
     icon: DrawableResource,
-    title: String,
+    title: String = "No Title",
+    titleResource: StringResource? = null,
     subTitle: String = "",
+    subTitleResource: StringResource? = null,
     extraItem: CustomListItemOption = CustomListItemOption.NONE,
     onClick: () -> Unit = {}
 ) {
@@ -76,16 +80,24 @@ fun CustomListItem(
                     horizontalAlignment = Alignment.Start
                 ) {
                     Text(
-                        title,
+                        text =
+                            if (titleResource != null)
+                                stringResource(titleResource)
+                            else
+                                title,
                         color = MaterialTheme.colorScheme.primary, // Text is only visible when selected, so always primary color
                         style = MaterialTheme.typography.labelLarge, // Consider a smaller style for app bar text
                         fontSize = MaterialTheme.typography.labelLarge.fontSize,
                         maxLines = 1 // Ensure text doesn't wrap unexpectedly
                     )
-                    if (subTitle.isNotEmpty()) {
+                    if (subTitle.isNotEmpty() || subTitleResource != null) {
                         Spacer(Modifier.height(10.dp))
                         Text(
-                            subTitle,
+                            text =
+                                if (subTitleResource != null)
+                                    stringResource(subTitleResource)
+                                else
+                                    subTitle,
                             color = MaterialTheme.colorScheme.primary, // Text is only visible when selected, so always primary color
                             style = MaterialTheme.typography.labelMedium, // Consider a smaller style for app bar text
                             maxLines = 2 // Ensure text doesn't wrap unexpectedly

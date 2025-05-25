@@ -27,6 +27,14 @@ import androidx.navigation.compose.rememberNavController
 import app.jdgn.expense_monitor.src.components.BottomBar
 import app.jdgn.expense_monitor.src.components.TopBar
 import androidx.activity.compose.BackHandler
+import androidx.compose.material3.ButtonDefaults
+import org.jetbrains.compose.resources.stringResource
+import walletmonitor.composeapp.generated.resources.Res
+import walletmonitor.composeapp.generated.resources.app_name
+import walletmonitor.composeapp.generated.resources.confirm_exit
+import walletmonitor.composeapp.generated.resources.confirm_exit_message
+import walletmonitor.composeapp.generated.resources.no
+import walletmonitor.composeapp.generated.resources.yes
 
 @OptIn(ExperimentalAnimationApi::class) // Required for AnimatedContent
 @Composable
@@ -47,20 +55,25 @@ fun HomeScreen(
     if (showDialog) {
         AlertDialog(
             onDismissRequest = { showDialog = false },
-            title = { Text("Confirm Exit") },
-            text = { Text("Are you sure you want to go back?") },
+            title = { Text(stringResource(Res.string.confirm_exit)) },
+            text = { Text(stringResource(Res.string.confirm_exit_message)) },
             confirmButton = {
-                Button(onClick = {
+                Button(
+                    onClick = {
                     showDialog = false
                     // Close the app
                     activity?.finishAffinity() // Or activity?.finish()
-                }) {
-                    Text("Yes")
+                    },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = androidx.compose.material3.MaterialTheme.colorScheme.error
+                    )
+                ) {
+                    Text(stringResource(Res.string.yes))
                 }
             },
             dismissButton = {
                 Button(onClick = { showDialog = false }) {
-                    Text("No")
+                    Text(stringResource(Res.string.no))
                 }
             }
         )
@@ -80,7 +93,7 @@ fun HomeScreen(
 
 
     Scaffold(
-        topBar = { TopBar("Wallet Monitor") },
+        topBar = { TopBar(resourceTitle = Res.string.app_name) },
         bottomBar = {
             BottomBar(
                 onChange = { newIndex -> changeTab(newIndex) },

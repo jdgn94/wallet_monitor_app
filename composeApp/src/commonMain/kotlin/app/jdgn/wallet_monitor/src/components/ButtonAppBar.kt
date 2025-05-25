@@ -28,12 +28,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun ButtonAppBar(
     onClick: () -> Unit,
     text: String = "",
+    textResource: StringResource? = null,
     icon: DrawableResource,
     iconOnSelected: DrawableResource,
     selected: Boolean = false,
@@ -88,7 +91,11 @@ fun ButtonAppBar(
                 exit = fadeOut(animationSpec = tween(durationMillis = 150)) + slideOutHorizontally(animationSpec = tween(durationMillis = 150), targetOffsetX = { it / 2 })
             ) {
                 Text(
-                    text = text,
+                    text =
+                        if (textResource == null)
+                            text
+                        else
+                            stringResource(textResource),
                     color = MaterialTheme.colorScheme.primary, // Text is only visible when selected, so always primary color
                     style = MaterialTheme.typography.labelMedium, // Consider a smaller style for app bar text
                     maxLines = 1 // Ensure text doesn't wrap unexpectedly
