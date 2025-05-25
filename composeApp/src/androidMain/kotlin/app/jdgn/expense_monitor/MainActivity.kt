@@ -1,4 +1,4 @@
-package app.jdgn.expense_monitor
+package app.jdgn.wallet_monitor
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

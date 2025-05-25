@@ -10,10 +10,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import app.jdgn.expense_monitor.CurrentPlatform
-import app.jdgn.expense_monitor.currentPlatform
-import app.jdgn.expense_monitor.src.components.CustomListItem
-import app.jdgn.expense_monitor.src.components.CustomListSubTitle
+import app.jdgn.wallet_monitor.CurrentPlatform
+import app.jdgn.wallet_monitor.currentPlatform
+import app.jdgn.wallet_monitor.src.components.CustomListItem
+import app.jdgn.wallet_monitor.src.components.CustomListSubTitle
 import walletmonitor.composeapp.generated.resources.Res
 import walletmonitor.composeapp.generated.resources.about
 import walletmonitor.composeapp.generated.resources.accounts

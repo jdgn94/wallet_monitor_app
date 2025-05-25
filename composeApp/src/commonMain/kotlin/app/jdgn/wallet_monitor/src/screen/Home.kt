@@ -24,8 +24,8 @@ import androidx.compose.ui.platform.LocalContext
 import android.app.Activity
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import app.jdgn.expense_monitor.src.components.BottomBar
-import app.jdgn.expense_monitor.src.components.TopBar
+import app.jdgn.wallet_monitor.src.components.BottomBar
+import app.jdgn.wallet_monitor.src.components.TopBar
 import androidx.activity.compose.BackHandler
 import androidx.compose.material3.ButtonDefaults
 import org.jetbrains.compose.resources.stringResource

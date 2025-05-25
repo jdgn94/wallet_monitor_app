@@ -1,4 +1,4 @@
-package app.jdgn.expense_monitor.src.screen
+package app.jdgn.wallet_monitor.src.screen
 
 import HomeScreen
 import androidx.compose.animation.core.Animatable

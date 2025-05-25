@@ -1,4 +1,4 @@
-package app.jdgn.expense_monitor.src.screen
+package app.jdgn.wallet_monitor.src.screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import app.jdgn.expense_monitor.src.components.TopBar
+import app.jdgn.wallet_monitor.src.components.TopBar
 import walletmonitor.composeapp.generated.resources.Res
 import walletmonitor.composeapp.generated.resources.accounts
 

@@ -1,4 +1,4 @@
-package app.jdgn.expense_monitor.src.components
+package app.jdgn.wallet_monitor.src.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border

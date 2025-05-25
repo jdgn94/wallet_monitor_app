@@ -1,4 +1,4 @@
-package app.jdgn.expense_monitor
+package app.jdgn.wallet_monitor
 
 interface Platform {
     val name: String

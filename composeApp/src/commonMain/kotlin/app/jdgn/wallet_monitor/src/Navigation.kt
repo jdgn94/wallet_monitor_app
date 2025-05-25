@@ -1,4 +1,4 @@
-package app.jdgn.expense_monitor.src
+package app.jdgn.wallet_monitor.src
 
 import HomeScreen
 import androidx.compose.runtime.Composable
@@ -7,9 +7,9 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import app.jdgn.expense_monitor.src.screen.Accounts
-import app.jdgn.expense_monitor.src.screen.SplashScreen
-import app.jdgn.expense_monitor.src.utils.AppConstants
+import app.jdgn.wallet_monitor.src.screen.Accounts
+import app.jdgn.wallet_monitor.src.screen.SplashScreen
+import app.jdgn.wallet_monitor.src.utils.AppConstants
 
 @Composable
 fun Navigation(modifier:Modifier = Modifier) {

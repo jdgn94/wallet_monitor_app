@@ -1,4 +1,4 @@
-package app.jdgn.expense_monitor.src.components
+package app.jdgn.wallet_monitor.src.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateDpAsState

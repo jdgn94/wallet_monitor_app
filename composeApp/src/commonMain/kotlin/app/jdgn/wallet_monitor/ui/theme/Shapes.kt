@@ -1,4 +1,4 @@
-package app.jdgn.expense_monitor.ui.theme
+package app.jdgn.wallet_monitor.ui.theme
 
 class Shapes {
 }

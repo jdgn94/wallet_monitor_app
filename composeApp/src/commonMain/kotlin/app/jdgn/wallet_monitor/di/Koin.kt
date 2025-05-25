@@ -1,4 +1,8 @@
 package app.jdgn.wallet_monitor.di
 
-class Koin {
+import org.koin.core.module.Module
+
+fun initKoin(
+    additionalModules: List<Module> = emptyList(),
+) {
 }

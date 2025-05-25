@@ -1,4 +1,4 @@
-package app.jdgn.expense_monitor.src.components
+package app.jdgn.wallet_monitor.src.components
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
