@@ -1,0 +1,126 @@
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.SizeTransform
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import android.app.Activity
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import app.jdgn.expense_monitor.src.components.BottomBar
+import app.jdgn.expense_monitor.src.components.TopBar
+import androidx.activity.compose.BackHandler
+
+@OptIn(ExperimentalAnimationApi::class) // Required for AnimatedContent
+@Composable
+fun HomeScreen(
+    navController: NavHostController = rememberNavController(),
+) {
+    var tabSelector: Int by rememberSaveable { mutableStateOf(0) }
+    var showDialog by remember { mutableStateOf(false) }
+
+    val context = LocalContext.current
+    val activity = context as? Activity
+
+
+    fun changeTab(index: Int) {
+        tabSelector = index
+    }
+
+    if (showDialog) {
+        AlertDialog(
+            onDismissRequest = { showDialog = false },
+            title = { Text("Confirm Exit") },
+            text = { Text("Are you sure you want to go back?") },
+            confirmButton = {
+                Button(onClick = {
+                    showDialog = false
+                    // Close the app
+                    activity?.finishAffinity() // Or activity?.finish()
+                }) {
+                    Text("Yes")
+                }
+            },
+            dismissButton = {
+                Button(onClick = { showDialog = false }) {
+                    Text("No")
+                }
+            }
+        )
+    }
+
+    // Intercept back press if not on the first tab
+    // The BackHandler is enabled only when tabSelector is not 0
+    BackHandler(enabled = true) {
+        // When back is pressed and we are not on tab 0, go to tab 0
+        if (tabSelector != 0) {
+            changeTab(0)
+        } else {
+            // If we are on tab 0, show the dialog
+            showDialog = true
+        }
+    }
+
+
+    Scaffold(
+        topBar = { TopBar("Wallet Monitor") },
+        bottomBar = {
+            BottomBar(
+                onChange = { newIndex -> changeTab(newIndex) },
+                index = tabSelector
+            )
+        }
+    ) { innerPadding ->
+        AnimatedContent(
+            targetState = tabSelector,
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize(),
+            transitionSpec = {
+                val enterTransition = if (targetState > initialState) {
+                    slideInHorizontally { height -> height } + fadeIn()
+                } else {
+                    slideInHorizontally { height -> -height } + fadeIn()
+                }
+
+                val exitTransition = if (targetState > initialState) {
+                    slideOutHorizontally { height -> -height } + fadeOut()
+                } else {
+                    slideOutHorizontally { height -> height } + fadeOut()
+                }
+
+                enterTransition.togetherWith(exitTransition).using(
+                    SizeTransform(clip = false)
+                )
+            },
+            label = "TabContentAnimation" // Optional label for debugging
+        ) { targetSelectedTab ->
+            Box(modifier = Modifier.fillMaxSize()) {
+                when (targetSelectedTab) {
+                    0 -> Home.Content()
+                    1 -> Budgets.Content()
+                    2 -> Transactions.Content()
+                    3 -> More.Content(navController)
+                    else -> Home.Content() // Default case
+                }
+            }
+        }
+    }
+}
