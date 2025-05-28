@@ -1,7 +1,7 @@
-package app.wallet_monitor.icons
+package app.jdgn.wallet_monitor.ui
 
-import walletmonitor.icons.generated.resources.Res
-import walletmonitor.icons.generated.resources.*
+import walletmonitor.composeapp.generated.resources.Res
+import walletmonitor.composeapp.generated.resources.*
 
 object Resources {
     object Icons {

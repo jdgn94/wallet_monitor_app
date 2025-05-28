@@ -35,12 +35,6 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
-            implementation(libs.ktor.client.android)
-            implementation(libs.android.driver)
-        }
-        iosMain.dependencies {
-            implementation(libs.ktor.client.darwin)
-            implementation(libs.native.driver)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -53,12 +47,6 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation(libs.androidx.navigation.compose)
             implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.ktor.client.core)
-            implementation(libs.ktor.client.content.negotiation)
-            implementation(libs.ktor.serialization.kotlinx.json)
-            implementation(libs.runtime)
-            implementation(libs.kotlinx.datetime)
-            implementation(libs.koin.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -99,7 +87,6 @@ android {
 
 dependencies {
     debugImplementation(compose.uiTooling)
-    implementation(project(":icons"))
 }
 
 //sqldelight {
