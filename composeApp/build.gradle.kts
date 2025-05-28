@@ -18,7 +18,7 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -85,6 +85,10 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
+            matchingFallbacks += listOf("release")
+        }
+        getByName("debug") {
+            matchingFallbacks += listOf("debug")
         }
     }
     compileOptions {
@@ -95,13 +99,13 @@ android {
 
 dependencies {
     debugImplementation(compose.uiTooling)
+    implementation(project(":icons"))
 }
 
-sqldelight {
-    databases {
-        create("WalletMonitorDB") {
-            packageName = "app.jdgn.wallet_monitor"
-            generateAsync = false
-        }
-    }
-}
+//sqldelight {
+//    databases {
+//        create("WalletMonitorDB") {
+//            packageName.set("app.jdgn.wallet_monitor")
+//        }
+//    }
+//}
