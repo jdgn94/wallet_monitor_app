@@ -8,12 +8,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import app.jdgn.wallet_monitor.ui.Resources
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import walletmonitor.composeapp.generated.resources.Res
 import walletmonitor.composeapp.generated.resources.chart
 import walletmonitor.composeapp.generated.resources.home
 import walletmonitor.composeapp.generated.resources.more
 import walletmonitor.composeapp.generated.resources.transactions
 
+@Preview
 @Composable
 fun BottomBar(onChange: (Int) -> Unit, index: Int = 0) {
     BottomAppBar(

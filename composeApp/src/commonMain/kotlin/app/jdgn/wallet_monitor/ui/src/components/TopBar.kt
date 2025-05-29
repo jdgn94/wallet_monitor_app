@@ -12,7 +12,9 @@ import app.jdgn.wallet_monitor.ui.Resources
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
+@Preview
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(

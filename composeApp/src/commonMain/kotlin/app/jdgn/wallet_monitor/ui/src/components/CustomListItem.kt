@@ -25,6 +25,7 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 enum class CustomListItemOption {
     NONE,
@@ -33,6 +34,7 @@ enum class CustomListItemOption {
     CHIP
 }
 
+@Preview
 @Composable
 fun CustomListItem(
     icon: DrawableResource,

@@ -58,8 +58,15 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation(libs.kotlin.stdlib)
                 // Add KMP dependencies here
+
+                implementation(project.dependencies.platform(libs.koin.bom))
+                implementation(libs.koin.core)
+                implementation(libs.koin.compose)
+                implementation(libs.coil.compose)
+                implementation(libs.ktor.client.core)
+                api(libs.datastore)
+                api(libs.datastore.preferences)
             }
         }
 
@@ -74,13 +81,14 @@ kotlin {
                 // Add Android-specific dependencies here. Note that this source set depends on
                 // commonMain by default and will correctly pull the Android artifacts of any KMP
                 // dependencies declared in commonMain.
+
+                implementation(libs.koin.android)
+                implementation(libs.ktor.client.okhttp)
             }
         }
 
         getByName("androidDeviceTest") {
             dependencies {
-                implementation(libs.androidx.runner)
-                implementation(libs.androidx.core)
                 implementation(libs.androidx.testExt.junit)
             }
         }
@@ -92,6 +100,7 @@ kotlin {
                 // part of KMP’s default source set hierarchy. Note that this source set depends
                 // on common by default and will correctly pull the iOS artifacts of any
                 // KMP dependencies declared in commonMain.
+                implementation(libs.ktor.client.darwin)
             }
         }
     }
